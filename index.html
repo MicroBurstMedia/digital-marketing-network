@@ -433,7 +433,7 @@
         button.innerText = "LOADING..."; 
         
         try {
-            const response = await fetch('https://mbmn-checkout-session.onrender.com/', {
+            const response = await fetch('https://mbmn-checkout-session.onrender.com/create-checkout-session', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' }
             });
