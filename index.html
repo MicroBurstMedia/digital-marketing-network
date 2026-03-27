@@ -530,91 +530,6 @@
     const sendBtn = document.getElementById('send-btn');
     const msgBox = document.getElementById('chat-messages');
 
-    // Toggle Window
-    trigger.onclick = () => {
-        windowEl.style.display = windowEl.style.display === 'flex' ? 'none' : 'flex';
-    };
-
-    async function handleSend() {
-    const text = input.value.trim();
-    if(!text) return;
-
-    // 1. Show user message
-    msgBox.innerHTML += `<div class="msg-user">${text}</div>`;
-    
-    // 2. Show "Thinking" indicator
-    const thinkingId = "temp-" + Date.now();
-    msgBox.innerHTML += `<div class="msg-ai" id="${thinkingId}">...Thinking...</div>`;
-    
-    input.value = '';
-    msgBox.scrollTop = msgBox.scrollHeight;
-
-    try {
-        // FIXED URL: Added /chat
-        const response = await fetch('https://mbmn-chatbot-session.onrender.com/chat', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ message: text })
-        });
-
-        const data = await response.json();
-        
-        // 3. Replace "Thinking" with actual reply
-        const thinkingEl = document.getElementById(thinkingId);
-        if(thinkingEl) thinkingEl.innerText = data.reply;
-        
-    } catch (err) {
-        const thinkingEl = document.getElementById(thinkingId);
-        if(thinkingEl) {
-            thinkingEl.style.color = "#ef4444";
-            thinkingEl.innerText = "Error: MBMN Node is offline.";
-        }
-    }
-    msgBox.scrollTop = msgBox.scrollHeight;
-}
-
-    sendBtn.onclick = handleSend;
-  input.onkeypress = (e) => { if(e.key === 'Enter') handleSend(); };
-</script> ```
-
----
-
-### 🛠️ Analysis & Suggested Improvements
-
-#### 1. Chatbot User Experience (UX)
-* **"Thinking" State:** Your code correctly shows "...Thinking...", but if the Render server is "sleeping" (which free instances do after 15 minutes of inactivity), the fetch might take 30+ seconds. 
-* **Auto-Scroll:** You have `msgBox.scrollTop = msgBox.scrollHeight;` in the `try` block, but you should also move it into the `finally` block or ensure it runs after the message is rendered to keep the latest chat in view.
-
-#### 2. Layout & CSS
-* **Z-Index Conflict:** Your `timer-banner` has `z-index: 2001` and the `disclaimerModal` has `z-index: 2000`. This is good, but your `#chat-trigger` and `#chat-window` are at `1000`. If a user opens the chat while the modal is up, the chat will appear *behind* the modal.
-* **Mobile Scaling:** The `.ad-content` uses `flex: 1` for the description. On very small screens, the "Learn More" button might get squeezed. Consider adding `min-width: fit-content` to the buttons.
-
-#### 3. Analytics & SEO
-* **GA4 Tag:** Your Google Tag (`G-B933Q59SFQ`) is placed correctly in the `<head>`.
-* **JSON-LD:** The Schema.org markup for the "Organization" is perfect for helping search engines identify MicroBurstMedia as a professional entity.
-
----
-
-### 📋 Optimization Checklist
-| Feature | Status | Recommendation |
-| :--- | :--- | :--- |
-| **Stripe** | 🟡 Testing | You are currently using a `pk_test` key. Remember to swap this to `pk_live` before going live. |
-| **Chat Backend** | 🟢 Fixed | Your URL `.../chat` matches standard Express routing for chatbots. |
-| **Performance** | 🟡 Caution | The YouTube iframes are not lazy-loaded. Add `loading="lazy"` to the `<iframe>` tags to speed up initial page load. |
-| **Accessibility** | 🔴 Missing | Add `aria-label="Close Chat"` or similar attributes to your SVG triggers for screen readers. |
-
----
-
-### 🚀 Updated Script Block (Copy/Paste this)
-Replace the entire script section at the bottom of your file with this cleaned-up version:
-
-```javascript
-    const trigger = document.getElementById('chat-trigger');
-    const windowEl = document.getElementById('chat-window');
-    const input = document.getElementById('user-input');
-    const sendBtn = document.getElementById('send-btn');
-    const msgBox = document.getElementById('chat-messages');
-
     trigger.onclick = () => {
         windowEl.style.display = windowEl.style.display === 'flex' ? 'none' : 'flex';
         if (windowEl.style.display === 'flex') input.focus();
@@ -655,6 +570,5 @@ Replace the entire script section at the bottom of your file with this cleaned-u
     sendBtn.onclick = handleSend;
     input.onkeypress = (e) => { if(e.key === 'Enter') handleSend(); };
 </script>
-
 </body>
 </html>
