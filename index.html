@@ -509,9 +509,9 @@
 </style>
 
 <div id="chat-window">
-    <div id="chat-header">MBM Support AI</div>
+    <div id="chat-header">AI Chat Support</div>
     <div id="chat-messages">
-        <div class="msg-ai">Hello! I'm the MBM strategist. How can I assist with your AI automation today?</div>
+        <div class="msg-ai">Hello! I am a chat support representative. How can we optimize your workflow today?</div>
     </div>
     <div id="chat-input-area">
         <input type="text" id="user-input" placeholder="Ask me anything...">
@@ -552,7 +552,7 @@
 
         try {
             // Updated URL to match your current Render setup
-            const response = await fetch('https://mbmn-chatbot-session.onrender.com/chat', {
+            const response = await fetch('https://mbmn-checkout-session.onrender.com', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ message: text })
@@ -563,7 +563,7 @@
             
             if(thinkingEl) {
                 // Ensure the reply actually exists before displaying
-                thinkingEl.innerText = data.reply || "I'm having trouble retrieving that answer. Please try again.";
+                thinkingEl.innerText = data.reply || "It seems we're having system issues. Please contact us at +1 (954) 600-8695.";
             }
             
         } catch (err) {
