@@ -182,7 +182,7 @@
 #scrollTopBtn {
     position: fixed;
     bottom: 30px;
-    right: 30px;
+    right: 100px;
     width: 50px;
     height: 50px;
     background: var(--primary);
@@ -452,6 +452,74 @@
         }
     }
 </script>
+
+<div id="chat-window">
+    <div id="chat-header">MBM AI Chat Support</div>
+    <div id="chat-messages">
+        <div class="msg-ai">Hello! I'm a chat support representative for MicroBurstMedia. How can we assist you today?</div>
+    </div>
+    <div id="chat-input-area">
+        <input type="text" id="user-input" placeholder="Ask me anything...">
+        <button id="send-btn">Send</button>
+    </div>
+</div>
+
+<div id="chat-trigger">
+    <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+</div>
+
+<script>
+    const trigger = document.getElementById('chat-trigger');
+    const windowEl = document.getElementById('chat-window');
+    const input = document.getElementById('user-input');
+    const sendBtn = document.getElementById('send-btn');
+    const msgBox = document.getElementById('chat-messages');
+
+    // Toggle Window
+    trigger.onclick = () => {
+        windowEl.style.display = windowEl.style.display === 'flex' ? 'none' : 'flex';
+    };
+
+    async function handleSend() {
+    const text = input.value.trim();
+    if(!text) return;
+
+    // 1. Show user message
+    msgBox.innerHTML += `<div class="msg-user">${text}</div>`;
+    
+    // 2. Show "Thinking" indicator
+    const thinkingId = "temp-" + Date.now();
+    msgBox.innerHTML += `<div class="msg-ai" id="${thinkingId}">...Thinking...</div>`;
+    
+    input.value = '';
+    msgBox.scrollTop = msgBox.scrollHeight;
+
+    try {
+        // FIXED URL: Added /chat
+        const response = await fetch('https://mbmn-chatbot-session.onrender.com/chat', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ message: text })
+        });
+
+        const data = await response.json();
+        
+        // 3. Replace "Thinking" with actual reply
+        const thinkingEl = document.getElementById(thinkingId);
+        if(thinkingEl) thinkingEl.innerText = data.reply;
+        
+    } catch (err) {
+        const thinkingEl = document.getElementById(thinkingId);
+        if(thinkingEl) {
+            thinkingEl.style.color = "#ef4444";
+            thinkingEl.innerText = "Error: MBMN Node is offline.";
+        }
+    }
+    msgBox.scrollTop = msgBox.scrollHeight;
+}
+
+    sendBtn.onclick = handleSend;
+    input.onkeypress = (e) => { if(e.key === 'Enter') handleSend(); };
     
 </body>
 </html>
