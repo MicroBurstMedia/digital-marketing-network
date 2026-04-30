@@ -1127,24 +1127,23 @@ footer {
     });
 
         <script>
-  window.onload = function() {
-    // 1. Look for the "row" ID in the website address
-    const urlParams = new URLSearchParams(window.location.search);
-    const rowId = urlParams.get('row');
+document.addEventListener("DOMContentLoaded", function() {
 
-    if (rowId) {
-      // 2. Ping your Apps Script Web App
-      // Replace the URL below with your actual Web App Exec URL
-      const scriptUrl = "https://script.google.com/macros/s/AKfycbwauTbDyDH3ozK1ersXaBC-mCsfgmGBafuSkTctBCE89vQczx9PrQQLVN_nvjITg-7n/exec";
-      
-      fetch(`${scriptUrl}?row=${rowId}`, {
-        method: 'GET',
-        mode: 'no-cors' // This prevents "security block" errors in the browser
-      })
-      .then(() => console.log("Visit tracked for row: " + rowId))
-      .catch(err => console.log("Tracking failed: ", err));
-    }
-  };
+  const params = new URLSearchParams(window.location.search);
+  const rowId = params.get('row');
+
+  if (rowId) {
+
+    const scriptUrl = "https://script.google.com/macros/s/AKfycbwauTbDyDH3ozK1ersXaBC-mCsfgmGBafuSkTctBCE89vQczx9PrQQLVN_nvjITg-7n/exec";
+
+    fetch(`${scriptUrl}?row=${rowId}`)
+      .then(response => response.text())
+      .then(data => console.log("SUCCESS:", data))
+      .catch(err => console.error("ERROR:", err));
+
+  }
+
+});
 </script>
     
 </body>
