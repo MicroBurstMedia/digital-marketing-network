@@ -1131,17 +1131,24 @@ document.addEventListener("DOMContentLoaded", function() {
     const params = new URLSearchParams(window.location.search);
     const rowId = params.get('row');
 
-    if (rowId) {
+    if (rowId && !isNaN(rowId)) {
         const scriptUrl = "https://script.google.com/macros/s/AKfycbwauTbDyDH3ozK1ersXaBC-mCsfgmGBafuSkTctBCE89vQczx9PrQQLVN_nvjITg-7n/exec";
-        
-        // Construct the tracking URL
         const trackingUrl = `${scriptUrl}?row=${rowId}`;
 
-        // Create a 'Hidden Image' to force the hit to Google
-        const img = new Image();
-        img.src = trackingUrl;
+        // Create a hidden iframe
+        const iframe = document.createElement('iframe');
+        iframe.style.display = 'none';
+        iframe.src = trackingUrl;
         
-        console.log("Tracking signal sent for row: " + rowId);
+        // Add it to the page to trigger the load
+        document.body.appendChild(iframe);
+        
+        console.log("Iframe tracking triggered for row: " + rowId);
+
+        // Optional: Remove it after 5 seconds to keep the page clean
+        setTimeout(() => {
+            document.body.removeChild(iframe);
+        }, 5000);
     }
 });
 </script>
