@@ -1128,21 +1128,21 @@ footer {
 
         <script>
 document.addEventListener("DOMContentLoaded", function() {
+    const params = new URLSearchParams(window.location.search);
+    const rowId = params.get('row');
 
-  const params = new URLSearchParams(window.location.search);
-  const rowId = params.get('row');
+    if (rowId) {
+        // CLEAN URL: No parameters at the end of the base URL
+        const scriptUrl = "https://script.google.com/macros/s/AKfycbwauTbDyDH3ozK1ersXaBC-mCsfgmGBafuSkTctBCE89vQczx9PrQQLVN_nvjITg-7n/exec";
 
-  if (rowId) {
-
-    const scriptUrl = "https://script.google.com/macros/s/AKfycbwauTbDyDH3ozK1ersXaBC-mCsfgmGBafuSkTctBCE89vQczx9PrQQLVN_nvjITg-7n/exec?row=2";
-
-    fetch(`${scriptUrl}?row=${rowId}`)
-      .then(response => response.text())
-      .then(data => console.log("SUCCESS:", data))
-      .catch(err => console.error("ERROR:", err));
-
-  }
-
+        // This sends the signal to your Google Sheet
+        fetch(`${scriptUrl}?row=${rowId}`, {
+            method: 'GET',
+            mode: 'no-cors' // Critical for avoiding browser security blocks
+        })
+        .then(() => console.log("Success: Sheet updated for row " + rowId))
+        .catch(err => console.error("Error:", err));
+    }
 });
 </script>
     
