@@ -1125,6 +1125,26 @@ footer {
         updateHzSlider();
         startAutoPlay(); // Kick off the timer when page loads
     });
+
+        <script>
+  window.onload = function() {
+    // 1. Look for the "row" ID in the website address
+    const urlParams = new URLSearchParams(window.location.search);
+    const rowId = urlParams.get('row');
+
+    if (rowId) {
+      // 2. Ping your Apps Script Web App
+      // Replace the URL below with your actual Web App Exec URL
+      const scriptUrl = "https://script.google.com/macros/s/AKfycbyZRUizjTPjZwM0OM6DwTejsFbJHjktmG8VwJsiKeS0w5UTrTn7r9TIkVkWt6HHiNg/exec";
+      
+      fetch(`${scriptUrl}?row=${rowId}`, {
+        method: 'GET',
+        mode: 'no-cors' // This prevents "security block" errors in the browser
+      })
+      .then(() => console.log("Visit tracked for row: " + rowId))
+      .catch(err => console.log("Tracking failed: ", err));
+    }
+  };
 </script>
     
 </body>
