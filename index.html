@@ -1132,16 +1132,16 @@ document.addEventListener("DOMContentLoaded", function() {
     const rowId = params.get('row');
 
     if (rowId) {
-        // Your specific Web App URL
         const scriptUrl = "https://script.google.com/macros/s/AKfycbwauTbDyDH3ozK1ersXaBC-mCsfgmGBafuSkTctBCE89vQczx9PrQQLVN_nvjITg-7n/exec";
+        
+        // Construct the tracking URL
+        const trackingUrl = `${scriptUrl}?row=${rowId}`;
 
-        // This acts like a 'Campaign Ping'
-        fetch(`${scriptUrl}?row=${rowId}`, {
-            method: "GET",
-            mode: "no-cors" 
-        })
-        .then(() => console.log("Campaign ID " + rowId + " tracked."))
-        .catch(err => console.error("Tracking Error:", err));
+        // Create a 'Hidden Image' to force the hit to Google
+        const img = new Image();
+        img.src = trackingUrl;
+        
+        console.log("Tracking signal sent for row: " + rowId);
     }
 });
 </script>
