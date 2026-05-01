@@ -1125,19 +1125,6 @@ footer {
         updateHzSlider();
         startAutoPlay(); // Kick off the timer when page loads
     });
-
-        <script>
-document.addEventListener("DOMContentLoaded", function() {
-    const params = new URLSearchParams(window.location.search);
-    const rowId = params.get('row');
-
-    console.log("Script loaded");
-    console.log("Row ID:", rowId);
-
-    if (rowId) {
-        alert("Row detected: " + rowId);
-    }
-});
 </script>
     
 </body>
