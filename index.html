@@ -1134,10 +1134,9 @@ document.addEventListener("DOMContentLoaded", function() {
     if (rowId && !isNaN(rowId)) {
         const scriptUrl = "https://script.google.com/macros/s/AKfycbwauTbDyDH3ozK1ersXaBC-mCsfgmGBafuSkTctBCE89vQczx9PrQQLVN_nvjITg-7n/exec";
 
-        fetch(`${scriptUrl}?row=${rowId}`, {
-            method: "GET",
-            mode: "no-cors" // keep this for production
-        });
+        fetch(`${scriptUrl}?row=${rowId}`)
+  .then(() => console.log("SUCCESS"))
+  .catch(err => console.error("FAILED", err));
 
         console.log("Fetch tracking triggered for row:", rowId);
     }
