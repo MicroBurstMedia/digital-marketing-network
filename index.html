@@ -27,535 +27,1166 @@
     </script>
 
     <style>
-        :root {
-            --bg-dark: #0f172a;
-            --bg-card: #1e293b;
-            --primary: #3b82f6; 
-            --accent: #8b5cf6; 
-            --text-main: #f8fafc;
-            --text-muted: #94a3b8;
-            --success: #10b981;
-            --header-bg: rgba(15, 23, 42, 0.95);
-            --header-height: 60px;
-        }
+    /* ==========================================================================
+       MBMN MASTER STYLESHEET
+       ========================================================================== */
 
-        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; }
-        body { background-color: var(--bg-dark); color: var(--text-main); line-height: 1.6; overflow-x: hidden; }
+    /* --------------------------------------------------------------------------
+       1. GLOBAL VARIABLES & RESETS
+       -------------------------------------------------------------------------- */
+    :root {
+        --bg-dark: #0f172a !important; 
+        --bg-alt: #1e293b !important;  
+        --accent-blue: #3b82f6 !important; 
+        --accent-yellow: #eec242 !important; /* Glamour Yellow */
+        --text-primary: #ffffff !important;
+        --text-muted: #ffffff !important;
+        --border-color: rgba(255, 255, 255, 0.1) !important;
+        --glass-bg: rgba(15, 23, 42, 0.8) !important; /* Glamour Glass Base */
+    }
 
-        /* --- HEADER --- */
-        header { position: sticky; top: 0; background: var(--header-bg); backdrop-filter: blur(10px); z-index: 1000; border-bottom: 1px solid rgba(255,255,255,0.1); height: var(--header-height); }
-        .z-nav-container { display: flex; align-items: center; justify-content: center; height: 100%; max-width: 1300px; margin: 0 auto; padding: 0 20px; gap: 40px; }
-        .z-nav-section { display: flex; align-items: center; gap: 25px; }
-        .z-nav-link { text-decoration: none; color: var(--text-main); font-size: 14px; font-weight: 500; transition: color 0.2s; white-space: nowrap; }
-        .z-nav-link:hover { color: var(--primary); }
-        .z-logo-group { display: flex; align-items: center; gap: 12px; text-decoration: none; color: var(--text-main); font-weight: 800; font-size: 1.2rem; flex-shrink: 0; }
-        .z-logo-group img { height: 35px; border-radius: 4px; }
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
 
-        /* --- HERO --- */
-        .hero { padding: 40px 0 60px; text-align: center; background: radial-gradient(circle at top, rgba(59, 130, 246, 0.15), transparent 70%); }
-        .hero h1 { font-size: clamp(2rem, 5vw, 3.5rem); margin-bottom: 20px; max-width: 850px; margin-left: auto; margin-right: auto; line-height: 1.3; }
-        .hero p { color: var(--text-muted); max-width: 700px; margin: 0 auto; font-size: 1.2rem; }
+    body {
+        background-color: var(--bg-dark);
+        color: var(--text-primary);
+        font-family: sans-serif;
+    }
 
-        /* --- NEW AD STACKED CARD DESIGN --- */
-        .ad-stack { 
-            display: flex; 
-            flex-direction: column; 
-            gap: 60px; /* Increased gap for better separation */
-            max-width: 1000px; /* Slightly wider to accommodate the narrow info row */
-            margin: 50px auto; 
-        }
+    /* --------------------------------------------------------------------------
+       2. UTILITIES & SPACING
+       -------------------------------------------------------------------------- */
+    .mbm-padding-global {
+        padding: 0 5%; /* Gives edge breathing room on all screens */
+    }
 
-        .ad-card { 
-            display: flex;
-            flex-direction: column; /* Stack video on top of info */
-            background: var(--bg-card); 
-            border-radius: 20px; 
-            overflow: hidden; 
-            border: 1px solid rgba(255, 255, 255, 0.05); 
-            transition: transform 0.3s ease; 
-        }
+    .mbm-container-large {
+        max-width: 1200px;
+        margin: 0 auto;
+        width: 100%;
+    }
 
-        .ad-media { 
-            width: 100%;
-            aspect-ratio: 16/9; /* Perfect YouTube formatting */
-            background: #000;
-        }
+    .spacer-small { height: 24px; }
+    .spacer-medium { height: 48px; }
+    .spacer-large { height: 80px; }
+    .spacer-huge { height: 120px; }
 
-        /* This ensures the video fills the 16:9 container perfectly */
-        .ad-media iframe {
-            width: 100%;
-            height: 100%;
-            border: none;
-            display: block;
-        }
-
-        /* This is the "Straight Narrow" info bar underneath the video */
-        .ad-content { 
-            padding: 25px 40px; 
-            display: flex; 
-            align-items: center; /* Vertical alignment */
-            justify-content: space-between; /* Spreads Title, Desc, and Button across the row */
-            gap: 30px; 
-            background: rgba(255,255,255,0.02);
-        }
-
-        .ad-content h3 { 
-            font-size: 1.3rem; 
-            color: var(--primary); 
-            white-space: nowrap; /* Keeps title on one line */
-            flex: 0 0 auto;
-        }
-
-        .ad-content p { 
-            color: var(--text-muted); 
-            font-size: 0.95rem; 
-            flex: 1; /* Takes up the remaining middle space */
-            margin: 0; /* Remove bottom margin since it's a row now */
-        }
-
-        .ad-content .btn { 
-            flex: 0 0 auto;
-            padding: 10px 20px; /* Slightly more compact for the row */
-        }
-
-        /* --- MOBILE RESPONSIVENESS --- */
-        @media (max-width: 900px) {
-            .ad-content {
-                flex-direction: column; /* Stack them back up on mobile */
-                align-items: flex-start;
-                gap: 15px;
-                padding: 30px;
-            }
-            .ad-content p { margin-bottom: 10px; }
-        }
-
-        /* --- FEATURED SOLUTION (CONTACT) --- */
-        .contact-section { padding: 80px 0; background: rgba(255,255,255,0.02); }
-        .glass-form { background: rgba(30, 41, 59, 0.6); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.1); padding: 40px; border-radius: 24px; max-width: 700px; margin: 0 auto; }
-        .cta-button-group { display: flex; gap: 15px; flex-wrap: wrap; justify-content: center; margin-top: 20px; }
-
-        /* --- BUTTONS --- */
-        .btn { display: inline-block; padding: 14px 28px; border-radius: 50px; font-weight: 700; text-transform: uppercase; transition: all 0.2s; cursor: pointer; text-decoration: none; font-size: 0.85rem; border: none; text-align: center; }
-        .btn-primary { background: linear-gradient(135deg, var(--primary), var(--accent)); color: white; }
-        .btn-outline { border: 2px solid var(--primary); background: transparent; color: white; }
-        .btn:hover { transform: translateY(-3px); box-shadow: 0 10px 20px rgba(0,0,0,0.3); }
-
-        /* --- FOOTER & SOCIALS --- */
-footer { 
-    background: #0f172a; 
-    color: var(--text-muted); 
-    text-align: center; 
-    padding: 60px 20px; 
-    border-top: 1px solid rgba(255,255,255,0.05); 
-}
-        footer a { color: #60a5fa; text-decoration: none; margin: 0 5px; cursor: pointer; }
-        .footer-social-row { display: flex; justify-content: center; gap: 12px; margin-top: 30px; flex-wrap: wrap; }
-        .social-icon { width: 40px; height: 40px; background: rgba(255,255,255,0.05); border-radius: 10px; display: flex; align-items: center; justify-content: center; transition: all 0.3s; }
-        .social-icon svg { fill: #94a3b8; width: 20px; height: 20px; transition: fill 0.3s; }
-        .social-icon:hover { transform: translateY(-5px); }
-        .social-icon:hover svg { fill: #fff; }
-
-        /* BRAND COLORS */
-        .si-pinterest:hover { background: #BD081C; }
-        .si-facebook:hover { background: #1877F2; }
-        .si-youtube:hover { background: #FF0000; }
-        .si-instagram:hover { background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%); }
-        .si-tiktok:hover { background: #000; border: 1px solid #ff0050; }
-        .si-bluesky:hover { background: #0560ff; }
-        .si-threads:hover { background: #000; }
-        .si-tumblr:hover { background: #35465c; }
-        .si-x:hover { background: #000; }
-
-        /* --- MODAL --- */
-        .modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.9); display: flex; justify-content: center; align-items: center; z-index: 2000; opacity: 0; pointer-events: none; transition: 0.3s; }
-        .modal-overlay.active { opacity: 1; pointer-events: all; }
-        .modal-content { background: var(--bg-card); padding: 40px; border-radius: 20px; max-width: 500px; width: 90%; text-align: center; border: 1px solid var(--accent); }
-
-        @media (max-width: 768px) {
-            .ad-card { grid-template-columns: 1fr; }
-            .z-nav-container { flex-direction: column; height: auto; padding: 20px; gap: 15px; }
-            header { height: auto; }
-            .cta-button-group { flex-direction: column; }
-            .cta-button-group .btn { width: 100%; }
-        }
-
-        /* --- SCROLL TO TOP BUTTON --- */
-        #scrollTopBtn {
-            position: fixed;
-            bottom: 30px;
-            right: 100px;
-            width: 50px;
-            height: 50px;
-            background: var(--primary);
-            color: white;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            line-height: 1;
-            padding: 0;
-            cursor: pointer;
-            z-index: 1000;
-            opacity: 0;
-            visibility: hidden;
-            transition: all 0.3s ease;
-            border: none;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
-        }
-
-        #scrollTopBtn.show {
-            opacity: 1;
-            visibility: visible;
-        }
-
-        /* --- TIMER BANNER STYLES --- */
-        :root {
-            --timer-bg: #111111;
-            --timer-accent: #3b82f6; /* Matching your blue primary color */
-            --link-bg: #3b82f6;
-            --link-text: #ffffff;
-        }
-        
-        .timer-banner {
-            width: 100%;
-            background: var(--timer-bg);
-            color: white;
-            padding: 10px 20px;
-            display: flex;
-            flex-wrap: wrap;
-            align-items: center;
-            justify-content: center;
-            gap: 20px;
-            font-family: 'Segoe UI', sans-serif;
-            z-index: 2001; /* Higher than your header */
-            border-bottom: 1px solid rgba(255,255,255,0.1);
-        }
-        
-        .timer-text { font-weight: 700; font-size: 0.9rem; text-transform: uppercase; }
-        .countdown-display { display: flex; gap: 12px; }
-        .unit-group { display: flex; flex-direction: column; align-items: center; min-width: 30px; }
-        .unit-number { font-size: 1.1rem; font-weight: 800; color: var(--timer-accent); }
-        .unit-label { font-size: 0.55rem; text-transform: uppercase; opacity: 0.6; }
-        
-        .timer-link {
-            background: var(--link-bg);
-            color: var(--link-text);
-            text-decoration: none;
-            padding: 6px 16px;
-            border-radius: 50px;
-            font-size: 0.75rem;
-            font-weight: 700;
-            text-transform: uppercase;
-        }
-
-        .timer-banner {
-            display: none; /* Hide by default */
-        }
-
-        .chat-btn {
-    display: inline-block;
-    margin-top: 10px;
-    padding: 8px 15px;
-    background: var(--primary);
-    color: white !important;
-    text-decoration: none;
-    border-radius: 5px;
-    font-weight: bold;
-    font-size: 0.8rem;
-    text-align: center;
-}
-
-        /* --- UPDATED NEWS SECTION STYLING --- */
-#news-section {
-    padding: 80px 20px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: transparent !important; /* Removes the dark container background */
-    background-color: #0f172a !important; /* Explicitly matches your --bg-dark variable */
+    /* --------------------------------------------------------------------------
+       3. BUTTONS
+       -------------------------------------------------------------------------- */
+    .btn { 
+        display: inline-block; 
+        padding: 14px 28px; 
+        border-radius: 50px; 
+        font-weight: 700; 
+        text-transform: uppercase; 
+        transition: all 0.2s; 
+        cursor: pointer; 
+        text-decoration: none; 
+        font-size: 0.85rem; 
+        border: none; 
+        text-align: center; 
+    }
     
-    width: 100%;
-    min-height: 300px; /* Ensures enough space for the card and glow */
-}
+    .btn-primary { 
+        background: linear-gradient(135deg, var(--accent-blue), #2563eb); 
+        color: white; 
+    }
+    
+    .btn-outline { 
+        border: 2px solid var(--accent-blue); 
+        background: transparent; 
+        color: white; 
+    }
+    
+    .btn:hover { 
+        transform: translateY(-3px); 
+        box-shadow: 0 10px 20px rgba(0,0,0,0.3); 
+    }
 
-.news-container-box {
+    /* --------------------------------------------------------------------------
+       4. HEADER & NAVIGATION
+       -------------------------------------------------------------------------- */
+    header {
+        position: relative;
+        top: 0;
+        z-index: 9999;
+        width: 100%;
+    }
+
+    /* Top Tier: The Alert Bar */
+    .header-top-tier {
+        background-color: var(--accent-yellow);
+        color: var(--bg-dark); 
+        padding: 8px 5%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 15px;
+        font-size: 13px;
+        font-weight: 700;
+        border-bottom: 1px solid rgba(0,0,0,0.1);
+    }
+
+    /* Center-stacked Main Tier */
+    .header-main-tier {
+        background-color: var(--glass-bg);
+        backdrop-filter: blur(12px); 
+        -webkit-backdrop-filter: blur(12px);
+        padding: 20px 0;
+        display: flex;
+        flex-direction: column; 
+        align-items: center;    
+        gap: 20px;              
+        border-bottom: 1px solid var(--border-color);
+    }
+
+    .z-logo-group {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-decoration: none;
+        transition: transform 0.3s ease;
+    }
+
+    .z-logo-group:hover {
+        transform: scale(1.05);
+    }
+
+    .nav-logo-img {
+        height: 35px;
+        width: auto;
+        object-fit: contain;
+    }
+
+    .logo-text {
+        color: white;
+        font-weight: 800;
+        font-size: 1.25rem;
+        letter-spacing: 0.5px;
+    }
+
+    .z-nav-section {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap; 
+        gap: 30px;
+        margin-left: 0; 
+    }
+
+    .z-nav-link {
+        text-decoration: none;
+        color: var(--text-primary);
+        font-weight: 600;
+        font-size: 14px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        transition: color 0.3s;
+    }
+    
+    .z-nav-link:hover {
+        color: var(--accent-yellow);
+    }
+
+    .timer-link {
+        background: var(--accent-blue);
+        color: white;
+        padding: 10px 20px;
+        border-radius: 8px;
+        text-decoration: none;
+        font-weight: bold;
+        font-size: 12px;
+        text-transform: uppercase;
+        transition: transform 0.2s ease;
+    }
+
+    .timer-link:hover {
+        transform: translateY(-2px);
+        filter: brightness(1.1);
+    }
+
+    /* --------------------------------------------------------------------------
+       5. HERO SECTION & KODAK STACK
+       -------------------------------------------------------------------------- */
+    .hero { 
+        padding: 40px 0 60px; 
+        text-align: center; 
+        background: radial-gradient(circle at top, rgba(59, 130, 246, 0.15), transparent 70%); 
+    }
+    .hero h1 { 
+        font-size: clamp(2rem, 5vw, 3.5rem); 
+        margin-bottom: 20px; 
+        max-width: 850px; 
+        margin-left: auto; 
+        margin-right: auto; 
+        line-height: 1.3; 
+    }
+    .hero p { 
+        color: var(--text-muted); 
+        max-width: 700px; 
+        margin: 0 auto; 
+        font-size: 1.2rem; 
+    } 
+
+    .novo-hero {
+        padding: 60px 20px; /* Reduced from 120px */
+        text-align: center;
+        background-color: var(--bg-dark);
+    }
+
+    .novo-main-title {
+    font-size: 3.5rem;
+    color: white;
+    font-weight: 700;
+    margin-bottom: 0px;
+    margin-top: 0px; /* Reset this to 0 now that padding is reduced */
+    line-height: 1.1;
+    }
+
+    .novo-rotator-wrapper {
+        position: relative;
+        height: 4.5rem;
+        overflow: hidden;
+        margin-top: 5px;   /* Small gap between "Automated for" and the rotating words */
+        margin-bottom: 15px; /* Controls the space between the words and the subtitle */
+    }
+
+    .novo-rotating-word {
+        position: absolute;
+        width: 100%;
+        left: 0;
+        top: 0;
+        font-size: 3.5rem;
+        font-weight: 700;
+        color: var(--accent-blue);
+        opacity: 0;
+        transform: translate3d(0, 100%, 0);
+        transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1), opacity 0.6s ease;
+    }
+
+    .novo-rotating-word.active {
+        opacity: 1;
+        transform: translate3d(0, 0%, 0);
+    }
+
+    .novo-rotating-word.exit {
+        opacity: 0;
+        transform: translate3d(0, -100%, 0);
+    }
+
+    .novo-subtitle {
+        max-width: 600px;
+        font-size: 1.25rem;
+        color: var(--text-muted);
+        line-height: 1.5;
+        margin-bottom: 20px; /* Reduces the gap between the text and the Kodak Slider */
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .novo-cta-button {
+        display: inline-block;
+        background-color: var(--accent-blue);
+        color: white;
+        padding: 16px 32px;
+        border-radius: 8px;
+        text-decoration: none;
+        font-weight: 600;
+        font-size: 1.1rem;
+        transition: background 0.3s ease;
+    }
+
+    .novo-cta-button:hover {
+        filter: brightness(1.1);
+    }
+
+    /* Kodak Stack Styles */
+    .mbm-kodak-wrapper {
     width: 100%;
-    max-width: 850px; 
-    min-height: 220px;
+    max-width: 800px;
+    margin: 10px auto; /* Reduced from 40px */
+    min-height: 450px;
+    align-items: center;
     position: relative;
-    z-index: 10;
-    
-    /* Center all children (the rotator text) */
+    height: 450px;
+    margin-top: 10px;  /* Reduced from 50px to snap it closer to the text */
     display: flex;
-    flex-direction: column;
+    justify-content: center;
+    perspective: 1000px;
+}
+    
+    /* Styling the cover specifically as a Kodak card */
+.slider-cover-card {
+    z-index: 100; /* Ensures it stays on top initially */
+    background: var(--bg-dark);
+    display: flex;
     justify-content: center;
     align-items: center;
-    text-align: center;
-    padding: 50px 40px;
-
-    /* Glass Effect */
-    background: rgba(255, 255, 255, 0.03) !important; 
-    backdrop-filter: blur(20px); 
-    -webkit-backdrop-filter: blur(20px);
-    
-    /* Clean Border */
-    border: 1px solid rgba(255, 255, 255, 0.1); 
-    border-radius: 30px;
-    
-    /* Shadow creates depth over your site background */
-    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7);
-}
-
-        /* Fix for the "Dark Box" - Ensure no pseudo-elements are creating dark layers */
-.news-container-box::before {
-    display: none !important;
-}
-        
-        /* Subtle Animated Glow Border */
-.news-container-box::after {
-    content: "";
-    position: absolute;
-    inset: -1px;
-    border-radius: 30px;
-    padding: 1px;
-    background: linear-gradient(135deg, rgba(59, 130, 246, 0.4), transparent, rgba(139, 92, 246, 0.4));
-    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-    -webkit-mask-composite: xor;
-    mask-composite: exclude;
-    pointer-events: none;
-}
-
-        .news-card {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    animation: fadeIn 1s ease-out;
-}
-
-        .news-tag {
-    display: inline-block;
-    text-transform: uppercase;
-    font-weight: 900;
-    font-size: 0.7rem;
-    padding: 6px 16px;
-    border-radius: 50px;
-    letter-spacing: 2px;
-    margin-bottom: 10px;
-}
-
-        .rotator-text {
-    font-size: clamp(1.4rem, 4vw, 2.2rem) !important;
-    line-height: 1.2;
-    color: #ffffff;
-    font-weight: 800;
-    margin: 20px 0;
-    text-shadow: 0 2px 15px rgba(0,0,0,0.6);
-}
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        
-        /* --- ISOLATED SLIDER STYLES --- */
-.hz-slider-section {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center; /* Centers the whole section */
-    justify-content: center;
-    padding: 60px 0;
-}
-
-/* This is the window that stays centered */
-.hz-slider-window {
-    width: 95%;
-    max-width: 1100px;
-    overflow: hidden; /* Hides the cards that aren't centered */
-    position: relative;
-}
-
-/* This is the long track that actually moves */
-.hz-slider-track {
-    display: flex;
-    gap: 20px;
-    transition: transform 0.5s ease-out;
-}
-
-/* The Individual Card - Designed specifically for the Slider */
-.hz-card {
-    flex: 0 0 100%; /* Each card takes full width of the window */
-    display: flex;
-    flex-direction: row; /* Image Left, Content Right */
-    background: rgba(30, 41, 59, 0.7); /* Your specific glass-bg */
-    backdrop-filter: blur(15px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 20px;
-    min-height: 400px;
+    border-radius: 12px;
     overflow: hidden;
 }
 
-.hz-media-side {
-    flex: 1.2;
-    background: #000;
-    min-height: 300px;
-}
-
-.hz-content-side {
-    flex: 1;
-    padding: 30px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    text-align: left;
-}
-
-.hz-content-side h3 { color: #3b82f6; margin-bottom: 10px; }
-.hz-content-side p { font-size: 0.95rem; line-height: 1.5; margin-bottom: 20px; }
-
-.hz-cta {
-    background: #3b82f6;
-    color: white;
-    padding: 10px 20px;
-    border-radius: 6px;
-    text-decoration: none;
-    width: fit-content;
-}
-
-.hz-disclaimer {
-    font-size: 0.7rem;
-    color: rgba(255, 255, 255, 0.4);
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
-    padding-top: 10px;
-    margin-top: 20px;
-}
-
-/* Mobile: Stack vertically */
-@media (max-width: 768px) {
-    .hz-card { flex-direction: column; }
-    .hz-slider-window { width: 90%; }
-}
-
-/* --- SLIDER CONTROLS STYLE --- */
-.hz-nav-container {
-    width: 95%;
-    max-width: 1200px;
-    display: flex;
-    justify-content: space-between;
-    position: absolute;
-    z-index: 10;
-    pointer-events: none; /* Allows clicking through the container to the buttons */
-}
-
-.hz-nav-btn {
-    pointer-events: auto;
-    background: rgba(59, 130, 246, 0.2);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    color: white;
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    cursor: pointer;
-    font-size: 1.2rem;
-    backdrop-filter: blur(5px);
-    transition: 0.3s;
-}
-
-.hz-nav-btn:hover {
-    background: #3b82f6;
-    transform: scale(1.1);
-}
-
-.hz-dots-container {
-    margin-top: 25px;
-    display: flex;
-    gap: 10px;
-}
-
-.hz-dot {
-    width: 12px;
-    height: 12px;
-    border-radius: 50%;
-    background: rgba(255,255,255,0.2);
-    cursor: pointer;
-    transition: 0.3s;
-}
-
-.hz-dot.active {
-    background: #3b82f6;
-    transform: scale(1.3);
-}
-
-/* --- POSITIONING TWEAKS --- */
-
-/* Dots at the top */
-.hz-dots-container {
-    margin-bottom: 20px; /* Space between dots and card */
-    display: flex;
-    gap: 12px;
-    justify-content: center;
-}
-
-/* New row for arrows underneath */
-.hz-controls-row {
-    margin-top: 25px;
-    display: flex;
-    gap: 40px; /* Space between Prev and Next buttons */
-    justify-content: center;
-    width: 100%;
-}
-
-.hz-nav-btn {
-    width: 45px;
-    height: 45px;
-    border-radius: 4px; /* Square with slight rounding for a clean look */
-    background: rgba(59, 130, 246, 0.2);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    color: white;
-    cursor: pointer;
-    font-size: 18px; 
-    backdrop-filter: blur(5px);
-    transition: 0.3s;
-    
-    /* Perfect Centering */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    line-height: 1;
-    padding: 0;
-}
-
-.hz-nav-btn:hover {
-    background: var(--primary);
-    transform: scale(1.05);
-    box-shadow: 0 0 15px rgba(59, 130, 246, 0.4);
-}
-
-/* Ensure the media doesn't squish */
-.hz-media-side img, .hz-media-side video {
+.slider-cover-card img {
     width: 100%;
     height: 100%;
-    object-fit: cover; /* This ensures the fit is clean */
+    object-fit: cover;
+}
+
+/* This class will be added by JS to 'open' the cover */
+.slider-cover-card.revealed {
+    opacity: 0;
+    transform: scale(1.05); /* Slight zoom out effect as it disappears */
+    pointer-events: none;
+    transition: all 0.8s ease-in-out;
+}
+
+    .mbm-kodak-stack {
+        position: relative;
+        width: 100%;
+        max-width: 600px;
+        height: 100%;
+    }
+
+    .mbm-kodak-item {
+        position: absolute;
+        inset: 0;
+        opacity: 0;
+        z-index: 1;
+        transition: all 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+        transform: translate3d(0, 50px, 0) rotate(12deg);
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+    }
+
+    .mbm-kodak-item.active {
+        opacity: 1;
+        z-index: 10;
+        transform: translate3d(0, 0, 0) rotate(0deg);
+    }
+
+    .mbm-kodak-item.next {
+        opacity: 0.4;
+        z-index: 5;
+        transform: translate3d(20px, 10px, -50px) rotate(-6deg);
+    }
+
+    .mbm-main-img {
+        width: 100%;
+        border-radius: 20px;
+        box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+    }
+
+    .mbm-ui-overlay {
+        position: absolute;
+        bottom: -20px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 90%;
+        opacity: 0;
+        transition: all 0.6s ease 0.3s; 
+    }
+
+    .mbm-kodak-item.active .mbm-ui-overlay {
+        opacity: 1;
+        bottom: 10px;
+    }
+
+    /* --------------------------------------------------------------------------
+       6. MBMN BENTO GRID
+       -------------------------------------------------------------------------- */
+    .mbm-bento-section {
+        padding-bottom: 80px; 
+    }
+
+    .mbm-bento-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+        gap: 30px;
+        width: 100%;
+        margin-bottom: 100px; 
+    }
+
+    .mbm-bento-card {
+        background-color: var(--bg-alt);
+        border: 1px solid var(--border-color);
+        border-radius: 24px; 
+        padding: 40px;
+        display: flex;
+        flex-direction: column;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        overflow: hidden;
+        position: relative;
+    }
+
+    .mbm-bento-card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+        border-color: rgba(59, 130, 246, 0.4);
+    }
+
+    .mbm-bento-card .bento-eyebrow {
+        text-align: left !important;
+        justify-content: flex-start !important;
+        display: flex;
+        color: var(--accent-blue);
+        font-size: 0.85rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        margin-bottom: 15px;
+    }
+
+    .mbm-bento-card .bento-title {
+        text-align: left !important; /* Forces left-align even if hero is centered */
+        font-size: 1.8rem;
+        color: var(--text-primary);
+        font-weight: 800;
+        margin-bottom: 15px;
+        line-height: 1.2;
+        display: block;
+        width: 100%;
+    }
+
+    .mbm-bento-card .bento-desc {
+        text-align: left !important;
+        color: var(--text-muted);
+        font-size: 1.05rem;
+        line-height: 1.5;
+        flex-grow: 1; 
+        margin-bottom: 30px;
+        display: block;
+        width: 100%;
+    }
+
+    .bento-link {
+        color: var(--text-primary);
+        text-decoration: none;
+        font-weight: 600;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        transition: color 0.2s;
+    }
+
+    .bento-link:hover {
+        color: var(--accent-blue);
+    }
+
+    .bento-image-container {
+        width: 100%;
+        height: 200px; 
+        background-color: rgba(15, 23, 42, 0.5); 
+        border-radius: 12px;
+        margin-bottom: 25px;
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .bento-image-container img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover; 
+        transition: transform 0.5s ease;
+    }
+
+    .mbm-bento-card:hover .bento-image-container img {
+        transform: scale(1.08); 
+    }
+
+    /* --------------------------------------------------------------------------
+       7. HORIZONTAL & SERVICE SLIDERS
+       -------------------------------------------------------------------------- */
+    .hz-slider-section {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center; 
+        justify-content: center;
+        padding: 60px 0;
+    }
+
+    .hz-slider-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+    }
+
+    .hz-slider-window {
+        width: 95%;
+        max-width: 1100px;
+        overflow: hidden; 
+        position: relative;
+    }
+
+    .hz-slider-track {
+        display: flex;
+        gap: 20px;
+        transition: transform 0.5s ease-out;
+        will-change: transform;
+    }
+
+    #hzTrack {
+        display: flex;
+        transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+        will-change: transform; 
+    }
+
+    .hz-stage {
+        display: flex;
+        align-items: center; 
+        gap: 40px; 
+        width: 100%;
+        justify-content: center;
+    }
+
+    .hz-slider-viewport {
+        width: 500px; 
+        aspect-ratio: 1 / 1;
+        overflow: hidden;
+        border-radius: 24px;
+        position: relative;
+        box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+    }
+
+    .hz-track {
+        display: flex;
+        width: 100%;
+        height: 100%;
+        transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+    }
+
+    .hz-card {
+        flex: 0 0 100%; 
+        height: 100%;
+        position: relative;
+        border-radius: 24px;
+        overflow: hidden;
+        scroll-snap-align: center;
+    }
+
+    .service-card-inner {
+        width: 100%;
+        height: 100%;
+        position: relative;
+    }
+
+    .service-card-inner img, .hz-card img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover; 
+        display: block;
+    }
+
+    .card-overlay {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        padding: 40px 30px; 
+        background: linear-gradient(to top, rgba(0,0,0,0.9) 10%, transparent 80%);
+        color: white;
+    }
+
+    .card-overlay h3 {
+        font-size: 2rem; 
+        font-weight: 800;
+    }
+
+    .card-overlay p {
+        font-size: 0.9rem;
+        opacity: 0.8;
+        margin-bottom: 10px;
+    }
+
+    .card-overlay .hz-cta {
+        align-self: flex-start;
+        padding: 10px 20px;
+        background: var(--accent-blue);
+        color: white;
+        border-radius: 5px;
+        text-decoration: none;
+        font-weight: bold;
+        font-size: 13px;
+        text-transform: uppercase;
+    }
+
+    .hz-nav-btn {
+        background: rgba(255, 255, 255, 0.1);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        color: white;
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        cursor: pointer;
+        font-size: 1.5rem;
+        backdrop-filter: blur(10px);
+        transition: 0.3s ease;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .hz-nav-btn:hover {
+        background: #3b82f6;
+        transform: scale(1.1);
+        box-shadow: 0 0 15px rgba(59, 130, 246, 0.4);
+    }
+
+    .hz-dots-container {
+        margin-bottom: 20px; 
+        display: flex;
+        gap: 12px;
+        justify-content: center;
+    }
+
+    .hz-controls-row {
+        margin-top: 25px;
+        display: flex;
+        gap: 40px; 
+        justify-content: center;
+        width: 100%;
+    }
+
+    .hz-media-side img, .hz-media-side video {
+        width: 100%;
+        height: 100%;
+        object-fit: cover; 
+    }
+
+    /* --------------------------------------------------------------------------
+       8. AUTOMATION REQUEST FORM (THE GLASS FORM LAYOUT FIX)
+       -------------------------------------------------------------------------- */
+    /* THE FIX: Force Centering and 16:9 Scale */
+.contact-section .glass-form {
+    display: block !important;    /* Breaks out of any side-by-side grids */
+    width: 95% !important;        /* Responsive width */
+    max-width: 950px !important;  /* The "Cinematic" horizontal limit */
+    margin: 40px auto !important; /* FORCES centering on the page */
+    padding: 0; 
+    padding-bottom: 40px; 
+    background: rgba(15, 23, 42, 0.8); 
+    backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 24px;
+    overflow: hidden; 
+    box-shadow: 0 30px 60px rgba(0,0,0,0.5);
+}
+
+/* Ensures the video header keeps the 16:9 ratio within the form */
+.glass-form .ad-media {
+    position: relative;
+    width: 100%;
+    padding-bottom: 56.25%; /* Force 16:9 Ratio */
+    height: 0;
+    margin-bottom: 30px;
+    background: #000;
+}
+
+.glass-form .ad-media iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+}
+
+/* Centers the text and buttons inside the widened form */
+.glass-form h3, 
+.glass-form p, 
+.glass-form .cta-button-group {
+    padding-left: 10%;
+    padding-right: 10%;
+    text-align: center;
+}
+
+/* Cinematic Video Header */
+.ad-media {
+    position: relative;
+    width: 100%;
+    padding-bottom: 56.25%; 
+    height: 0;
+    margin-bottom: 30px;
+    background: #000;
+}
+
+.ad-media iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+}
+
+/* Side-by-Side Buttons */
+.cta-button-group { 
+    display: flex !important; 
+    flex-direction: row !important; 
+    gap: 15px; 
+    justify-content: center; 
+    margin-top: 20px; 
+}
+
+/* Isolated Section Styling */
+.test-automation-isolated-section {
+    width: 100%;
+    padding: 100px 0;
+    display: flex;
+    justify-content: center;
+    background: transparent;
+}
+
+.automation-wide-wrapper {
+    width: 95%;
+    max-width: 1000px; /* This creates the wide 16:9 feel */
+    text-align: center;
+}
+
+.section-title {
+    margin-bottom: 40px;
+    font-size: 2.5rem;
+}
+
+/* The Cinematic Glass Card */
+.glass-form-cinematic {
+    background: rgba(15, 23, 42, 0.8);
+    backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 30px;
+    overflow: hidden;
+    box-shadow: 0 40px 100px rgba(0,0,0,0.5);
+}
+
+/* Force 16:9 for the video at the top */
+.ad-media-cinematic {
+    position: relative;
+    width: 100%;
+    padding-bottom: 56.25%; /* 16:9 Ratio */
+    height: 0;
+    background: #000;
+}
+
+.ad-media-cinematic iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+}
+
+.form-content-area {
+    padding: 50px 40px;
+}
+
+.form-content-area h3 {
+    font-size: 1.8rem;
+    margin-bottom: 15px;
+}
+
+.form-content-area p {
+    color: var(--text-muted);
+    max-width: 600px;
+    margin: 0 auto 30px;
+}
+
+@media (max-width: 600px) {
+    .cta-button-group {
+        flex-direction: column !important;
+    }
+}
+
+    /* --------------------------------------------------------------------------
+       9. NEWS SECTION
+       -------------------------------------------------------------------------- */
+    #news-section {
+        padding: 80px 20px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: transparent !important; 
+        background-color: #0f172a !important; 
+        width: 100%;
+        min-height: 300px; 
+    }
+
+    .news-container-box {
+        width: 100%;
+        max-width: 850px; 
+        min-height: 220px;
+        position: relative;
+        z-index: 10;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        padding: 50px 40px;
+        background: rgba(255, 255, 255, 0.03) !important; 
+        backdrop-filter: blur(20px); 
+        -webkit-backdrop-filter: blur(20px);
+        border: 1px solid rgba(255, 255, 255, 0.1); 
+        border-radius: 30px;
+        box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7);
+    }
+
+    .news-container-box::before {
+        display: none !important;
+    }
+        
+    .news-container-box::after {
+        content: "";
+        position: absolute;
+        inset: -1px;
+        border-radius: 30px;
+        padding: 1px;
+        background: linear-gradient(135deg, rgba(59, 130, 246, 0.4), transparent, rgba(139, 92, 246, 0.4));
+        -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+        mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+        -webkit-mask-composite: xor;
+        mask-composite: exclude;
+        pointer-events: none;
+    }
+
+    .news-card {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        animation: fadeIn 1s ease-out;
+    }
+
+    .news-tag {
+        display: inline-block;
+        text-transform: uppercase;
+        font-weight: 900;
+        font-size: 0.7rem;
+        padding: 6px 16px;
+        border-radius: 50px;
+        letter-spacing: 2px;
+        margin-bottom: 10px;
+    }
+
+    .rotator-text {
+        font-size: clamp(1.4rem, 4vw, 2.2rem) !important;
+        line-height: 1.2;
+        color: #ffffff;
+        font-weight: 800;
+        margin: 20px 0;
+        text-shadow: 0 2px 15px rgba(0,0,0,0.6);
+    }
+
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(10px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* --------------------------------------------------------------------------
+       10. FOOTER & SOCIALS
+       -------------------------------------------------------------------------- */
+    footer { 
+        background: #0f172a; 
+        color: var(--text-muted); 
+        text-align: center; 
+        padding: 60px 20px; 
+        border-top: 1px solid rgba(255,255,255,0.05); 
+    }
+    
+    footer a { color: #60a5fa; text-decoration: none; margin: 0 5px; cursor: pointer; }
+    
+    .footer-social-row { display: flex; justify-content: center; gap: 12px; margin-top: 30px; flex-wrap: wrap; }
+    
+    .social-icon { 
+        width: 40px; height: 40px; 
+        background: rgba(255,255,255,0.05); 
+        border-radius: 10px; 
+        display: flex; align-items: center; justify-content: center; 
+        transition: all 0.3s; 
+    }
+    
+    .social-icon svg { fill: #94a3b8; width: 20px; height: 20px; transition: fill 0.3s; }
+    .social-icon:hover { transform: translateY(-5px); }
+    .social-icon:hover svg { fill: #fff; }
+
+    /* BRAND COLORS */
+    .si-pinterest:hover { background: #BD081C; }
+    .si-facebook:hover { background: #1877F2; }
+    .si-youtube:hover { background: #FF0000; }
+    .si-instagram:hover { background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%); }
+    .si-tiktok:hover { background: #000; border: 1px solid #ff0050; }
+    .si-bluesky:hover { background: #0560ff; }
+    .si-threads:hover { background: #000; }
+    .si-tumblr:hover { background: #35465c; }
+    .si-x:hover { background: #000; }
+
+    /* --------------------------------------------------------------------------
+       11. MODALS & UI ELEMENTS
+       -------------------------------------------------------------------------- */
+    .modal-overlay { 
+        position: fixed; inset: 0; background: rgba(0,0,0,0.9); display: flex; 
+        justify-content: center; align-items: center; z-index: 2000; opacity: 0; 
+        pointer-events: none; transition: 0.3s; 
+    }
+    
+    .modal-overlay.active { opacity: 1; pointer-events: all; }
+    
+    .modal-content { 
+        background: var(--bg-card); padding: 40px; border-radius: 20px; 
+        max-width: 500px; width: 90%; text-align: center; border: 1px solid var(--accent); 
+    }
+
+    #scrollTopBtn {
+        position: fixed;
+        bottom: 30px;
+        right: 100px;
+        width: 50px;
+        height: 50px;
+        background: var(--accent-blue);
+        color: white;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        line-height: 1;
+        padding: 0;
+        cursor: pointer;
+        z-index: 1000;
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.3s ease;
+        border: none;
+        box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+    }
+
+    #scrollTopBtn.show {
+        opacity: 1;
+        visibility: visible;
+    }
+
+    .chat-btn {
+        display: inline-block;
+        margin-top: 10px;
+        padding: 8px 15px;
+        background: var(--accent-blue);
+        color: white !important;
+        text-decoration: none;
+        border-radius: 5px;
+        font-weight: bold;
+        font-size: 0.8rem;
+        text-align: center;
+    }
+
+    /* --------------------------------------------------------------------------
+   12. MOBILE RESPONSIVENESS (CONSOLIDATED)
+   -------------------------------------------------------------------------- */
+
+/* Desktop Base State for Toggle & Logos */
+.mobile-menu-toggle {
+    display: none; 
+    flex-direction: column;
+    gap: 6px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    z-index: 1001;
+    padding: 10px;
+}
+
+.mobile-menu-toggle span {
+    display: block;
+    width: 25px;
+    height: 2px;
+    background-color: #ffffff; 
+    margin: 4px 0;
+    transition: 0.3s;
+}
+
+.nav-logo-mobile { display: none; }
+
+/* Desktop View Adjustments */
+@media (min-width: 769px) {
+    .nav-logo-desktop { display: block; }
+    .z-nav-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+}
+
+/* Tablet Adjustments */
+@media (max-width: 900px) {
+    .ad-content {
+        flex-direction: column; 
+        align-items: flex-start;
+        gap: 15px;
+        padding: 30px;
+    }
+}
+
+/* Mobile Screens (The Primary Fix) */
+@media (max-width: 768px) {
+    /* 1. Header Layout: Logo Left, Toggle Right */
+    .z-nav-container {
+        display: flex !important;
+        flex-direction: row !important; 
+        justify-content: space-between !important;
+        align-items: center;
+        height: 70px;
+        padding: 0 20px;
+        width: 100%;
+    }
+
+    /* 2. Logo Swap */
+    .nav-logo-desktop { display: none !important; }
+    .nav-logo-mobile { 
+        display: block; 
+        height: 40px; /* Adjust based on your new photo size */
+        width: auto;
+    }
+    .z-logo-group { margin: 0 !important; }
+
+    /* 3. Show Toggle & Side-out Menu */
+    .mobile-menu-toggle { display: flex; }
+
+    .z-nav-section {
+        display: flex !important;
+        position: fixed;
+        top: 0;
+        left: -100%; /* Off-screen */
+        width: 100%;
+        height: 100vh;
+        background: rgba(15, 23, 42, 0.98); 
+        backdrop-filter: blur(15px);
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        gap: 40px !important;
+        z-index: 1000;
+    }
+
+    .z-nav-section.active {
+        left: 0 !important; /* Forces the reveal */
+    }
+}
+
+    /* 4. Hamburger to X Animation */
+    .mobile-menu-toggle.active span:nth-child(1) { transform: translateY(9px) rotate(45deg); }
+    .mobile-menu-toggle.active span:nth-child(2) { opacity: 0; }
+    .mobile-menu-toggle.active span:nth-child(3) { transform: translateY(-9px) rotate(-45deg); }
+
+    /* 5. General Element Stacking */
+    .cta-button-group { flex-direction: column !important; }
+    .cta-button-group .btn { width: 100%; }
+    .mbm-bento-grid, .hz-card { flex-direction: column; }
 }
         
-    </style>    
+        /* ------------------------------------------
+</style>  
 </head>
 
 <body>
 
-    <div class="timer-banner" id="promo-banner">
-        <div class="timer-text">Product Sale Ends In:</div>
-        <div class="countdown-display">
-            <div class="unit-group"><span id="d_val">00</span><span class="unit-label">Days</span></div>
-            <div class="unit-group"><span id="h_val">00</span><span class="unit-label">Hrs</span></div>
-            <div class="unit-group"><span id="m_val">00</span><span class="unit-label">Min</span></div>
-            <div class="unit-group"><span id="s_val">00</span><span class="unit-label">Sec</span></div>
-        </div>
-        <a href="https://micro-burst-media.launchcart.store/" class="timer-link">VISIT STORE</a>
+<header>
+    <div class="header-top-tier">
+        <span>AI Guidebook on Sale!<span>
+        <a href="https://micro-burst-media.launchcart.store/" class="top-tier-link">Visit Store →</a>
     </div>
+
+    <div class="z-nav-container">
+        <a href="https://microburstmedia.github.io/digital-marketing-network" class="z-logo-group">
+            <img src="https://cdn.launchcart.com/s47561/1684269057-de497636-f662-4e2d-ac5e-b1df715c0e6a-thumb.png" 
+                 alt="MBMN" 
+                 class="nav-logo-mobile">
+            
+            <img src="https://64.media.tumblr.com/58d5a98d8647a651080ece5fdaa7007d/3220a71d0188745c-82/s500x750/2a617ffbc1080b6c67433ff033a26bc1723220b1.pnj" 
+                 alt="MBMN" 
+                 class="nav-logo-desktop" 
+                 style="height: 300px; margin-bottom: 0px; margin-top: 0px;">
+        </a>
+
+        <button class="mobile-menu-toggle" aria-label="Toggle Menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+
+        <nav class="z-nav-section">
+            <a href="https://microburstmedia.github.io/about-us/" class="z-nav-link">About</a>
+            <a href="https://microburstmedia.wordpress.com/" class="z-nav-link">Portfolio</a>
+            <a href="https://microburstmedia.github.io/ai-automation-test-center/" class="z-nav-link">Automation</a>
+            <a href="https://meetings.hubspot.com/kirk-b?uuid=9ee4181c-c194-41a7-ae10-6edbb565622b" target="_blank" rel="noopener noreferrer" class="z-nav-link">Schedule</a>
+            <a href="https://microburstmedia.github.io/ai-automation-learning-hub/" class="z-nav-link">Insights</a>
+            <a href="https://microburstmedia.github.io/business-community-center/" class="z-nav-link">Network</a>
+        </nav>
+    </div>
+</header>
+
+<section class="novo-hero">
+    <div class="novo-container">
+        <h1 class="novo-main-title">Building Foundation <br> Systems Automated for</h1>
+        
+        <div class="novo-rotator-wrapper">
+            <div class="novo-rotating-word active">Workflows</div>
+            <div class="novo-rotating-word">Dropshippers</div>
+            <div class="novo-rotating-word">Freelancers</div>
+            <div class="novo-rotating-word">Streamers</div>
+            <div class="novo-rotating-word">Consultants</div>
+            <div class="novo-rotating-word">Startups</div>
+            <div class="novo-rotating-word">Retailers</div>
+        </div>
+
+        <p class="novo-subtitle">
+            With flexible & forward-thinking strategies, MicroBurstMedia ensures you get the tools to help automate your business processes, no matter what you're building.
+        </p>
+    
+        <div class="mbm-kodak-wrapper">
+            <div class="mbm-kodak-stack" id="kodakStack">
+                
+                <div id="mainSliderPoster" class="mbm-kodak-item active slider-cover-card">
+                    <img src="https://eugesqsskkc.exactdn.com/wp-content/uploads/2024/10/website-development-layout-sketch-drawing-2023-11-27-05-32-33-utc-1.jpg?strip=all&quality=90&webp=85&sharp=1" class="mbm-main-img" alt="System Sync">
+                </div>
+
+                <div class="mbm-kodak-item" data-index="0">
+                    <img src="" class="mbm-main-img" alt="Dropshippers">
+                    <img src="" class="mbm-ui-overlay" alt="UI Shot">
+                </div>
+                <div class="mbm-kodak-item" data-index="1">
+                    <img src="" class="mbm-main-img" alt="Freelancers">
+                    <img src="" class="mbm-ui-overlay" alt="UI Shot">
+                </div>
+                <div class="mbm-kodak-item" data-index="2">
+                    <img src="" class="mbm-main-img" alt="Streamers">
+                    <img src="" class="mbm-ui-overlay" alt="UI Shot">
+                </div>
+                <div class="mbm-kodak-item" data-index="3">
+                    <img src="" class="mbm-main-img" alt="Property">
+                    <img src="" class="mbm-ui-overlay" alt="UI Shot">
+                </div>
+                <div class="mbm-kodak-item" data-index="4">
+                    <img src="" class="mbm-main-img" alt="Startups">
+                    <img src="" class="mbm-ui-overlay" alt="UI Shot">
+                </div>
+                <div class="mbm-kodak-item" data-index="5">
+                    <img src="" class="mbm-main-img" alt="Retailers">
+                    <img src="" class="mbm-ui-overlay" alt="UI Shot">
+                </div>
+            </div> 
+             </div> 
+               </div> 
+                </section>
 
     <div id="disclaimerModal" class="modal-overlay">
         <div class="modal-content">
@@ -565,148 +1196,135 @@ footer {
         </div>
     </div>
 
-    <header>
-        <div class="z-nav-container">
-            <nav class="z-nav-section">
-                <a href="https://microburstmedia.github.io/about-us/" class="z-nav-link">About</a>
-                <a href="https://microburstmedia.wordpress.com/" class="z-nav-link">Portfolio</a>
-                <a href="https://microburstmedia.github.io/ai-automation-test-center/" class="z-nav-link">Automation</a>
-            </nav>
-            <a href="#" class="z-logo-group">
-                <img src="https://cdn.launchcart.com/s47561/1695846294-bb2c7ca6-3563-4ba6-a820-11297c768cd2-thumb.png" alt="MBM Logo"> 
-                <span>MBMN</span>
-            </a>
-            <nav class="z-nav-section">
-                <a href="https://meetings.hubspot.com/kirk-b" class="z-nav-link">Schedule</a>
-                <a href="https://microburstmedia.github.io/ai-automation-learning-hub/" class="z-nav-link">Insights</a>
-                <a href="https://microburstmedia.github.io/business-community-center/" class="z-nav-link">Network</a>
-            </nav>
-        </div>
-    </header>
-
     <main>
         <section class="hero">
             <div class="container">
-                <h1 style="text-align: center; margin-bottom: 40px;"> Marketing Network <br> Outsourcing Digital <br> Products & Services Online</h1>
-                <p>Got Questions? Please contact us during business hours from: <br> Monday to Friday from 9:00 AM - 6:00 PM EST <br> For details, click the chat bubble & select to speak with a specialist</p>
+                <h1 style="text-align: center; margin-bottom: 50px;"> #1 Marketing Network <br> Outsourcing Online <br> Products & Services</h1>
+                <p class="novo-subtitle">
+            If you're looking to incorporate AI into your business. <br> Hire us to assist with all of your IT headaches, <br> system handling, and web developments for your business. <br> Stop working harder, start earning smarter today!</p>
             </div>
         </section>
         
         <div class="hz-slider-section">
     
-    <div class="hz-dots-container" id="hzDots">
-        <span class="hz-dot active" onclick="jumpToHzCard(0)"></span>
-        <span class="hz-dot" onclick="jumpToHzCard(1)"></span>
-        <span class="hz-dot" onclick="jumpToHzCard(2)"></span>
-    </div>
-
-    <div class="hz-slider-window">
-        <div class="hz-slider-track" id="hzTrack">
-            
-            <div class="hz-card">
-                <div class="hz-media-side">
-                    <img src="https://i.pinimg.com/originals/8d/62/1f/8d621f66f551b6a39072473d52280ff0.gif" alt="Automation">
+    <div class="hz-slider-container">
+    <div class="hz-stage">
+        <button class="hz-nav-btn prev" onclick="moveHzSlider(-1)">❮</button>
+        
+        <div class="hz-slider-viewport">
+            <div id="hzTrack" class="hz-track">
                 </div>
-                <div class="hz-content-side">
-                    <h3>Automation Presentation</h3>
-                    <p>Learn how we deploy comprehensive entry-level workflows that handle repetitive tasks, allowing your team to focus on high-value growth.</p>
-                    <a href="https://gamma.app/docs/Streamline-Your-Digital-Marketing-with-AI-Automation-MicroBurstMe-i7smhou68gfwfou" class="hz-cta">Learn Details</a>
-                    <div class="hz-disclaimer">* Viewer's discretion is advised. The following information shown here was specifically designed to provide insight and opportunity for business purposes only. This is not financial advice.
-</div>
-                </div>
-            </div>
-
-            <div class="hz-card">
-                <div class="hz-media-side">
-                    <img src="https://cdn.dribbble.com/userupload/23731317/file/original-5eb2f9967073700b38a31280cc2c32e0.gif" alt="Automation">
-                </div>
-                <div class="hz-content-side">
-                    <h3>24/7 Operations</h3>
-                    <p>Maintain network presence and service delivery around the clock with automated system workflow infrastructure.</p>
-                    <a href="https://gamma.app/docs/Logic-Links-Interlink-Digital-Guide-Presentation-7hbbasd25nzmy0s" class="hz-cta">Learn Details</a>
-                    <div class="hz-disclaimer">* Viewer's discretion is advised. The following information shown here was specifically designed to provide insight and opportunity for business purposes only. This is not financial advice.</div>
-                </div>
-            </div>
-
-            <div class="hz-card">
-                <div class="hz-media-side">
-                    <img src="https://substackcdn.com/image/fetch/$s_!dSWe!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F8b102bd0-4f5a-46cb-a8be-c9392673c66e_1050x360.gif" alt="Automation">
-                </div>
-                <div class="hz-content-side">
-                    <h3>Scalable Growth</h3>
-                    <p>Expand your digital footprint without increasing manual overhead using proprietary system routing methods.</p>
-                    <a href="https://gamma.app/docs/Business-Service-Presentation-Micro-Burst-Media-LLC-f5iuwfmys21xh4v" class="hz-cta">Get Started</a>
-                    <div class="hz-disclaimer">* Viewer's discretion is advised. The following information shown here was specifically designed to provide insight and opportunity for business purposes only. This is not financial advice.</div>
-                </div>
-            </div>
-
         </div>
+
+        <button class="hz-nav-btn next" onclick="moveHzSlider(1)">❯</button>
     </div>
 
-    <div class="hz-controls-row">
-        <button class="hz-nav-btn" onclick="moveHzSlider(-1)">&#10094; Prev</button>
-        <button class="hz-nav-btn" onclick="moveHzSlider(1)">Next &#10095;</button>
-    </div>
+    <div id="hzDots" class="hz-dots-container"></div>
 </div>
 
         <section class="features">
             <div class="container">
-                <h2 style="text-align: center; margin-bottom: 30px;"> If you're looking to incorporate AI into your business. <br> Hire us to assist with all of your IT headaches, <br> system handling, and developments at your business expense. <br> Stop working harder, start earning smarter today! </h2>
+                <h2 style="text-align: center; margin-top: 50px; margin-bottom: 20px;"> Got Questions? <br> Please contact us during business hours from: <br> Monday to Saturday from: <br> 9:00 AM - 6:00 PM EST </h2>
             </div>
         </section>
+        
+        <a href="https://meetings.hubspot.com/kirk-b?uuid=551e3c55-a5cb-42ba-9f0d-c6038664d28e" target="_blank" rel="noopener noreferrer" class="novo-cta-button">Schedule A Consultation</a>
+    </div>
 
-        <div class="ad-stack">
-            <div class="ad-card">
-                <div class="ad-media">
-                    <iframe src="https://www.youtube.com/embed/bO-ND7GvaOA?si=dfR6_02Ec2UDtuiA&rel=0" allowfullscreen></iframe>
-                </div>
-                <div class="ad-content">
-                    <h3>🚀 Fast Setup</h3>
-                    <p>Have automated workflows running on the backend in days, not weeks or months. Want to learn more? Schedule a consultation today, for a backend demonstration!</p>
-                    <a href="https://meetings.hubspot.com/kirk-b?uuid=7020d9eb-02d1-4e54-a55d-e942bc37ab7d" class="btn btn-outline">Schedule Meeting</a>
-                </div>
+        <section class="mbm-padding-global">
+    <div class="spacer-huge"></div>
+    <div class="mbm-container-large">
+        
+        <div style="text-align: center; max-width: 700px; margin: 0 auto;">
+            <h1 style="font-size: 3.0rem; margin-bottom: 20px; margin-top: -60px;">Optimize operations, <br> without the overhead.</h1>
+            <p style="color: var(--text-muted); font-size: 1.1rem;">Stop working harder. Let our IT infrastructure handle the heavy lifting.</p>
+        </div>
+        
+        <div class="spacer-large"></div>
+
+        <div class="mbm-bento-grid">
+    
+    <div class="mbm-bento-card" id="featuredStackCard">
+    <div class="bento-image-container">
+        <img src="" alt="Featured Card" id="stackImg0">
+    </div>
+    <div class="bento-eyebrow" id="stackEyebrow0">...</div>
+    <h3 class="bento-title" id="stackTitle0">Loading...</h3>
+    <p class="bento-desc" id="stackDesc0">Connecting to spreadsheet...</p>
+    <a href="#" target="_blank" rel="noopener noreferrer" class="bento-link" id="stackLink0">Schedule Demo <span>&rarr;</span></a>
+</div>
+
+    <div class="mbm-bento-card" id="featuredStackCard">
+    <div class="bento-image-container">
+        <img src="" alt="Featured Card" id="stackImg1">
+    </div>
+    <div class="bento-eyebrow" id="stackEyebrow1">...</div>
+    <h3 class="bento-title" id="stackTitle1">Loading...</h3>
+    <p class="bento-desc" id="stackDesc1">Connecting to spreadsheet...</p>
+    <a href="#" class="bento-link" id="stackLink1">View Blueprint <span>&rarr;</span></a>
+</div>
+
+    <div class="mbm-bento-card" id="featuredStackCard">
+    <div class="bento-image-container">
+        <img src="" alt="Featured Card" id="stackImg2">
+    </div>
+    <div class="bento-eyebrow" id="stackEyebrow2">...</div>
+    <h3 class="bento-title" id="stackTitle2">Loading...</h3>
+    <p class="bento-desc" id="stackDesc2">Connecting to spreadsheet...</p>
+    <a href="#" class="bento-link" id="stackLink2">View Systems <span>&rarr;</span></a>
+</div>
+    
+    <div class="mbm-bento-card" id="featuredStackCard">
+    <div class="bento-image-container">
+        <img src="" alt="Featured Card" id="stackImg3">
+    </div>
+    <div class="bento-eyebrow" id="stackEyebrow3">...</div>
+    <h3 class="bento-title" id="stackTitle3">Loading...</h3>
+    <p class="bento-desc" id="stackDesc3">Connecting to spreadsheet...</p>
+    <a href="#" target="_blank" rel="noopener noreferrer" class="bento-link" id="stackLink3">Schedule A Session <span>&rarr;</span></a>
+</div>
+
+<div class="mbm-bento-card" id="featuredStackCard">
+    <div class="bento-image-container">
+        <img src="" alt="Featured Card" id="stackImg4">
+    </div>
+    <div class="bento-eyebrow" id="stackEyebrow4">...</div>
+    <h3 class="bento-title" id="stackTitle4">Loading...</h3>
+    <p class="bento-desc" id="stackDesc4">Connecting to spreadsheet...</p>
+    <a href="#" class="bento-link" id="stackLink4">Access Resources <span>&rarr;</span></a>
+</div>
+
+<div class="mbm-bento-card" id="featuredStackCard">
+    <div class="bento-image-container">
+        <img src="" alt="Featured Card" id="stackImg5">
+    </div>
+    <div class="bento-eyebrow" id="stackEyebrow5">...</div>
+    <h3 class="bento-title" id="stackTitle5">Loading...</h3>
+    <p class="bento-desc" id="stackDesc5">Connecting to spreadsheet...</p>
+    <a href="#" class="bento-link" id="stackLink5">Visit Outlet <span>&rarr;</span></a>
+</div>
+    </main>
+    
+    <section class="contact-section">
+    <div class="container">
+        <h1 style="text-align: center; margin-bottom: 30px;">Learn About <br> Interlink Automation</h1>
+        
+        <div class="glass-form">
+            <div class="ad-media">
+                <iframe src="https://www.youtube.com/embed/4zpyQ8CFjj4?si=CsV7BhSJ7ogyP2_1&amp;rel=0" allowfullscreen=""></iframe>
             </div>
             
-            <div class="ad-card">
-                <div class="ad-media">
-                    <iframe src="https://www.youtube.com/embed/inciEY-W7BE?si=UcC8fdQnYKWN3lEL&rel=0" allowfullscreen></iframe>
-                </div>
-                <div class="ad-content">
-                    <h3>📈 Scaling Operations</h3>
-                    <p>Learn to optimize your business operations with AI automation at the forefront, handling tedious work tasks.</p>
-                    <a href="https://microburstmedia.github.io/ai-automation-learning-hub/" class="btn btn-outline">Learn Details</a>
-                </div>
-            </div>
+            <h3>Ready to Automate Your Business Workflow?</h3>
             
-            <div class="ad-card">
-                <div class="ad-media">
-                    <iframe src="https://www.youtube.com/embed/C2GRpG_HPEE?si=w2D1N9JCNgVrAPkS&rel=0" allowfullscreen></iframe>
-                </div>
-                <div class="ad-content">
-                    <h3>📈 Automated 24/7</h3>
-                    <p>Give users the convenience of purchasing your goods online without the extra overhead costs. Saving you time while your system works.</p>
-                    <a href="https://microburstmedia.github.io/ai-automation-test-center/" class="btn btn-outline">Learn Details</a>
-                </div>
+            <p>Acquire our no-cost to you presentation guide on AI Automation. <br> Now available to access through our workflow automation test system.</p>
+            
+            <div class="cta-button-group">
+                <button onclick="handleCheckout()" class="btn btn-primary" id="checkout-button">Acquire E-Book</button>
+                <a href="https://microburstmedia.github.io/ai-automation-test-center/" class="btn btn-outline">Learn More</a>
             </div>
         </div>
-
-        <section class="contact-section">
-            <div class="container" style="text-align: center;">
-                <h2 style="margin-bottom: 30px;">Test Workflow Automation System</h2>
-                <div class="glass-form">
-                    <div class="ad-media" style="border-radius: 12px; margin-bottom: 25px;">
-                        <iframe src="https://www.youtube.com/embed/4zpyQ8CFjj4?si=CsV7BhSJ7ogyP2_1&rel=0" allowfullscreen></iframe>
-                    </div>
-                    <h3>Ready to Automate Your Business Workflow?</h3>
-                    <p style="color: var(--text-muted); margin: 15px 0 30px;">Acquire our no-cost to you presentation guide on AI Automation. Now available to access through our workflow automation test system.</p>
-                    <div class="cta-button-group">
-                        <button onclick="handleCheckout()" class="btn btn-primary" id="checkout-button" style="flex: 1; min-width: 200px;">Acquire E-Book</button>
-                        <a href="https://microburstmedia.github.io/ai-automation-test-center/" class="btn btn-outline" style="flex: 1; min-width: 200px;">Learn More</a>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </main>
+    </div>
+</section>
 
 <section id="news-section">
     <div class="news-container-box" id="rotator-content">
@@ -881,251 +1499,489 @@ footer {
 </script>
     
     <script>
-        // 1. Initial Logic (Terms & Scroll)
-        document.addEventListener('DOMContentLoaded', () => {
-            const hasAccepted = localStorage.getItem('mbm_terms_accepted');
-            const acceptTimestamp = localStorage.getItem('mbm_accept_date');
-            const now = new Date().getTime();
-            const thirtyDays = 30 * 24 * 60 * 60 * 1000;
+    // ==========================================
+    // 1. GLOBAL CONFIGURATION
+    // ==========================================
+    const stripe = Stripe('pk_test_51N5Y2tCYcbtuqUpVR8YK6poRUn5YyEPkAxRMrIO0B1tQvM3EJVid1IdPjTk142N9l2S96XGUnLDeLWsYeJ9RzPKr00cHs2kgfJ'); 
+    const MBMN_SERVER_URL = 'https://mbmn-checkout-session.onrender.com';
+    const CHAT_SERVER_URL = 'https://mbmn-chatbot-session.onrender.com';
 
-            if (!hasAccepted || (now - acceptTimestamp > thirtyDays)) {
-                setTimeout(() => { document.getElementById('disclaimerModal').classList.add('active'); }, 500);
-            }
-            
-            // Initialize the news rotator once on load, not on scroll
-            initRotator();
-        });
+    // ==========================================
+    // 2. STRIPE CHECKOUT ENGINE
+    // ==========================================
+    async function handleCheckout() {
+        const button = document.getElementById('checkout-button');
+        if (!button) return; // Guard against null if button isn't on this specific page
 
-        function acceptTerms() {
-            localStorage.setItem('mbm_terms_accepted', 'true');
-            localStorage.setItem('mbm_accept_date', new Date().getTime());
-            document.getElementById('disclaimerModal').classList.remove('active');
-        }
+        const originalText = button.innerText;
+        button.innerText = "LOADING...";                  
         
-        window.addEventListener('scroll', () => {
-            const btn = document.getElementById('scrollTopBtn');
-            if (btn) {
-                if (window.scrollY > 500) {
-                    btn.classList.add('show');
-                } else {
-                    btn.classList.remove('show');
-                }
-            }
-        });
+        try {
+            const response = await fetch(`${MBMN_SERVER_URL}/create-checkout-session`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                mode: 'cors' // Restoration of the handshake protocol
+            });
+
+            if (!response.ok) throw new Error("Server wake-up required");
+
+            const session = await response.json();
+            const result = await stripe.redirectToCheckout({
+                sessionId: session.id,
+            });
+
+            if (result.error) { alert(result.error.message); }
+        } catch (error) {
+            console.error("Stripe Error:", error);
+            alert("Checkout connection failed. The secure server is currently waking up—please try again in 30 seconds.");
+        } finally {
+            button.innerText = originalText;
+        }
+    }
+
+    // ==========================================
+    // 3. CHATBOT & UI LOGIC
+    // ==========================================
+    async function handleChatSend() {
+        const input = document.getElementById('user-input');
+        const msgBox = document.getElementById('chat-messages');
+        if (!input || !msgBox) return;
+
+        const text = input.value.trim();
+        if(!text) return;
+
+        msgBox.innerHTML += `<div class="msg-user">${text}</div>`;
+        const thinkingId = "temp-" + Date.now();
+        msgBox.innerHTML += `<div class="msg-ai" id="${thinkingId}"><i>Connecting to MBMN Database...</i></div>`;
         
-        // 2. Countdown Logic
-        const targetDate = new Date(new Date().getFullYear(), new Date().getMonth() + 1, 1).getTime();
+        input.value = '';
+        msgBox.scrollTop = msgBox.scrollHeight;
 
-        function updateTimer() {
-            const now = new Date().getTime();
-            const diff = targetDate - now;
-            
-            if (diff > 0) {
-                document.getElementById("promo-banner").style.display = "flex";
-                document.getElementById("d_val").innerText = Math.floor(diff / (1000 * 60 * 60 * 24)).toString().padStart(2, '0');
-                document.getElementById("h_val").innerText = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)).toString().padStart(2, '0');
-                document.getElementById("m_val").innerText = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60)).toString().padStart(2, '0');
-                document.getElementById("s_val").innerText = Math.floor((diff % (1000 * 60)) / 1000).toString().padStart(2, '0');
-            } else {
-                document.getElementById("promo-banner").style.display = "none";
-            }
+        try {
+            const response = await fetch(`${CHAT_SERVER_URL}/chat`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ message: text })
+            });
+            const data = await response.json();
+            const thinkingEl = document.getElementById(thinkingId);
+            if(thinkingEl) thinkingEl.innerHTML = data.reply || "No response.";
+        } catch (err) {
+            const thinkingEl = document.getElementById(thinkingId);
+            if(thinkingEl) thinkingEl.innerText = "Connection busy. Re-trying...";
         }
-        setInterval(updateTimer, 1000);
-        updateTimer();
+        msgBox.scrollTop = msgBox.scrollHeight;
+    }
 
-        // 3. Unified System Logic (Stripe + Chatbot)
-        const stripe = Stripe('pk_test_51N5Y2tCYcbtuqUpVR8YK6poRUn5YyEPkAxRMrIO0B1tQvM3EJVid1IdPjTk142N9l2S96XGUnLDeLWsYeJ9RzPKr00cHs2kgfJ'); 
-        const MBMN_SERVER_URL = 'https://mbmn-checkout-session.onrender.com';
+    function handleDropdownSelect() {
+        const dropdown = document.getElementById('service-dropdown');
+        const input = document.getElementById('user-input');
+        if (!dropdown || !input || !dropdown.value) return;
 
-        async function handleCheckout() {
-            const button = document.getElementById('checkout-button');
-            const originalText = button.innerText;
-            button.innerText = "LOADING...";                 
+        input.value = dropdown.value;
+        handleChatSend();
+        dropdown.selectedIndex = 0;
+    }
+
+    // ==========================================
+    // 4. NEWS & UTILITY SYNC ENGINE
+    // ==========================================
+    async function initRotator() {
+        const container = document.getElementById('rotator-content');
+        if (!container) return;
+
+        let newsData = [];
+        let index = 0;
+        let rotatorTimeout; 
+
+        async function fetchNews() {
             try {
-                const response = await fetch(`${MBMN_SERVER_URL}/create-checkout-session`, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' }
-                });
-
-                const session = await response.json();
-                const result = await stripe.redirectToCheckout({
-                    sessionId: session.id,
-                });
-
-                if (result.error) { alert(result.error.message); }
-            } catch (error) {
-                console.error("Stripe Error:", error);
-                alert("Checkout connection failed. Is the MBMN server awake?");
-            } finally {
-                button.innerText = originalText;
-            }
-        }
-
-        function toggleChat() {
-            const win = document.getElementById('chat-window');
-            win.style.display = (win.style.display === 'flex') ? 'none' : 'flex';
-        }
-
-        async function handleChatSend() {
-            const input = document.getElementById('user-input');
-            const msgBox = document.getElementById('chat-messages');
-            const text = input.value.trim();
-            if(!text) return;
-
-            msgBox.innerHTML += `<div class="msg-user">${text}</div>`;
-            input.value = '';
-            
-            const tempId = "waiting-" + Date.now();
-            msgBox.innerHTML += `<div class="msg-ai" id="${tempId}"><i>Let me see what I can find in our database, just a moment...</i></div>`;
-            msgBox.scrollTop = msgBox.scrollHeight;
-
-            try {
-                const response = await fetch(`${MBMN_SERVER_URL}/chat`, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ message: text })
-                });
-
+                const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxpOGMGIQhtsuk1_dESNyMHzktUc2nNVc4wqhy1luk0zljkiXOgE3vUjxWyA46gVDn9/exec";
+                const response = await fetch(SCRIPT_URL);
                 const data = await response.json();
-                const waitingEl = document.getElementById(tempId);
-                if (waitingEl) {
-                    waitingEl.innerHTML = data.reply;
+                if (data && data.length > 0) {
+                    newsData = data;
+                    if (!rotatorTimeout) showNext();
                 }
-            } catch (err) {
-                const waitingEl = document.getElementById(tempId);
-                if (waitingEl) {
-                    waitingEl.style.color = "#f87171";
-                    waitingEl.innerHTML = "Connection busy. Please try again in 20 seconds.";
-                }
-            }
-            msgBox.scrollTop = msgBox.scrollHeight;
+            } catch (error) { console.error("News sync error:", error); }
         }
 
-        function handleDropdownSelect() {
-            const dropdown = document.getElementById('service-dropdown');
-            const selectedValue = dropdown.value;
-            if (!selectedValue) return;
-
-            const input = document.getElementById('user-input');
-            input.value = selectedValue;
-            handleChatSend();
-            dropdown.selectedIndex = 0;
-        }
-
-        async function initRotator() {
-            const container = document.getElementById('rotator-content');
-            let newsData = [];
-            let index = 0;
-            let rotatorTimeout; 
-            const REFRESH_INTERVAL = 30 * 60 * 1000;
-
-            async function fetchNews() {
-    try {
-        // REPLACE THE URL BELOW WITH YOUR ACTUAL GOOGLE APPS SCRIPT WEB APP URL
-        const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxpOGMGIQhtsuk1_dESNyMHzktUc2nNVc4wqhy1luk0zljkiXOgE3vUjxWyA46gVDn9/exec";
-        
-        const response = await fetch(SCRIPT_URL);
-        const data = await response.json();
-        
-        if (data && data.length > 0) {
-            newsData = data;
-            if (!rotatorTimeout) showNext();
-        } else {
-            document.getElementById('rotator-content').innerHTML = `
-                <div class="news-card">
-                    <p class="rotator-text">Systems Operational. Check back soon for online network news updates.</p>
+        function showNext() {
+            const item = newsData[index];
+            container.innerHTML = `
+                <div class="news-card" style="animation: fadeIn 1s ease-out;">
+                    <span class="news-tag" style="background: ${item.color || 'var(--primary)'};">${item.tag || 'NETWORK UPDATE'}</span>
+                    <h2 class="rotator-text">${item.text}</h2>
+                    <div style="opacity: 0.6; font-size: 0.8rem;">SYSTEM STATUS: ACTIVE // ${item.date || 'LIVE FEED'}</div>
                 </div>`;
+            index = (index + 1) % newsData.length;
+            rotatorTimeout = setTimeout(showNext, 8000);
         }
-    } catch (error) {
-        console.error("Error fetching news:", error);
-    }
-}
 
-            function showNext() {
-                if (newsData.length === 0) return;
-                const item = newsData[index];
-                
-                container.innerHTML = `
-                    <div class="news-card" style="animation: fadeIn 1s ease-out;">
-                        <span class="news-tag" style="background: ${item.color || 'var(--primary)'};">
-                            ${item.tag || 'NETWORK UPDATE'}
-                        </span>
-                        <h2 class="rotator-text">${item.text}</h2>
-                        <div style="opacity: 0.6; font-size: 0.8rem; letter-spacing: 0.5px;">
-                            SYSTEM STATUS: ACTIVE // ${item.date || 'LIVE FEED'}
-                        </div>
-                    </div>`;
-
-                index = (index + 1) % newsData.length;
-                rotatorTimeout = setTimeout(showNext, 8000); // Slightly longer to let people read the headline
-            }
-
-            fetchNews();
-            setInterval(fetchNews, REFRESH_INTERVAL);
-        } // End of initRotator
-        
-    </script>
-    
-    <script>
-    let hzIndex = 0;
-    let autoPlayInterval; // Variable to store the timer
-
-    // --- CONFIGURATION ---
-    const AUTO_PLAY_ENABLED = true; 
-    const PAUSE_TIME = 5000; // Set time in milliseconds (e.g., 5000 = 5 seconds)
-    // ---------------------
-
-    function updateHzSlider() {
-        const track = document.getElementById('hzTrack');
-        const dots = document.querySelectorAll('.hz-dot');
-        
-        const percentage = hzIndex * 100;
-        track.style.transform = `translateX(-${percentage}%)`;
-        
-        dots.forEach((dot, i) => {
-            dot.classList.toggle('active', i === hzIndex);
-        });
+        fetchNews();
+        setInterval(fetchNews, 30 * 60 * 1000);
     }
 
-    function moveHzSlider(direction) {
-        const cards = document.querySelectorAll('.hz-card');
-        hzIndex += direction;
-        
-        if (hzIndex >= cards.length) hzIndex = 0;
-        if (hzIndex < 0) hzIndex = cards.length - 1;
-        
-        updateHzSlider();
-        
-        // Reset the timer whenever a user manually clicks, 
-        // so it doesn't "skip" immediately after they interact.
-        resetAutoPlay();
+    function updateCountdown() {
+        const dEl = document.getElementById("d_val");
+        if (!dEl) return; // Safety guard to prevent script crash
+
+        const now = new Date();
+        const target = new Date(now.getFullYear(), now.getMonth() + 1, 1);
+        const diff = target - now;
+
+        const d = Math.floor(diff / (1000 * 60 * 60 * 24));
+        const h = Math.floor((diff / (1000 * 60 * 60)) % 24);
+        const m = Math.floor((diff / (1000 * 60)) % 60);
+        const s = Math.floor((diff / 1000) % 60);
+
+        dEl.innerText = d.toString().padStart(2, '0');
+        document.getElementById("h_val").innerText = h.toString().padStart(2, '0');
+        document.getElementById("m_val").innerText = m.toString().padStart(2, '0');
+        document.getElementById("s_val").innerText = s.toString().padStart(2, '0');
     }
 
-    function jumpToHzCard(index) {
-        hzIndex = index;
-        updateHzSlider();
-        resetAutoPlay();
-    }
-
-    // NEW: Auto-Play Functions
-    function startAutoPlay() {
-        if (AUTO_PLAY_ENABLED) {
-            autoPlayInterval = setInterval(() => {
-                moveHzSlider(1);
-            }, PAUSE_TIME);
-        }
-    }
-
-    function resetAutoPlay() {
-        clearInterval(autoPlayInterval);
-        startAutoPlay();
-    }
-
+    // ==========================================
+    // 5. MASTER INITIALIZATION (Restored Mobile Nav)
+    // ==========================================
     window.addEventListener('load', () => {
-        updateHzSlider();
-        startAutoPlay(); // Kick off the timer when page loads
+        // Initialize visual engines
+        initRotator();
+        updateCountdown();
+        setInterval(updateCountdown, 1000);
+
+        // Define Elements
+        const trigger = document.getElementById('chat-trigger');
+        const windowEl = document.getElementById('chat-window');
+        const sendBtn = document.getElementById('send-btn');
+        const checkoutBtn = document.getElementById('checkout-button');
+        const serviceDropdown = document.getElementById('service-dropdown');
+        
+        // Mobile Navigation Elements
+        const menuToggle = document.getElementById('menuToggle');
+        const navSection = document.getElementById('navSection');
+        const navLinks = document.querySelectorAll('.z-nav-link');
+
+        // 1. Mobile Menu Toggle Logic
+        if (menuToggle && navSection) {
+            menuToggle.onclick = () => {
+                menuToggle.classList.toggle('active');
+                navSection.classList.toggle('active');
+                
+                // Prevent background scrolling when menu is open
+                if (navSection.classList.contains('active')) {
+                    document.body.style.overflow = 'hidden';
+                } else {
+                    document.body.style.overflow = 'auto';
+                }
+            };
+        }
+
+        // 2. Close Menu When Link is Clicked (Mobile)
+        navLinks.forEach(link => {
+            link.onclick = () => {
+                if (navSection.classList.contains('active')) {
+                    menuToggle.classList.remove('active');
+                    navSection.classList.remove('active');
+                    document.body.style.overflow = 'auto';
+                }
+            };
+        });
+
+        // 3. Chat Logic
+        if (trigger && windowEl) {
+            trigger.onclick = () => {
+                const isHidden = windowEl.style.display === 'none' || windowEl.style.display === '';
+                windowEl.style.display = isHidden ? 'flex' : 'none';
+            };
+        }
+
+        // 4. Other Button Listeners
+        if (sendBtn) sendBtn.onclick = handleChatSend;
+        if (checkoutBtn) checkoutBtn.onclick = handleCheckout;
+        if (serviceDropdown) serviceDropdown.onchange = handleDropdownSelect;
     });
 </script>
     
+   <script>
+    // ==========================================
+// CONFIGURATION
+// ==========================================
+const MBM_API_URL = "https://script.google.com/macros/s/AKfycbzPi1OyaOD0N_xNIVrCoet_MV9-xgHcBYihKvdaJuvM7Dparwro_R_d4T-VvDBZB0v_qw/exec";
+
+// ==========================================
+// ENGINE 1: HERO ROTATOR (KEEP AS IS)
+// ==========================================
+let heroIndex = 0;
+const HERO_SPEED = 3000; 
+
+function syncHeroSection() {
+    const words = document.querySelectorAll('.novo-rotating-word');
+    const images = document.querySelectorAll('.mbm-kodak-item');
+    if (words.length === 0 || images.length === 0) return;
+
+    words.forEach(w => w.classList.remove('active', 'exit'));
+    let prevIndex = (heroIndex === 0) ? words.length - 1 : heroIndex - 1;
+    words[prevIndex].classList.add('exit');
+    words[heroIndex].classList.add('active');
+
+    images.forEach(img => img.classList.remove('active', 'next'));
+    images[heroIndex].classList.add('active');
+    let nextImgIndex = (heroIndex + 1) % images.length;
+    images[nextImgIndex].classList.add('next');
+
+    setTimeout(() => {
+        document.querySelectorAll('.novo-rotating-word.exit').forEach(el => el.classList.remove('exit'));
+    }, 600);
+
+    heroIndex = (heroIndex + 1) % words.length;
+}
+
+// ==========================================
+// ENGINE 1, 2 & 3: GOOGLE SHEETS SYNC (THE NEW STUFF)
+// ==========================================
+let hzIndex = 0;
+const HZ_SPEED = 5000;
+let hzTimer;
+
+async function syncDynamicContent() {
+    try {
+        const response = await fetch(MBM_API_URL);
+        const data = await response.json();
+
+        // --- 1. SYNC MAIN KODAK SLIDER (Hero + UI Overlay) ---
+if (data.mainSlider && data.mainSlider.length > 0) {
+    // We select all items, but we will filter out the poster
+    const allKodakItems = document.querySelectorAll('.mbm-kodak-item');
+    
+    // We create a counter to track which data row we are on, 
+    // skipping the item with the ID 'mainSliderPoster'
+    let dataRowIndex = 0;
+
+    allKodakItems.forEach((item) => {
+        // SKIP THE COVER: If this item is the poster, don't put sheet data on it
+        if (item.id === 'mainSliderPoster') return;
+
+        const rowData = data.mainSlider[dataRowIndex]; 
+        if (!rowData) return;
+
+        const mainImg = item.querySelector('.mbm-main-img');
+        const uiOverlay = item.querySelector('.mbm-ui-overlay');
+
+        // Sets the background Hero image (Column A)
+        if (mainImg) {
+            mainImg.src = rowData[0];
+            mainImg.style.objectFit = 'cover';
+        }
+
+        // Sets the UI Overlay (Column B)
+        if (uiOverlay && rowData[1]) {
+            uiOverlay.src = rowData[1];
+        }
+
+        // Move to the next row of data for the next card
+        dataRowIndex++;
+    });
+}
+
+        // 2. SYNC SERVICES SLIDER (MIDDLE)
+        const serviceTrack = document.getElementById('hzTrack');
+        if (data.servicesSlider && serviceTrack) {
+            serviceTrack.innerHTML = data.servicesSlider.map(item => `
+    <div class="hz-card">
+            <img src="${item.img}" style="width:100%; height:100%; object-fit:cover;">
+            <div class="card-overlay">
+                <span class="hz-eyebrow">${item.category || 'Service'}</span>
+                <h3>${item.title}</h3>
+                <p>${item.desc}</p>
+                <a href="${item.link}" class="hz-cta">Explore</a>
+            </div>
+        </div>
+`).join('');
+
+            // Dynamically create the dots based on how many cards are in the sheet
+            updateSliderDots(data.servicesSlider.length);
+            
+            // Re-initialize the movement engine
+            resetHzTimer();
+        }
+
+        // 3. SYNC STACK CARD
+         if (data.featuredCards) {
+    data.featuredCards.forEach((card, index) => {
+        const titleEl = document.getElementById(`stackTitle${index}`);
+        const descEl = document.getElementById(`stackDesc${index}`);
+        const imgEl = document.getElementById(`stackImg${index}`);
+        const linkEl = document.getElementById(`stackLink${index}`);
+        const eyebrowEl = document.getElementById(`stackEyebrow${index}`);
+
+        if (titleEl) titleEl.innerText = card.title;
+        if (descEl) descEl.innerText = card.desc;
+        if (imgEl) imgEl.src = card.img;
+        if (linkEl) linkEl.href = card.link;
+        if (eyebrowEl) eyebrowEl.innerText = card.eyebrow;
+    });
+}
+
+    // FINAL STEP: Reveal the UI
+        const cover = document.getElementById('mainSliderPoster');
+        if (cover) {
+            setTimeout(() => {
+                cover.classList.add('revealed');
+                console.log("Sheet data loaded. Revealing slider.");
+            }, 500); 
+        }
+
+    } catch (error) {
+        console.error('Error loading slider data:', error);
+        // Fallback: reveal the cover anyway so the site isn't stuck
+        const cover = document.getElementById('mainSliderPoster');
+        if (cover) cover.classList.add('revealed');
+    }
+}
+
+// ==========================================
+// NAVIGATION LOGIC (STAY AS IS)
+// ==========================================
+function updateHzSlider() {
+    const track = document.getElementById('hzTrack');
+    const dots = document.querySelectorAll('.hz-dot');
+    if (!track) return;
+
+    // Continuous Loop Math: 
+    // This moves the track based on 100% of the viewport width
+    track.style.transform = `translateX(-${hzIndex * 100}%)`;
+
+    // Update dots (using modulo to ensure they loop back)
+    dots.forEach((dot, i) => {
+        dot.classList.toggle('active', i === (hzIndex % dots.length));
+    });
+}
+
+function moveHzSlider(direction) {
+    const cards = document.querySelectorAll('.hz-card');
+    if (cards.length === 0) return;
+
+    // Increment index and use modulo for seamless looping
+    hzIndex = (hzIndex + direction + cards.length) % cards.length;
+    
+    updateHzSlider();
+}
+
+// Update your dynamic sync function to ensure the "Verbiage" is injected
+function syncServices(data) {
+    const track = document.getElementById('hzTrack');
+    if (!data.servicesSlider || !track) return;
+
+    track.innerHTML = data.servicesSlider.map(item => `
+        <div class="hz-card">
+            <img src="${item.img}" style="width:100%; height:100%; object-fit:cover;">
+            <div class="card-overlay">
+                <span class="hz-eyebrow">${item.category || 'Service'}</span>
+                <h3>${item.title}</h3>
+                <p>${item.desc}</p>
+                <a href="${item.link}" class="hz-cta">Explore</a>
+            </div>
+        </div>
+    `).join('');
+
+    updateSliderDots(data.servicesSlider.length);
+}
+
+function jumpToHzCard(index) {
+    hzIndex = index;
+    updateHzSlider();
+    resetHzTimer();
+}
+
+function resetHzTimer() {
+    clearInterval(hzTimer);
+    hzTimer = setInterval(() => moveHzSlider(1), HZ_SPEED);
+}
+
+function updateSliderDots(count) {
+    const dotsContainer = document.getElementById('hzDots');
+    if (!dotsContainer) return;
+    dotsContainer.innerHTML = ''; 
+    for (let i = 0; i < count; i++) {
+        const dot = document.createElement('span');
+        dot.className = i === 0 ? 'hz-dot active' : 'hz-dot';
+        dot.onclick = () => jumpToHzCard(i);
+        dotsContainer.appendChild(dot);
+    }
+}
+
+async function syncCardStack() {
+    try {
+        const response = await fetch(MBM_API_URL);
+        const data = await response.json();
+
+        // Target our new IDs
+        if (data.featuredCard) {
+            const titleEl = document.getElementById('stackTitle');
+            const descEl = document.getElementById('stackDesc');
+            const imgEl = document.getElementById('stackImg');
+            const linkEl = document.getElementById('stackLink');
+            const eyebrowEl = document.getElementById('stackEyebrow');
+
+            // Only update if the element actually exists on the page
+            if (titleEl) titleEl.innerText = data.featuredCard.title;
+            if (descEl) descEl.innerText = data.featuredCard.desc;
+            if (imgEl) imgEl.src = data.featuredCard.img;
+            if (linkEl) linkEl.href = data.featuredCard.link;
+            if (eyebrowEl && data.featuredCard.eyebrow) {
+                eyebrowEl.innerText = data.featuredCard.eyebrow;
+            }
+        }
+    } catch (e) {
+        console.error("Card Sync Error:", e);
+    }
+}
+
+// ==========================================
+// INITIALIZE EVERYTHING
+// ==========================================
+window.addEventListener('load', () => {
+    // We only need this one! It handles the Kodak Slider, Services, and Stack Cards.
+    syncDynamicContent(); 
+    
+    // Start the visual rotation for the Hero text/images
+    setInterval(syncHeroSection, HERO_SPEED); 
+    
+    // Initialize the position of the services slider
+    updateHzSlider(); 
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+    const menuToggle = document.querySelector('.mobile-menu-toggle');
+    const navSection = document.querySelector('.z-nav-section');
+
+    if (menuToggle && navSection) {
+        menuToggle.addEventListener('click', (e) => {
+            e.preventDefault();
+            menuToggle.classList.toggle('active');
+            navSection.classList.toggle('active');
+            
+            // Prevent background scrolling when menu is open
+            if (navSection.classList.contains('active')) {
+                document.body.style.overflow = 'hidden';
+            } else {
+                document.body.style.overflow = 'auto';
+            }
+        });
+    }
+
+    // Close menu when a link is clicked
+    document.querySelectorAll('.z-nav-link').forEach(link => {
+        link.addEventListener('click', () => {
+            menuToggle.classList.remove('active');
+            navSection.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        });
+    });
+});
+
+</script>
+
 </body>
 </html>
