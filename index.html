@@ -35,20 +35,25 @@
        1. GLOBAL VARIABLES & RESETS
        -------------------------------------------------------------------------- */
     :root {
-        --bg-dark: #0f172a !important; 
+        --bg-dark: #0f172a !important;
         --bg-alt: #1e293b !important;  
         --accent-blue: #3b82f6 !important; 
         --accent-yellow: #eec242 !important; /* Glamour Yellow */
         --text-primary: #ffffff !important;
         --text-muted: #ffffff !important;
         --border-color: rgba(255, 255, 255, 0.1) !important;
-        --glass-bg: rgba(15, 23, 42, 0.8) !important; /* Glamour Glass Base */
+        --glass-bg: rgba(15, 23, 42, 0.8) !important;
     }
 
     * {
         margin: 0;
         padding: 0;
         box-sizing: border-box;
+    }
+    
+    html, body {
+        max-width: 100%;
+        overflow-x: hidden;
     }
 
     body {
@@ -61,7 +66,7 @@
        2. UTILITIES & SPACING
        -------------------------------------------------------------------------- */
     .mbm-padding-global {
-        padding: 0 5%; /* Gives edge breathing room on all screens */
+        padding: 0 5%;
     }
 
     .mbm-container-large {
@@ -79,7 +84,7 @@
        3. BUTTONS
        -------------------------------------------------------------------------- */
     .btn { 
-        display: inline-block; 
+        display: inline-block;
         padding: 14px 28px; 
         border-radius: 50px; 
         font-weight: 700; 
@@ -88,23 +93,23 @@
         cursor: pointer; 
         text-decoration: none; 
         font-size: 0.85rem; 
-        border: none; 
+        border: none;
         text-align: center; 
     }
     
     .btn-primary { 
-        background: linear-gradient(135deg, var(--accent-blue), #2563eb); 
+        background: linear-gradient(135deg, var(--accent-blue), #2563eb);
         color: white; 
     }
     
     .btn-outline { 
-        border: 2px solid var(--accent-blue); 
+        border: 2px solid var(--accent-blue);
         background: transparent; 
         color: white; 
     }
     
     .btn:hover { 
-        transform: translateY(-3px); 
+        transform: translateY(-3px);
         box-shadow: 0 10px 20px rgba(0,0,0,0.3); 
     }
 
@@ -156,6 +161,10 @@
     .z-logo-group:hover {
         transform: scale(1.05);
     }
+
+    /* STRICT LOGO SCOPING FOR DESKTOP */
+    .nav-logo-desktop { display: block; }
+    .nav-logo-mobile { display: none; }
 
     .nav-logo-img {
         height: 35px;
@@ -213,58 +222,58 @@
        5. HERO SECTION & KODAK STACK
        -------------------------------------------------------------------------- */
     .hero { 
-        padding: 40px 0 60px; 
+        padding: 40px 0 60px;
         text-align: center; 
-        background: radial-gradient(circle at top, rgba(59, 130, 246, 0.15), transparent 70%); 
+        background: radial-gradient(circle at top, rgba(59, 130, 246, 0.15), transparent 70%);
     }
     .hero h1 { 
-        font-size: clamp(2rem, 5vw, 3.5rem); 
+        font-size: clamp(2rem, 5vw, 3.5rem);
         margin-bottom: 20px; 
         max-width: 850px; 
         margin-left: auto; 
         margin-right: auto; 
-        line-height: 1.3; 
+        line-height: 1.3;
     }
     .hero p { 
         color: var(--text-muted); 
-        max-width: 700px; 
+        max-width: 700px;
         margin: 0 auto; 
         font-size: 1.2rem; 
     } 
 
     .novo-hero {
-        padding: 60px 20px; /* Reduced from 120px */
+        padding: 60px 20px;
         text-align: center;
         background-color: var(--bg-dark);
     }
 
     .novo-main-title {
-    font-size: 3.5rem;
-    color: white;
-    font-weight: 700;
-    margin-bottom: 0px;
-    margin-top: 0px; /* Reset this to 0 now that padding is reduced */
-    line-height: 1.1;
+        font-size: 3.5rem;
+        color: white;                               
+        font-weight: 700;                           
+        margin-bottom: 0px;                        
+        margin-top: 0px;                            
+        line-height: 1.1;
     }
 
     .novo-rotator-wrapper {
         position: relative;
-        height: 4.5rem;
-        overflow: hidden;
-        margin-top: 5px;   /* Small gap between "Automated for" and the rotating words */
-        margin-bottom: 15px; /* Controls the space between the words and the subtitle */
+        height: 4.5rem;                        
+        overflow: hidden;                      
+        margin-top: 5px;                      
+        margin-bottom: 15px;
     }
 
     .novo-rotating-word {
-        position: absolute;
-        width: 100%;
-        left: 0;
-        top: 0;
-        font-size: 3.5rem;
-        font-weight: 700;
+        position: absolute;            
+        width: 100%;                     
+        left: 0;                          
+        top: 0;                           
+        font-size: 3.5rem;                 
+        font-weight: 700;                    
         color: var(--accent-blue);
-        opacity: 0;
-        transform: translate3d(0, 100%, 0);
+        opacity: 0;                            
+        transform: translate3d(0, 100%, 0);  
         transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1), opacity 0.6s ease;
     }
 
@@ -283,7 +292,7 @@
         font-size: 1.25rem;
         color: var(--text-muted);
         line-height: 1.5;
-        margin-bottom: 20px; /* Reduces the gap between the text and the Kodak Slider */
+        margin-bottom: 20px; 
         margin-left: auto;
         margin-right: auto;
     }
@@ -306,43 +315,41 @@
 
     /* Kodak Stack Styles */
     .mbm-kodak-wrapper {
-    width: 100%;
-    max-width: 800px;
-    margin: 10px auto; /* Reduced from 40px */
-    min-height: 450px;
-    align-items: center;
-    position: relative;
-    height: 450px;
-    margin-top: 10px;  /* Reduced from 50px to snap it closer to the text */
-    display: flex;
-    justify-content: center;
-    perspective: 1000px;
-}
+        width: 100%;
+        max-width: 800px;
+        margin: 10px auto; 
+        min-height: 450px;
+        align-items: center;
+        position: relative;
+        height: 450px;
+        margin-top: 10px;  
+        display: flex;
+        justify-content: center;
+        perspective: 1000px;
+    }
     
-    /* Styling the cover specifically as a Kodak card */
-.slider-cover-card {
-    z-index: 100; /* Ensures it stays on top initially */
-    background: var(--bg-dark);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 12px;
-    overflow: hidden;
-}
+    .slider-cover-card {
+        z-index: 100;
+        background: var(--bg-dark);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 12px;
+        overflow: hidden;
+    }
 
-.slider-cover-card img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
+    .slider-cover-card img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
 
-/* This class will be added by JS to 'open' the cover */
-.slider-cover-card.revealed {
-    opacity: 0;
-    transform: scale(1.05); /* Slight zoom out effect as it disappears */
-    pointer-events: none;
-    transition: all 0.8s ease-in-out;
-}
+    .slider-cover-card.revealed {
+        opacity: 0;
+        transform: scale(1.05); 
+        pointer-events: none;
+        transition: all 0.8s ease-in-out;
+    }
 
     .mbm-kodak-stack {
         position: relative;
@@ -389,7 +396,7 @@
         transform: translateX(-50%);
         width: 90%;
         opacity: 0;
-        transition: all 0.6s ease 0.3s; 
+        transition: all 0.6s ease 0.3s;
     }
 
     .mbm-kodak-item.active .mbm-ui-overlay {
@@ -401,7 +408,7 @@
        6. MBMN BENTO GRID
        -------------------------------------------------------------------------- */
     .mbm-bento-section {
-        padding-bottom: 80px; 
+        padding-bottom: 80px;
     }
 
     .mbm-bento-grid {
@@ -443,7 +450,7 @@
     }
 
     .mbm-bento-card .bento-title {
-        text-align: left !important; /* Forces left-align even if hero is centered */
+        text-align: left !important;
         font-size: 1.8rem;
         color: var(--text-primary);
         font-weight: 800;
@@ -480,7 +487,7 @@
 
     .bento-image-container {
         width: 100%;
-        height: 200px; 
+        height: 200px;
         background-color: rgba(15, 23, 42, 0.5); 
         border-radius: 12px;
         margin-bottom: 25px;
@@ -499,7 +506,7 @@
     }
 
     .mbm-bento-card:hover .bento-image-container img {
-        transform: scale(1.08); 
+        transform: scale(1.08);
     }
 
     /* --------------------------------------------------------------------------
@@ -550,7 +557,7 @@
     }
 
     .hz-slider-viewport {
-        width: 500px; 
+        width: 500px;
         aspect-ratio: 1 / 1;
         overflow: hidden;
         border-radius: 24px;
@@ -566,7 +573,7 @@
     }
 
     .hz-card {
-        flex: 0 0 100%; 
+        flex: 0 0 100%;
         height: 100%;
         position: relative;
         border-radius: 24px;
@@ -643,7 +650,7 @@
     }
 
     .hz-dots-container {
-        margin-bottom: 20px; 
+        margin-bottom: 20px;
         display: flex;
         gap: 12px;
         justify-content: center;
@@ -666,146 +673,132 @@
     /* --------------------------------------------------------------------------
        8. AUTOMATION REQUEST FORM (THE GLASS FORM LAYOUT FIX)
        -------------------------------------------------------------------------- */
-    /* THE FIX: Force Centering and 16:9 Scale */
-.contact-section .glass-form {
-    display: block !important;    /* Breaks out of any side-by-side grids */
-    width: 95% !important;        /* Responsive width */
-    max-width: 950px !important;  /* The "Cinematic" horizontal limit */
-    margin: 40px auto !important; /* FORCES centering on the page */
-    padding: 0; 
-    padding-bottom: 40px; 
-    background: rgba(15, 23, 42, 0.8); 
-    backdrop-filter: blur(15px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 24px;
-    overflow: hidden; 
-    box-shadow: 0 30px 60px rgba(0,0,0,0.5);
-}
-
-/* Ensures the video header keeps the 16:9 ratio within the form */
-.glass-form .ad-media {
-    position: relative;
-    width: 100%;
-    padding-bottom: 56.25%; /* Force 16:9 Ratio */
-    height: 0;
-    margin-bottom: 30px;
-    background: #000;
-}
-
-.glass-form .ad-media iframe {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    border: 0;
-}
-
-/* Centers the text and buttons inside the widened form */
-.glass-form h3, 
-.glass-form p, 
-.glass-form .cta-button-group {
-    padding-left: 10%;
-    padding-right: 10%;
-    text-align: center;
-}
-
-/* Cinematic Video Header */
-.ad-media {
-    position: relative;
-    width: 100%;
-    padding-bottom: 56.25%; 
-    height: 0;
-    margin-bottom: 30px;
-    background: #000;
-}
-
-.ad-media iframe {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    border: 0;
-}
-
-/* Side-by-Side Buttons */
-.cta-button-group { 
-    display: flex !important; 
-    flex-direction: row !important; 
-    gap: 15px; 
-    justify-content: center; 
-    margin-top: 20px; 
-}
-
-/* Isolated Section Styling */
-.test-automation-isolated-section {
-    width: 100%;
-    padding: 100px 0;
-    display: flex;
-    justify-content: center;
-    background: transparent;
-}
-
-.automation-wide-wrapper {
-    width: 95%;
-    max-width: 1000px; /* This creates the wide 16:9 feel */
-    text-align: center;
-}
-
-.section-title {
-    margin-bottom: 40px;
-    font-size: 2.5rem;
-}
-
-/* The Cinematic Glass Card */
-.glass-form-cinematic {
-    background: rgba(15, 23, 42, 0.8);
-    backdrop-filter: blur(15px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 30px;
-    overflow: hidden;
-    box-shadow: 0 40px 100px rgba(0,0,0,0.5);
-}
-
-/* Force 16:9 for the video at the top */
-.ad-media-cinematic {
-    position: relative;
-    width: 100%;
-    padding-bottom: 56.25%; /* 16:9 Ratio */
-    height: 0;
-    background: #000;
-}
-
-.ad-media-cinematic iframe {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    border: 0;
-}
-
-.form-content-area {
-    padding: 50px 40px;
-}
-
-.form-content-area h3 {
-    font-size: 1.8rem;
-    margin-bottom: 15px;
-}
-
-.form-content-area p {
-    color: var(--text-muted);
-    max-width: 600px;
-    margin: 0 auto 30px;
-}
-
-@media (max-width: 600px) {
-    .cta-button-group {
-        flex-direction: column !important;
+    .contact-section .glass-form {
+        display: block !important; 
+        width: 95% !important;
+        max-width: 950px !important; 
+        margin: 40px auto !important; 
+        padding: 0; 
+        padding-bottom: 40px; 
+        background: rgba(15, 23, 42, 0.8);
+        backdrop-filter: blur(15px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 24px;
+        overflow: hidden; 
+        box-shadow: 0 30px 60px rgba(0,0,0,0.5);
     }
-}
+
+    .glass-form .ad-media {
+        position: relative;
+        width: 100%;
+        padding-bottom: 56.25%; 
+        height: 0;
+        margin-bottom: 30px;
+        background: #000;
+    }
+
+    .glass-form .ad-media iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        border: 0;
+    }
+
+    .glass-form h3, 
+    .glass-form p, 
+    .glass-form .cta-button-group {
+        padding-left: 10%;
+        padding-right: 10%;
+        text-align: center;
+    }
+
+    .ad-media {
+        position: relative;
+        width: 100%;
+        padding-bottom: 56.25%;
+        height: 0;
+        margin-bottom: 30px;
+        background: #000;
+    }
+
+    .ad-media iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        border: 0;
+    }
+
+    .cta-button-group { 
+        display: flex !important; 
+        flex-direction: row !important;
+        gap: 15px; 
+        justify-content: center; 
+        margin-top: 20px; 
+    }
+
+    .test-automation-isolated-section {
+        width: 100%;
+        padding: 100px 0;
+        display: flex;
+        justify-content: center;
+        background: transparent;
+    }
+
+    .automation-wide-wrapper {
+        width: 95%;
+        max-width: 1000px; 
+        text-align: center;
+    }
+
+    .section-title {
+        margin-bottom: 40px;
+        font-size: 2.5rem;
+    }
+
+    .glass-form-cinematic {
+        background: rgba(15, 23, 42, 0.8);
+        backdrop-filter: blur(15px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 30px;
+        overflow: hidden;
+        box-shadow: 0 40px 100px rgba(0,0,0,0.5);
+    }
+
+    .ad-media-cinematic {
+        position: relative;
+        width: 100%;
+        padding-bottom: 56.25%; 
+        height: 0;
+        background: #000;
+    }
+
+    .ad-media-cinematic iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        border: 0;
+    }
+
+    .form-content-area {
+        padding: 50px 40px;
+    }
+
+    .form-content-area h3 {
+        font-size: 1.8rem;
+        margin-bottom: 15px;
+    }
+
+    .form-content-area p {
+        color: var(--text-muted);
+        max-width: 600px;
+        margin: 0 auto 30px;
+    }
 
     /* --------------------------------------------------------------------------
        9. NEWS SECTION
@@ -818,7 +811,7 @@
         background: transparent !important; 
         background-color: #0f172a !important; 
         width: 100%;
-        min-height: 300px; 
+        min-height: 300px;
     }
 
     .news-container-box {
@@ -897,11 +890,11 @@
        10. FOOTER & SOCIALS
        -------------------------------------------------------------------------- */
     footer { 
-        background: #0f172a; 
+        background: #0f172a;
         color: var(--text-muted); 
         text-align: center; 
         padding: 60px 20px; 
-        border-top: 1px solid rgba(255,255,255,0.05); 
+        border-top: 1px solid rgba(255,255,255,0.05);
     }
     
     footer a { color: #60a5fa; text-decoration: none; margin: 0 5px; cursor: pointer; }
@@ -909,18 +902,18 @@
     .footer-social-row { display: flex; justify-content: center; gap: 12px; margin-top: 30px; flex-wrap: wrap; }
     
     .social-icon { 
-        width: 40px; height: 40px; 
+        width: 40px;
+        height: 40px; 
         background: rgba(255,255,255,0.05); 
         border-radius: 10px; 
         display: flex; align-items: center; justify-content: center; 
-        transition: all 0.3s; 
+        transition: all 0.3s;
     }
     
     .social-icon svg { fill: #94a3b8; width: 20px; height: 20px; transition: fill 0.3s; }
     .social-icon:hover { transform: translateY(-5px); }
     .social-icon:hover svg { fill: #fff; }
 
-    /* BRAND COLORS */
     .si-pinterest:hover { background: #BD081C; }
     .si-facebook:hover { background: #1877F2; }
     .si-youtube:hover { background: #FF0000; }
@@ -937,14 +930,19 @@
     .modal-overlay { 
         position: fixed; inset: 0; background: rgba(0,0,0,0.9); display: flex; 
         justify-content: center; align-items: center; z-index: 2000; opacity: 0; 
-        pointer-events: none; transition: 0.3s; 
+        pointer-events: none; transition: 0.3s;
+        visibility: hidden; /* FIX: Prevents text from being physically accessible */
     }
     
-    .modal-overlay.active { opacity: 1; pointer-events: all; }
+    .modal-overlay.active { 
+        opacity: 1; 
+        pointer-events: all;
+        visibility: visible; 
+    }
     
     .modal-content { 
-        background: var(--bg-card); padding: 40px; border-radius: 20px; 
-        max-width: 500px; width: 90%; text-align: center; border: 1px solid var(--accent); 
+        background: var(--bg-alt); padding: 40px; border-radius: 20px; 
+        max-width: 500px; width: 90%; text-align: center; border: 1px solid var(--accent-blue);
     }
 
     #scrollTopBtn {
@@ -988,113 +986,119 @@
         text-align: center;
     }
 
-    /* --------------------------------------------------------------------------
-   12. MOBILE RESPONSIVENESS (CONSOLIDATED)
-   -------------------------------------------------------------------------- */
 
-/* Desktop Base State for Toggle & Logos */
-.mobile-menu-toggle {
-    display: none; 
-    flex-direction: column;
-    gap: 6px;
-    background: none;
-    border: none;
-    cursor: pointer;
-    z-index: 1001;
-    padding: 10px;
-}
-
-.mobile-menu-toggle span {
-    display: block;
-    width: 25px;
-    height: 2px;
-    background-color: #ffffff; 
-    margin: 4px 0;
-    transition: 0.3s;
-}
-
-.nav-logo-mobile { display: none; }
-
-/* Desktop View Adjustments */
-@media (min-width: 769px) {
-    .nav-logo-desktop { display: block; }
-    .z-nav-container {
-        display: flex;
+    /* ==========================================================================
+       12. CONSOLIDATED MOBILE FIXES (Safely Locked to Mobile Only)
+       ========================================================================== */
+    .mobile-menu-toggle {
+        display: none;
         flex-direction: column;
-        align-items: center;
+        gap: 6px;
+        background: none;
+        border: none;
+        cursor: pointer;
+        z-index: 1001;
+        padding: 10px;
     }
-}
-
-/* Tablet Adjustments */
-@media (max-width: 900px) {
-    .ad-content {
-        flex-direction: column; 
-        align-items: flex-start;
-        gap: 15px;
-        padding: 30px;
-    }
-}
-
-/* Mobile Screens (The Primary Fix) */
-@media (max-width: 768px) {
-    /* 1. Header Layout: Logo Left, Toggle Right */
-    .z-nav-container {
-        display: flex !important;
-        flex-direction: row !important; 
-        justify-content: space-between !important;
-        align-items: center;
-        height: 70px;
-        padding: 0 20px;
-        width: 100%;
+    .mobile-menu-toggle span {
+        display: block; width: 25px; height: 2px; background-color: #ffffff; 
+        margin: 4px 0; transition: 0.3s;
     }
 
-    /* 2. Logo Swap */
-    .nav-logo-desktop { display: none !important; }
-    .nav-logo-mobile { 
-        display: block; 
-        height: 40px; /* Adjust based on your new photo size */
-        width: auto;
-    }
-    .z-logo-group { margin: 0 !important; }
-
-    /* 3. Show Toggle & Side-out Menu */
-    .mobile-menu-toggle { display: flex; }
-
-    .z-nav-section {
-        display: flex !important;
-        position: fixed;
-        top: 0;
-        left: -100%; /* Off-screen */
-        width: 100%;
-        height: 100vh;
-        background: rgba(15, 23, 42, 0.98); 
-        backdrop-filter: blur(15px);
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        gap: 40px !important;
-        z-index: 1000;
-    }
-
-    .z-nav-section.active {
-        left: 0 !important; /* Forces the reveal */
-    }
-}
-
-    /* 4. Hamburger to X Animation */
-    .mobile-menu-toggle.active span:nth-child(1) { transform: translateY(9px) rotate(45deg); }
-    .mobile-menu-toggle.active span:nth-child(2) { opacity: 0; }
-    .mobile-menu-toggle.active span:nth-child(3) { transform: translateY(-9px) rotate(-45deg); }
-
-    /* 5. General Element Stacking */
-    .cta-button-group { flex-direction: column !important; }
-    .cta-button-group .btn { width: 100%; }
-    .mbm-bento-grid, .hz-card { flex-direction: column; }
-}
+    @media screen and (max-width: 768px) {
+        /* Desktop Menu Layout Hide */
+        .z-nav-container {
+            display: flex !important; flex-direction: row !important; 
+            justify-content: space-between !important; align-items: center;
+            height: 70px; padding: 0 20px; width: 100%;
+        }
         
-        /* ------------------------------------------
-</style>  
+        /* Proper Mobile Logo Display */
+        .nav-logo-desktop { display: none !important; }
+        .nav-logo-mobile { display: block !important; height: 40px !important; width: auto !important; }
+        .z-logo-group { margin: 0 !important; }
+        .mobile-menu-toggle { display: flex; }
+        
+        /* Mobile Hamburger Reveal */
+        .z-nav-section {
+            display: flex !important; position: fixed; top: 0; left: -100%; 
+            width: 100%; height: 100vh; background: rgba(15, 23, 42, 0.98); 
+            backdrop-filter: blur(15px); flex-direction: column; justify-content: center;
+            align-items: center; transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            gap: 40px !important; z-index: 1000;
+        }
+        .z-nav-section.active { left: 0 !important; }
+        .mobile-menu-toggle.active span:nth-child(1) { transform: translateY(9px) rotate(45deg); }
+        .mobile-menu-toggle.active span:nth-child(2) { opacity: 0; }
+        .mobile-menu-toggle.active span:nth-child(3) { transform: translateY(-9px) rotate(-45deg); }
+
+        /* General Stacking Rules */
+        .cta-button-group { flex-direction: column !important; }
+        .cta-button-group .btn { width: 100%; }
+        .mbm-bento-grid, .hz-card { flex-direction: column; }
+
+        /* --- HERO AND SUBTITLE FIXES (Prevents desktop bleeding) --- */
+        .hero h1 { 
+            margin-bottom: 25px !important; 
+            font-size: 1.8rem !important; 
+            line-height: 1.3 !important; 
+        }
+        /* Safely drop manual breaks on mobile to prevent clipping */
+        .hero h1 br, .novo-subtitle br { 
+            display: none !important; 
+        }
+        .novo-subtitle { 
+            font-size: 1rem !important; 
+            line-height: 1.6 !important; 
+            padding: 0 15px !important; 
+        }
+
+        /* --- HORIZONTAL SLIDER FIXES --- */
+        .card-overlay { padding: 20px 15px !important; }
+        .hz-card-content h3, .card-overlay h3 { 
+            font-size: 1.35rem !important; 
+            margin-bottom: 4px !important; 
+            line-height: 1.2 !important; 
+        }
+        .hz-card-content p, .card-overlay p { 
+            font-size: 0.85rem !important; 
+            line-height: 1.4 !important; 
+        }
+        /* Mobile Buttons shape safely shifted to square */
+        .hz-nav-btn { 
+            width: 45px !important; 
+            height: 45px !important; 
+            font-size: 1.1rem !important; 
+            border-radius: 8px !important; 
+        }
+        .hz-controls-row { 
+            margin-top: 15px !important; 
+            gap: 15px !important; 
+        }
+    }
+
+    @media screen and (max-width: 480px) {
+        /* Screen Banner Optimizations */
+        .header-top-tier { padding: 8px 10px; font-size: 11px; text-align: center; line-height: 1.3; }
+        .header-main-tier { padding: 12px 0; gap: 12px; }
+        .logo-text { font-size: 1.05rem; white-space: normal; text-align: center; }
+        .nav-logo-img { height: 28px; }
+
+        /* Dynamic Rotator Scaling Safely Limited */
+        .novo-main-title { font-size: 2.2rem !important; }
+        .novo-rotator-wrapper { height: 3rem !important; }
+        .novo-rotating-word { 
+            font-size: 2.2rem !important; 
+            white-space: nowrap !important; /* Force words not to break */
+        }
+    }
+
+    @media screen and (max-width: 360px) {
+        .novo-main-title, .novo-rotating-word { font-size: 1.8rem !important; }
+        .novo-rotator-wrapper { height: 2.5rem !important; }
+    }
+
+    </style>  
 </head>
 
 <body>
@@ -1102,7 +1106,7 @@
 <header>
     <div class="header-top-tier">
         <span>AI Guidebook on Sale!<span>
-        <a href="https://micro-burst-media.launchcart.store/" class="top-tier-link">Visit Store →</a>
+        <a href="https://micro-burst-media.launchcart.store/" class="top-tier-link">Visit Store </a>
     </div>
 
     <div class="z-nav-container">
@@ -1163,6 +1167,7 @@
                     <img src="" class="mbm-main-img" alt="Dropshippers">
                     <img src="" class="mbm-ui-overlay" alt="UI Shot">
                 </div>
+                
                 <div class="mbm-kodak-item" data-index="1">
                     <img src="" class="mbm-main-img" alt="Freelancers">
                     <img src="" class="mbm-ui-overlay" alt="UI Shot">
@@ -1183,44 +1188,42 @@
                     <img src="" class="mbm-main-img" alt="Retailers">
                     <img src="" class="mbm-ui-overlay" alt="UI Shot">
                 </div>
-            </div> 
              </div> 
-               </div> 
-                </section>
+        </div> 
+    </div> 
+</section>
 
-    <div id="disclaimerModal" class="modal-overlay">
-        <div class="modal-content">
-            <h2>Site Managed by Digital Marketing Network, MicroBurstMedia</h2>
-            <p style="color: var(--text-muted); margin: 20px 0;">By proceeding, you agree to all policies shown on this site. Disclaimer: We may earn a commission for referrals.</p>
-            <button class="btn btn-primary" onclick="acceptTerms()">Proceed to Website</button>
-        </div>
+<div id="disclaimerModal" class="modal-overlay">
+    <div class="modal-content">
+        <h2>Site Managed by Digital Marketing Network, MicroBurstMedia</h2>
+        <p style="color: var(--text-muted); margin: 20px 0;">By proceeding, you agree to all policies shown on this site. Disclaimer: We may earn a commission for referrals.</p>
+        <button class="btn btn-primary" onclick="acceptTerms()">Proceed to Website</button>
     </div>
-
-    <main>
-        <section class="hero">
-            <div class="container">
-                <h1 style="text-align: center; margin-bottom: 50px;"> #1 Marketing Network <br> Outsourcing Online <br> Products & Services</h1>
-                <p class="novo-subtitle">
-            If you're looking to incorporate AI into your business. <br> Hire us to assist with all of your IT headaches, <br> system handling, and web developments for your business. <br> Stop working harder, start earning smarter today!</p>
-            </div>
-        </section>
-        
-        <div class="hz-slider-section">
-    
-    <div class="hz-slider-container">
-    <div class="hz-stage">
-        <button class="hz-nav-btn prev" onclick="moveHzSlider(-1)">❮</button>
-        
-        <div class="hz-slider-viewport">
-            <div id="hzTrack" class="hz-track">
-                </div>
-        </div>
-
-        <button class="hz-nav-btn next" onclick="moveHzSlider(1)">❯</button>
-    </div>
-
-    <div id="hzDots" class="hz-dots-container"></div>
 </div>
+
+<main>
+    <section class="hero">
+        <div class="container">
+            <h1 style="text-align: center; margin-bottom: 50px;"> #1 Marketing Network <br> Outsourcing Online <br> Products & Services</h1>
+            <p class="novo-subtitle">
+        If you're looking to incorporate AI into your business. <br> Hire us to assist with all of your IT headaches, <br> system handling, and web developments for your business. <br> Stop working harder, start earning smarter today!</p>
+        </div>
+    </section>
+
+    <div class="hz-slider-section">
+        <div class="hz-slider-container">
+            <div class="hz-stage">
+                <button class="hz-nav-btn" onclick="moveSlider(-1)">&#8592;</button>
+                
+                <div class="hz-slider-viewport">
+                    <div id="hzTrack" class="hz-track"></div>
+                </div>
+
+                <button class="hz-nav-btn" onclick="moveSlider(1)">&#8594;</button>
+            </div>
+
+            <div id="hzDots" class="hz-dots-container"></div>
+        </div>
 
         <section class="features">
             <div class="container">
@@ -1231,81 +1234,83 @@
         <a href="https://meetings.hubspot.com/kirk-b?uuid=551e3c55-a5cb-42ba-9f0d-c6038664d28e" target="_blank" rel="noopener noreferrer" class="novo-cta-button">Schedule A Consultation</a>
     </div>
 
-        <section class="mbm-padding-global">
-    <div class="spacer-huge"></div>
-    <div class="mbm-container-large">
+    <section class="mbm-padding-global">
+        <div class="spacer-huge"></div>
+        <div class="mbm-container-large">
+            
+            <div style="text-align: center; max-width: 700px; margin: 0 auto;">
+                <h1 style="font-size: 3.0rem; margin-bottom: 20px; margin-top: -60px;">Optimize operations, <br> without the overhead.</h1>
+                <p style="color: var(--text-muted); font-size: 1.1rem;">Stop working harder. Let our IT infrastructure handle the heavy lifting.</p>
+            </div>
+            
+            <div class="spacer-large"></div>
+
+            <div class="mbm-bento-grid">
         
-        <div style="text-align: center; max-width: 700px; margin: 0 auto;">
-            <h1 style="font-size: 3.0rem; margin-bottom: 20px; margin-top: -60px;">Optimize operations, <br> without the overhead.</h1>
-            <p style="color: var(--text-muted); font-size: 1.1rem;">Stop working harder. Let our IT infrastructure handle the heavy lifting.</p>
+                <div class="mbm-bento-card" id="featuredStackCard">
+                    <div class="bento-image-container">
+                        <img src="" alt="Featured Card" id="stackImg0">
+                    </div>
+                    <div class="bento-eyebrow" id="stackEyebrow0">...</div>
+                    <h3 class="bento-title" id="stackTitle0">Loading...</h3>
+                    <p class="bento-desc" id="stackDesc0">Connecting to spreadsheet...</p>
+                    <a href="#" target="_blank" rel="noopener noreferrer" class="bento-link" id="stackLink0">Schedule Demo <span>&rarr;</span></a>
+                </div>
+
+                <div class="mbm-bento-card" id="featuredStackCard">
+                    <div class="bento-image-container">
+                        <img src="" alt="Featured Card" id="stackImg1">
+                    </div>
+                    <div class="bento-eyebrow" id="stackEyebrow1">...</div>
+                    <h3 class="bento-title" id="stackTitle1">Loading...</h3>
+                    <p class="bento-desc" id="stackDesc1">Connecting to spreadsheet...</p>
+                    <a href="#" class="bento-link" id="stackLink1">View Blueprint <span>&rarr;</span></a>
+                </div>
+
+                <div class="mbm-bento-card" id="featuredStackCard">
+                    <div class="bento-image-container">
+                        <img src="" alt="Featured Card" id="stackImg2">
+                    </div>
+                    <div class="bento-eyebrow" id="stackEyebrow2">...</div>
+                    <h3 class="bento-title" id="stackTitle2">Loading...</h3>
+                    <p class="bento-desc" id="stackDesc2">Connecting to spreadsheet...</p>
+                    <a href="#" class="bento-link" id="stackLink2">View Systems <span>&rarr;</span></a>
+                </div>
+                
+                <div class="mbm-bento-card" id="featuredStackCard">
+                    <div class="bento-image-container">
+                        <img src="" alt="Featured Card" id="stackImg3">
+                    </div>
+                    <div class="bento-eyebrow" id="stackEyebrow3">...</div>
+                    <h3 class="bento-title" id="stackTitle3">Loading...</h3>
+                    <p class="bento-desc" id="stackDesc3">Connecting to spreadsheet...</p>
+                    <a href="#" target="_blank" rel="noopener noreferrer" class="bento-link" id="stackLink3">Schedule A Session <span>&rarr;</span></a>
+                </div>
+
+                <div class="mbm-bento-card" id="featuredStackCard">
+                    <div class="bento-image-container">
+                        <img src="" alt="Featured Card" id="stackImg4">
+                    </div>
+                    <div class="bento-eyebrow" id="stackEyebrow4">...</div>
+                    <h3 class="bento-title" id="stackTitle4">Loading...</h3>
+                    <p class="bento-desc" id="stackDesc4">Connecting to spreadsheet...</p>
+                    <a href="#" class="bento-link" id="stackLink4">Access Resources <span>&rarr;</span></a>
+                </div>
+
+                <div class="mbm-bento-card" id="featuredStackCard">
+                    <div class="bento-image-container">
+                        <img src="" alt="Featured Card" id="stackImg5">
+                    </div>
+                    <div class="bento-eyebrow" id="stackEyebrow5">...</div>
+                    <h3 class="bento-title" id="stackTitle5">Loading...</h3>
+                    <p class="bento-desc" id="stackDesc5">Connecting to spreadsheet...</p>
+                    <a href="#" class="bento-link" id="stackLink5">Visit Outlet <span>&rarr;</span></a>
+                </div>
+            </div>
         </div>
-        
-        <div class="spacer-large"></div>
+    </section>
 
-        <div class="mbm-bento-grid">
-    
-    <div class="mbm-bento-card" id="featuredStackCard">
-    <div class="bento-image-container">
-        <img src="" alt="Featured Card" id="stackImg0">
-    </div>
-    <div class="bento-eyebrow" id="stackEyebrow0">...</div>
-    <h3 class="bento-title" id="stackTitle0">Loading...</h3>
-    <p class="bento-desc" id="stackDesc0">Connecting to spreadsheet...</p>
-    <a href="#" target="_blank" rel="noopener noreferrer" class="bento-link" id="stackLink0">Schedule Demo <span>&rarr;</span></a>
-</div>
-
-    <div class="mbm-bento-card" id="featuredStackCard">
-    <div class="bento-image-container">
-        <img src="" alt="Featured Card" id="stackImg1">
-    </div>
-    <div class="bento-eyebrow" id="stackEyebrow1">...</div>
-    <h3 class="bento-title" id="stackTitle1">Loading...</h3>
-    <p class="bento-desc" id="stackDesc1">Connecting to spreadsheet...</p>
-    <a href="#" class="bento-link" id="stackLink1">View Blueprint <span>&rarr;</span></a>
-</div>
-
-    <div class="mbm-bento-card" id="featuredStackCard">
-    <div class="bento-image-container">
-        <img src="" alt="Featured Card" id="stackImg2">
-    </div>
-    <div class="bento-eyebrow" id="stackEyebrow2">...</div>
-    <h3 class="bento-title" id="stackTitle2">Loading...</h3>
-    <p class="bento-desc" id="stackDesc2">Connecting to spreadsheet...</p>
-    <a href="#" class="bento-link" id="stackLink2">View Systems <span>&rarr;</span></a>
-</div>
-    
-    <div class="mbm-bento-card" id="featuredStackCard">
-    <div class="bento-image-container">
-        <img src="" alt="Featured Card" id="stackImg3">
-    </div>
-    <div class="bento-eyebrow" id="stackEyebrow3">...</div>
-    <h3 class="bento-title" id="stackTitle3">Loading...</h3>
-    <p class="bento-desc" id="stackDesc3">Connecting to spreadsheet...</p>
-    <a href="#" target="_blank" rel="noopener noreferrer" class="bento-link" id="stackLink3">Schedule A Session <span>&rarr;</span></a>
-</div>
-
-<div class="mbm-bento-card" id="featuredStackCard">
-    <div class="bento-image-container">
-        <img src="" alt="Featured Card" id="stackImg4">
-    </div>
-    <div class="bento-eyebrow" id="stackEyebrow4">...</div>
-    <h3 class="bento-title" id="stackTitle4">Loading...</h3>
-    <p class="bento-desc" id="stackDesc4">Connecting to spreadsheet...</p>
-    <a href="#" class="bento-link" id="stackLink4">Access Resources <span>&rarr;</span></a>
-</div>
-
-<div class="mbm-bento-card" id="featuredStackCard">
-    <div class="bento-image-container">
-        <img src="" alt="Featured Card" id="stackImg5">
-    </div>
-    <div class="bento-eyebrow" id="stackEyebrow5">...</div>
-    <h3 class="bento-title" id="stackTitle5">Loading...</h3>
-    <p class="bento-desc" id="stackDesc5">Connecting to spreadsheet...</p>
-    <a href="#" class="bento-link" id="stackLink5">Visit Outlet <span>&rarr;</span></a>
-</div>
-    </main>
-    
-    <section class="contact-section">
+<section class="contact-section">
     <div class="container">
         <h1 style="text-align: center; margin-bottom: 30px;">Learn About <br> Interlink Automation</h1>
         
@@ -1315,7 +1320,6 @@
             </div>
             
             <h3>Ready to Automate Your Business Workflow?</h3>
-            
             <p>Acquire our no-cost to you presentation guide on AI Automation. <br> Now available to access through our workflow automation test system.</p>
             
             <div class="cta-button-group">
@@ -1332,28 +1336,28 @@
     </div>
 </section>
 
-    <footer>
-        <p>© 2026 Digital Marketing Network, MicroBurstMedia</p>
-        <div style="margin: 15px 0;">
-            <a onclick="alert('Affiliate Disclosure: We may receive compensation.')">Affiliate Disclosure</a> |
-            <a onclick="alert('Privacy Policy: Minimal data collection.')">Privacy Policy</a> |
-            <a onclick="alert('Terms: Use constitutes agreement.')">Terms of Service</a> |  
-            <a onclick="alert('Legal Disclaimer: We do not provide financial, legal, or employment advice.')">Legal Disclaimer</a>
-        </div>
-        
-        <div class="footer-social-row">
-            <a href="https://www.pinterest.com/microburstmedia/" class="social-icon si-pinterest"><svg viewBox="0 0 24 24"><path d="M12.017 0C5.396 0 .029 5.367.029 11.987c0 5.079 3.158 9.417 7.618 11.162-.105-.949-.199-2.403.041-3.439.219-.937 1.406-5.966 1.406-5.966s-.359-.72-.359-1.781c0-1.668.967-2.914 2.171-2.914 1.023 0 1.518.769 1.518 1.69 0 1.029-.655 2.568-.994 3.995-.283 1.194.599 2.169 1.777 2.169 2.133 0 3.772-2.249 3.772-5.495 0-2.873-2.064-4.882-5.012-4.882-3.414 0-5.418 2.561-5.418 5.207 0 1.031.397 2.138.893 2.738.098.119.112.224.083.345l-.333 1.36c-.053.22-.174.267-.402.161-1.499-.698-2.436-2.889-2.436-4.649 0-3.785 2.75-7.261 7.929-7.261 4.162 0 7.396 2.966 7.396 6.929 0 4.135-2.607 7.462-6.225 7.462-1.214 0-2.354-.63-2.746-1.37l-.748 2.853c-.271 1.039-1.016 2.342-1.516 3.16a12.003 12.003 0 003.556.541c6.621 0 11.988-5.367 11.988-11.987C23.97 5.39 18.592.026 11.972.026L12.017 0z"/></svg></a>
-            <a href="https://www.facebook.com/microburstmediadotcom" class="social-icon si-facebook"><svg viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></a>
-            <a href="https://www.youtube.com/@microburstmedia" class="social-icon si-youtube"><svg viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></a>
-            <a href="https://www.instagram.com/microburstmedia" class="social-icon si-instagram"><svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.668-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></a>
-            <a href="https://www.tiktok.com/@mbmdotnetwork" class="social-icon si-tiktok"><svg viewBox="0 0 24 24"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.06-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.03 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.9-.32-1.89-.23-2.74.24-.7.38-1.24 1.02-1.51 1.8-.26.95-.08 2.02.44 2.85.57.91 1.54 1.55 2.61 1.74 1.28.2 2.6-.31 3.35-1.34.48-.65.71-1.46.69-2.26-.03-3.85-.02-7.71-.02-11.56z"/></svg></a>
-            <a href="https://x.com/mbmdotnetwork" class="social-icon si-x"><svg viewBox="0 0 24 24"><path d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932 6.064-6.932zm-1.292 19.49h2.039L6.486 3.24H4.298l13.311 17.403z"/></svg></a>
-        </div>
-    </footer>
+</main>
 
-    <script src="https://js.stripe.com/v3/"></script>
+<footer>
+    <p>© 2026 Digital Marketing Network, MicroBurstMedia</p>
+    <div style="margin: 15px 0;">
+        <a onclick="alert('Affiliate Disclosure: We may receive compensation.')">Affiliate Disclosure</a> |
+        <a onclick="alert('Privacy Policy: Minimal data collection.')">Privacy Policy</a> |
+        <a onclick="alert('Terms: Use constitutes agreement.')">Terms of Service</a> |  
+        <a onclick="alert('Legal Disclaimer: We do not provide financial, legal, or employment advice.')">Legal Disclaimer</a>
+    </div>
     
-    <style>
+    <div class="footer-social-row">
+        <a href="https://www.pinterest.com/microburstmedia/" class="social-icon si-pinterest"><svg viewBox="0 0 24 24"><path d="M12.017 0C5.396 0 .029 5.367.029 11.987c0 5.079 3.158 9.417 7.618 11.162-.105-.949-.199-2.403.041-3.439.219-.937 1.406-5.966 1.406-5.966s-.359-.72-.359-1.781c0-1.668.967-2.914 2.171-2.914 1.023 0 1.518.769 1.518 1.69 0 1.029-.655 2.568-.994 3.995-.283 1.194.599 2.169 1.777 2.169 2.133 0 3.772-2.249 3.772-5.495 0-2.873-2.064-4.882-5.012-4.882-3.414 0-5.418 2.561-5.418 5.207 0 1.031.397 2.138.893 2.738.098.119.112.224.083.345l-.333 1.36c-.053.22-.174.267-.402.161-1.499-.698-2.436-2.889-2.436-4.649 0-3.785 2.75-7.261 7.929-7.261 4.162 0 7.396 2.966 7.396 6.929 0 4.135-2.607 7.462-6.225 7.462-1.214 0-2.354-.63-2.746-1.37l-.748 2.853c-.271 1.039-1.016 2.342-1.516 3.16a12.003 12.003 0 003.556.541c6.621 0 11.988-5.367 11.988-11.987C23.97 5.39 18.592.026 11.972.026L12.017 0z"/></svg></a>
+        <a href="https://www.facebook.com/microburstmediadotcom" class="social-icon si-facebook"><svg viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></a>
+        <a href="https://www.youtube.com/@microburstmedia" class="social-icon si-youtube"><svg viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></a>
+        <a href="https://www.instagram.com/microburstmedia" class="social-icon si-instagram"><svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.668-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></a>
+        <a href="https://www.tiktok.com/@mbmdotnetwork" class="social-icon si-tiktok"><svg viewBox="0 0 24 24"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.06-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.03 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.9-.32-1.89-.23-2.74.24-.7.38-1.24 1.02-1.51 1.8-.26.95-.08 2.02.44 2.85.57.91 1.54 1.55 2.61 1.74 1.28.2 2.6-.31 3.35-1.34.48-.65.71-1.46.69-2.26-.03-3.85-.02-7.71-.02-11.56z"/></svg></a>
+        <a href="https://x.com/mbmdotnetwork" class="social-icon si-x"><svg viewBox="0 0 24 24"><path d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932 6.064-6.932zm-1.292 19.49h2.039L6.486 3.24H4.298l13.311 17.403z"/></svg></a>
+    </div>
+</footer>
+
+<style>
     :root {
         --glass-bg: rgba(30, 41, 59, 0.7);
         --glass-border: rgba(255, 255, 255, 0.1);
@@ -1456,7 +1460,7 @@
 
         // User message
         msgBox.innerHTML += `<div class="msg-user">${text}</div>`;
-        
+
         // Thinking placeholder
         const thinkingId = "temp-" + Date.now();
         msgBox.innerHTML += `<div class="msg-ai" id="${thinkingId}">...Thinking...</div>`;
@@ -1465,7 +1469,6 @@
         msgBox.scrollTop = msgBox.scrollHeight;
 
         try {
-            // Updated URL to match your current Render setup
             const response = await fetch('https://mbmn-chatbot-session.onrender.com/chat', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
@@ -1474,9 +1477,8 @@
 
             const data = await response.json();
             const thinkingEl = document.getElementById(thinkingId);
-            
+
             if(thinkingEl) {
-                // Ensure the reply actually exists before displaying
                 thinkingEl.innerText = data.reply || "I'm having trouble retrieving that answer. Please try again.";
             }
             
@@ -1487,237 +1489,175 @@
                 thinkingEl.innerText = "Connection error. MBMN server may be waking up—please try again in 30 seconds.";
             }
         }
-        // Final scroll update
         setTimeout(() => { msgBox.scrollTop = msgBox.scrollHeight; }, 50);
     }
 
     sendBtn.onclick = handleSend;
-    // Enhanced keyboard listener
     input.addEventListener('keydown', (e) => {
         if(e.key === 'Enter') handleSend();
     });
 </script>
     
-    <script>
-    // ==========================================
-    // 1. GLOBAL CONFIGURATION
-    // ==========================================
-    const stripe = Stripe('pk_test_51N5Y2tCYcbtuqUpVR8YK6poRUn5YyEPkAxRMrIO0B1tQvM3EJVid1IdPjTk142N9l2S96XGUnLDeLWsYeJ9RzPKr00cHs2kgfJ'); 
-    const MBMN_SERVER_URL = 'https://mbmn-checkout-session.onrender.com';
-    const CHAT_SERVER_URL = 'https://mbmn-chatbot-session.onrender.com';
-
-    // ==========================================
-    // 2. STRIPE CHECKOUT ENGINE
-    // ==========================================
-    async function handleCheckout() {
-        const button = document.getElementById('checkout-button');
-        if (!button) return; // Guard against null if button isn't on this specific page
-
-        const originalText = button.innerText;
-        button.innerText = "LOADING...";                  
-        
-        try {
-            const response = await fetch(`${MBMN_SERVER_URL}/create-checkout-session`, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                mode: 'cors' // Restoration of the handshake protocol
-            });
-
-            if (!response.ok) throw new Error("Server wake-up required");
-
-            const session = await response.json();
-            const result = await stripe.redirectToCheckout({
-                sessionId: session.id,
-            });
-
-            if (result.error) { alert(result.error.message); }
-        } catch (error) {
-            console.error("Stripe Error:", error);
-            alert("Checkout connection failed. The secure server is currently waking up—please try again in 30 seconds.");
-        } finally {
-            button.innerText = originalText;
-        }
-    }
-
-    // ==========================================
-    // 3. CHATBOT & UI LOGIC
-    // ==========================================
-    async function handleChatSend() {
-        const input = document.getElementById('user-input');
-        const msgBox = document.getElementById('chat-messages');
-        if (!input || !msgBox) return;
-
-        const text = input.value.trim();
-        if(!text) return;
-
-        msgBox.innerHTML += `<div class="msg-user">${text}</div>`;
-        const thinkingId = "temp-" + Date.now();
-        msgBox.innerHTML += `<div class="msg-ai" id="${thinkingId}"><i>Connecting to MBMN Database...</i></div>`;
-        
-        input.value = '';
-        msgBox.scrollTop = msgBox.scrollHeight;
-
-        try {
-            const response = await fetch(`${CHAT_SERVER_URL}/chat`, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ message: text })
-            });
-            const data = await response.json();
-            const thinkingEl = document.getElementById(thinkingId);
-            if(thinkingEl) thinkingEl.innerHTML = data.reply || "No response.";
-        } catch (err) {
-            const thinkingEl = document.getElementById(thinkingId);
-            if(thinkingEl) thinkingEl.innerText = "Connection busy. Re-trying...";
-        }
-        msgBox.scrollTop = msgBox.scrollHeight;
-    }
-
-    function handleDropdownSelect() {
-        const dropdown = document.getElementById('service-dropdown');
-        const input = document.getElementById('user-input');
-        if (!dropdown || !input || !dropdown.value) return;
-
-        input.value = dropdown.value;
-        handleChatSend();
-        dropdown.selectedIndex = 0;
-    }
-
-    // ==========================================
-    // 4. NEWS & UTILITY SYNC ENGINE
-    // ==========================================
-    async function initRotator() {
-        const container = document.getElementById('rotator-content');
-        if (!container) return;
-
-        let newsData = [];
-        let index = 0;
-        let rotatorTimeout; 
-
-        async function fetchNews() {
-            try {
-                const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxpOGMGIQhtsuk1_dESNyMHzktUc2nNVc4wqhy1luk0zljkiXOgE3vUjxWyA46gVDn9/exec";
-                const response = await fetch(SCRIPT_URL);
-                const data = await response.json();
-                if (data && data.length > 0) {
-                    newsData = data;
-                    if (!rotatorTimeout) showNext();
-                }
-            } catch (error) { console.error("News sync error:", error); }
-        }
-
-        function showNext() {
-            const item = newsData[index];
-            container.innerHTML = `
-                <div class="news-card" style="animation: fadeIn 1s ease-out;">
-                    <span class="news-tag" style="background: ${item.color || 'var(--primary)'};">${item.tag || 'NETWORK UPDATE'}</span>
-                    <h2 class="rotator-text">${item.text}</h2>
-                    <div style="opacity: 0.6; font-size: 0.8rem;">SYSTEM STATUS: ACTIVE // ${item.date || 'LIVE FEED'}</div>
-                </div>`;
-            index = (index + 1) % newsData.length;
-            rotatorTimeout = setTimeout(showNext, 8000);
-        }
-
-        fetchNews();
-        setInterval(fetchNews, 30 * 60 * 1000);
-    }
-
-    function updateCountdown() {
-        const dEl = document.getElementById("d_val");
-        if (!dEl) return; // Safety guard to prevent script crash
-
-        const now = new Date();
-        const target = new Date(now.getFullYear(), now.getMonth() + 1, 1);
-        const diff = target - now;
-
-        const d = Math.floor(diff / (1000 * 60 * 60 * 24));
-        const h = Math.floor((diff / (1000 * 60 * 60)) % 24);
-        const m = Math.floor((diff / (1000 * 60)) % 60);
-        const s = Math.floor((diff / 1000) % 60);
-
-        dEl.innerText = d.toString().padStart(2, '0');
-        document.getElementById("h_val").innerText = h.toString().padStart(2, '0');
-        document.getElementById("m_val").innerText = m.toString().padStart(2, '0');
-        document.getElementById("s_val").innerText = s.toString().padStart(2, '0');
-    }
-
-    // ==========================================
-    // 5. MASTER INITIALIZATION (Restored Mobile Nav)
-    // ==========================================
-    window.addEventListener('load', () => {
-        // Initialize visual engines
-        initRotator();
-        updateCountdown();
-        setInterval(updateCountdown, 1000);
-
-        // Define Elements
-        const trigger = document.getElementById('chat-trigger');
-        const windowEl = document.getElementById('chat-window');
-        const sendBtn = document.getElementById('send-btn');
-        const checkoutBtn = document.getElementById('checkout-button');
-        const serviceDropdown = document.getElementById('service-dropdown');
-        
-        // Mobile Navigation Elements
-        const menuToggle = document.getElementById('menuToggle');
-        const navSection = document.getElementById('navSection');
-        const navLinks = document.querySelectorAll('.z-nav-link');
-
-        // 1. Mobile Menu Toggle Logic
-        if (menuToggle && navSection) {
-            menuToggle.onclick = () => {
-                menuToggle.classList.toggle('active');
-                navSection.classList.toggle('active');
-                
-                // Prevent background scrolling when menu is open
-                if (navSection.classList.contains('active')) {
-                    document.body.style.overflow = 'hidden';
-                } else {
-                    document.body.style.overflow = 'auto';
-                }
-            };
-        }
-
-        // 2. Close Menu When Link is Clicked (Mobile)
-        navLinks.forEach(link => {
-            link.onclick = () => {
-                if (navSection.classList.contains('active')) {
-                    menuToggle.classList.remove('active');
-                    navSection.classList.remove('active');
-                    document.body.style.overflow = 'auto';
-                }
-            };
-        });
-
-        // 3. Chat Logic
-        if (trigger && windowEl) {
-            trigger.onclick = () => {
-                const isHidden = windowEl.style.display === 'none' || windowEl.style.display === '';
-                windowEl.style.display = isHidden ? 'flex' : 'none';
-            };
-        }
-
-        // 4. Other Button Listeners
-        if (sendBtn) sendBtn.onclick = handleChatSend;
-        if (checkoutBtn) checkoutBtn.onclick = handleCheckout;
-        if (serviceDropdown) serviceDropdown.onchange = handleDropdownSelect;
-    });
-</script>
-    
-   <script>
-    // ==========================================
-// CONFIGURATION
+<script src="https://js.stripe.com/v3/"></script>
+<script>
 // ==========================================
+// 1. GLOBAL CONFIGURATION
+// ==========================================
+const stripe = Stripe('pk_test_51N5Y2tCYcbtuqUpVR8YK6poRUn5YyEPkAxRMrIO0B1tQvM3EJVid1IdPjTk142N9l2S96XGUnLDeLWsYeJ9RzPKr00cHs2kgfJ');
+const MBMN_SERVER_URL = 'https://mbmn-checkout-session.onrender.com';
+const CHAT_SERVER_URL = 'https://mbmn-chatbot-session.onrender.com';
 const MBM_API_URL = "https://script.google.com/macros/s/AKfycbzPi1OyaOD0N_xNIVrCoet_MV9-xgHcBYihKvdaJuvM7Dparwro_R_d4T-VvDBZB0v_qw/exec";
 
 // ==========================================
-// ENGINE 1: HERO ROTATOR (KEEP AS IS)
+// 2. STRIPE CHECKOUT ENGINE
+// ==========================================
+async function handleCheckout() {
+    const button = document.getElementById('checkout-button');
+    if (!button) return; 
+
+    const originalText = button.innerText;
+    button.innerText = "LOADING...";                  
+    
+    try {
+        const response = await fetch(`${MBMN_SERVER_URL}/create-checkout-session`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            mode: 'cors' 
+        });
+
+        if (!response.ok) throw new Error("Server wake-up required");
+
+        const session = await response.json();
+        const result = await stripe.redirectToCheckout({
+            sessionId: session.id,
+        });
+
+        if (result.error) { alert(result.error.message); }
+    } catch (error) {
+        console.error("Stripe Error:", error);
+        alert("Checkout connection failed. The secure server is currently waking up—please try again in 30 seconds.");
+    } finally {
+        button.innerText = originalText;
+    }
+}
+
+// ==========================================
+// 3. CHATBOT & UI LOGIC
+// ==========================================
+async function handleChatSend() {
+    const input = document.getElementById('user-input');
+    const msgBox = document.getElementById('chat-messages');
+    if (!input || !msgBox) return;
+
+    const text = input.value.trim();
+    if(!text) return;
+
+    msgBox.innerHTML += `<div class="msg-user">${text}</div>`;
+
+    const thinkingId = "temp-" + Date.now();
+    msgBox.innerHTML += `<div class="msg-ai" id="${thinkingId}"><i>Connecting to MBMN Database...</i></div>`;
+    
+    input.value = '';
+    msgBox.scrollTop = msgBox.scrollHeight;
+
+    try {
+        const response = await fetch(`${CHAT_SERVER_URL}/chat`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ message: text })
+        });
+
+        const data = await response.json();
+        const thinkingEl = document.getElementById(thinkingId);
+        if(thinkingEl) thinkingEl.innerHTML = data.reply || "No response.";
+
+    } catch (err) {
+        const thinkingEl = document.getElementById(thinkingId);
+        if(thinkingEl) thinkingEl.innerText = "Connection busy. Re-trying...";
+    }
+    msgBox.scrollTop = msgBox.scrollHeight;
+}
+
+function handleDropdownSelect() {
+    const dropdown = document.getElementById('service-dropdown');
+    const input = document.getElementById('user-input');
+    if (!dropdown || !input || !dropdown.value) return;
+
+    input.value = dropdown.value;
+    handleChatSend();
+    dropdown.selectedIndex = 0;
+}
+
+// ==========================================
+// 4. NEWS & UTILITY SYNC ENGINE
+// ==========================================
+async function initRotator() {
+    const container = document.getElementById('rotator-content');
+    if (!container) return;
+
+    let newsData = [];
+    let index = 0;
+    let rotatorTimeout;
+
+    async function fetchNews() {
+        try {
+            const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxpOGMGIQhtsuk1_dESNyMHzktUc2nNVc4wqhy1luk0zljkiXOgE3vUjxWyA46gVDn9/exec";
+            const response = await fetch(SCRIPT_URL);
+            const data = await response.json();
+
+            if (data && data.length > 0) {
+                newsData = data;
+                if (!rotatorTimeout) showNext();
+            }
+        } catch (error) { console.error("News sync error:", error); }
+    }
+
+    function showNext() {
+        const item = newsData[index];
+        container.innerHTML = `
+            <div class="news-card" style="animation: fadeIn 1s ease-out;">
+                <span class="news-tag" style="background: ${item.color || 'var(--primary)'};">${item.tag || 'NETWORK UPDATE'}</span>
+                <h2 class="rotator-text">${item.text}</h2>
+                <div style="opacity: 0.6; font-size: 0.8rem;">SYSTEM STATUS: ACTIVE // ${item.date || 'LIVE FEED'}</div>
+            </div>`;
+
+        index = (index + 1) % newsData.length;
+        rotatorTimeout = setTimeout(showNext, 8000);
+    }
+
+    fetchNews();
+    setInterval(fetchNews, 30 * 60 * 1000);
+}
+
+function updateCountdown() {
+    const dEl = document.getElementById("d_val");
+    if (!dEl) return; 
+
+    const now = new Date();
+    const target = new Date(now.getFullYear(), now.getMonth() + 1, 1);
+    const diff = target - now;
+
+    const d = Math.floor(diff / (1000 * 60 * 60 * 24));
+    const h = Math.floor((diff / (1000 * 60 * 60)) % 24);
+    const m = Math.floor((diff / (1000 * 60)) % 60);
+    const s = Math.floor((diff / 1000) % 60);
+
+    dEl.innerText = d.toString().padStart(2, '0');
+    document.getElementById("h_val").innerText = h.toString().padStart(2, '0');
+    document.getElementById("m_val").innerText = m.toString().padStart(2, '0');
+    document.getElementById("s_val").innerText = s.toString().padStart(2, '0');
+}
+
+// ==========================================
+// 5. HERO ROTATOR
 // ==========================================
 let heroIndex = 0;
-const HERO_SPEED = 3000; 
+const HERO_SPEED = 3000;
 
 function syncHeroSection() {
     const words = document.querySelectorAll('.novo-rotating-word');
     const images = document.querySelectorAll('.mbm-kodak-item');
+
     if (words.length === 0 || images.length === 0) return;
 
     words.forEach(w => w.classList.remove('active', 'exit'));
@@ -1727,6 +1667,7 @@ function syncHeroSection() {
 
     images.forEach(img => img.classList.remove('active', 'next'));
     images[heroIndex].classList.add('active');
+
     let nextImgIndex = (heroIndex + 1) % images.length;
     images[nextImgIndex].classList.add('next');
 
@@ -1738,7 +1679,7 @@ function syncHeroSection() {
 }
 
 // ==========================================
-// ENGINE 1, 2 & 3: GOOGLE SHEETS SYNC (THE NEW STUFF)
+// 6. GOOGLE SHEETS SYNC
 // ==========================================
 let hzIndex = 0;
 const HZ_SPEED = 5000;
@@ -1749,110 +1690,86 @@ async function syncDynamicContent() {
         const response = await fetch(MBM_API_URL);
         const data = await response.json();
 
-        // --- 1. SYNC MAIN KODAK SLIDER (Hero + UI Overlay) ---
-if (data.mainSlider && data.mainSlider.length > 0) {
-    // We select all items, but we will filter out the poster
-    const allKodakItems = document.querySelectorAll('.mbm-kodak-item');
-    
-    // We create a counter to track which data row we are on, 
-    // skipping the item with the ID 'mainSliderPoster'
-    let dataRowIndex = 0;
+        if (data.mainSlider && data.mainSlider.length > 0) {
+            const allKodakItems = document.querySelectorAll('.mbm-kodak-item');
+            let dataRowIndex = 0;
 
-    allKodakItems.forEach((item) => {
-        // SKIP THE COVER: If this item is the poster, don't put sheet data on it
-        if (item.id === 'mainSliderPoster') return;
+            allKodakItems.forEach((item) => {
+                if (item.id === 'mainSliderPoster') return;
 
-        const rowData = data.mainSlider[dataRowIndex]; 
-        if (!rowData) return;
+                const rowData = data.mainSlider[dataRowIndex]; 
+                if (!rowData) return;
 
-        const mainImg = item.querySelector('.mbm-main-img');
-        const uiOverlay = item.querySelector('.mbm-ui-overlay');
-
-        // Sets the background Hero image (Column A)
-        if (mainImg) {
-            mainImg.src = rowData[0];
-            mainImg.style.objectFit = 'cover';
+                const mainImg = item.querySelector('.mbm-main-img');
+                const uiOverlay = item.querySelector('.mbm-ui-overlay');
+            
+                if (mainImg) {
+                    mainImg.src = rowData[0];
+                    mainImg.style.objectFit = 'cover';
+                }
+                if (uiOverlay && rowData[1]) {
+                    uiOverlay.src = rowData[1];
+                }
+                dataRowIndex++;
+            });
         }
 
-        // Sets the UI Overlay (Column B)
-        if (uiOverlay && rowData[1]) {
-            uiOverlay.src = rowData[1];
-        }
-
-        // Move to the next row of data for the next card
-        dataRowIndex++;
-    });
-}
-
-        // 2. SYNC SERVICES SLIDER (MIDDLE)
         const serviceTrack = document.getElementById('hzTrack');
         if (data.servicesSlider && serviceTrack) {
             serviceTrack.innerHTML = data.servicesSlider.map(item => `
-    <div class="hz-card">
-            <img src="${item.img}" style="width:100%; height:100%; object-fit:cover;">
-            <div class="card-overlay">
-                <span class="hz-eyebrow">${item.category || 'Service'}</span>
-                <h3>${item.title}</h3>
-                <p>${item.desc}</p>
-                <a href="${item.link}" target="_blank" rel="noopener noreferrer" class="hz-cta">Explore</a>
-            </div>
-        </div>
-`).join('');
+                <div class="hz-card">
+                    <img src="${item.img}" style="width:100%; height:100%; object-fit:cover;">
+                    <div class="card-overlay">
+                        <span class="hz-eyebrow">${item.category || 'Service'}</span>
+                        <h3>${item.title}</h3>
+                        <p>${item.desc}</p>
+                        <a href="${item.link}" target="_blank" rel="noopener noreferrer" class="hz-cta">Explore</a>
+                    </div>
+                </div>
+            `).join('');
 
-            // Dynamically create the dots based on how many cards are in the sheet
             updateSliderDots(data.servicesSlider.length);
-            
-            // Re-initialize the movement engine
             resetHzTimer();
         }
 
-        // 3. SYNC STACK CARD
-         if (data.featuredCards) {
-    data.featuredCards.forEach((card, index) => {
-        const titleEl = document.getElementById(`stackTitle${index}`);
-        const descEl = document.getElementById(`stackDesc${index}`);
-        const imgEl = document.getElementById(`stackImg${index}`);
-        const linkEl = document.getElementById(`stackLink${index}`);
-        const eyebrowEl = document.getElementById(`stackEyebrow${index}`);
+        if (data.featuredCards) {
+            data.featuredCards.forEach((card, index) => {
+                const titleEl = document.getElementById(`stackTitle${index}`);
+                const descEl = document.getElementById(`stackDesc${index}`);
+                const imgEl = document.getElementById(`stackImg${index}`);
+                const linkEl = document.getElementById(`stackLink${index}`);
+                const eyebrowEl = document.getElementById(`stackEyebrow${index}`);
 
-        if (titleEl) titleEl.innerText = card.title;
-        if (descEl) descEl.innerText = card.desc;
-        if (imgEl) imgEl.src = card.img;
-        if (linkEl) linkEl.href = card.link;
-        if (eyebrowEl) eyebrowEl.innerText = card.eyebrow;
-    });
-}
+                if (titleEl) titleEl.innerText = card.title;
+                if (descEl) descEl.innerText = card.desc;
+                if (imgEl) imgEl.src = card.img;
+                if (linkEl) linkEl.href = card.link;
+                if (eyebrowEl) eyebrowEl.innerText = card.eyebrow;
+            });
+        }
 
-    // FINAL STEP: Reveal the UI
         const cover = document.getElementById('mainSliderPoster');
         if (cover) {
             setTimeout(() => {
                 cover.classList.add('revealed');
                 console.log("Sheet data loaded. Revealing slider.");
-            }, 500); 
+            }, 500);
         }
 
     } catch (error) {
         console.error('Error loading slider data:', error);
-        // Fallback: reveal the cover anyway so the site isn't stuck
         const cover = document.getElementById('mainSliderPoster');
         if (cover) cover.classList.add('revealed');
     }
 }
 
-// ==========================================
-// NAVIGATION LOGIC (STAY AS IS)
-// ==========================================
 function updateHzSlider() {
     const track = document.getElementById('hzTrack');
     const dots = document.querySelectorAll('.hz-dot');
     if (!track) return;
 
-    // Continuous Loop Math: 
-    // This moves the track based on 100% of the viewport width
     track.style.transform = `translateX(-${hzIndex * 100}%)`;
 
-    // Update dots (using modulo to ensure they loop back)
     dots.forEach((dot, i) => {
         dot.classList.toggle('active', i === (hzIndex % dots.length));
     });
@@ -1862,30 +1779,8 @@ function moveHzSlider(direction) {
     const cards = document.querySelectorAll('.hz-card');
     if (cards.length === 0) return;
 
-    // Increment index and use modulo for seamless looping
     hzIndex = (hzIndex + direction + cards.length) % cards.length;
-    
     updateHzSlider();
-}
-
-// Update your dynamic sync function to ensure the "Verbiage" is injected
-function syncServices(data) {
-    const track = document.getElementById('hzTrack');
-    if (!data.servicesSlider || !track) return;
-
-    track.innerHTML = data.servicesSlider.map(item => `
-        <div class="hz-card">
-            <img src="${item.img}" style="width:100%; height:100%; object-fit:cover;">
-            <div class="card-overlay">
-                <span class="hz-eyebrow">${item.category || 'Service'}</span>
-                <h3>${item.title}</h3>
-                <p>${item.desc}</p>
-                <a href="${item.link}" target="_blank" rel="noopener noreferrer" class="hz-cta">Explore</a>
-            </div>
-        </div>
-    `).join('');
-
-    updateSliderDots(data.servicesSlider.length);
 }
 
 function jumpToHzCard(index) {
@@ -1902,6 +1797,7 @@ function resetHzTimer() {
 function updateSliderDots(count) {
     const dotsContainer = document.getElementById('hzDots');
     if (!dotsContainer) return;
+
     dotsContainer.innerHTML = ''; 
     for (let i = 0; i < count; i++) {
         const dot = document.createElement('span');
@@ -1911,45 +1807,16 @@ function updateSliderDots(count) {
     }
 }
 
-async function syncCardStack() {
-    try {
-        const response = await fetch(MBM_API_URL);
-        const data = await response.json();
-
-        // Target our new IDs
-        if (data.featuredCard) {
-            const titleEl = document.getElementById('stackTitle');
-            const descEl = document.getElementById('stackDesc');
-            const imgEl = document.getElementById('stackImg');
-            const linkEl = document.getElementById('stackLink');
-            const eyebrowEl = document.getElementById('stackEyebrow');
-
-            // Only update if the element actually exists on the page
-            if (titleEl) titleEl.innerText = data.featuredCard.title;
-            if (descEl) descEl.innerText = data.featuredCard.desc;
-            if (imgEl) imgEl.src = data.featuredCard.img;
-            if (linkEl) linkEl.href = data.featuredCard.link;
-            if (eyebrowEl && data.featuredCard.eyebrow) {
-                eyebrowEl.innerText = data.featuredCard.eyebrow;
-            }
-        }
-    } catch (e) {
-        console.error("Card Sync Error:", e);
-    }
-}
-
 // ==========================================
-// INITIALIZE EVERYTHING
+// MASTER INITIALIZATION
 // ==========================================
 window.addEventListener('load', () => {
-    // We only need this one! It handles the Kodak Slider, Services, and Stack Cards.
     syncDynamicContent(); 
-    
-    // Start the visual rotation for the Hero text/images
     setInterval(syncHeroSection, HERO_SPEED); 
-    
-    // Initialize the position of the services slider
     updateHzSlider(); 
+    initRotator();
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
 });
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -1962,7 +1829,6 @@ document.addEventListener('DOMContentLoaded', () => {
             menuToggle.classList.toggle('active');
             navSection.classList.toggle('active');
             
-            // Prevent background scrolling when menu is open
             if (navSection.classList.contains('active')) {
                 document.body.style.overflow = 'hidden';
             } else {
@@ -1971,7 +1837,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Close menu when a link is clicked
     document.querySelectorAll('.z-nav-link').forEach(link => {
         link.addEventListener('click', () => {
             menuToggle.classList.remove('active');
