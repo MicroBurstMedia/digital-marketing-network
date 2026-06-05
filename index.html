@@ -1545,47 +1545,49 @@ async function handleCheckout() {
 // 3. CHATBOT & UI LOGIC
 // ==========================================
 async function handleChatSend() {
-    const input = document.getElementById('user-input');
-    const msgBox = document.getElementById('chat-messages');
-    if (!input || !msgBox) return;
+const input = document.getElementById('user-input');
+const msgBox = document.getElementById('chat-messages');
+const text = input.value.trim();
+if(!text) return;
 
-    const text = input.value.trim();
-    if(!text) return;
+msgBox.innerHTML += `<div class="msg-user">${text}</div>`;
+input.value = '';
 
-    msgBox.innerHTML += `<div class="msg-user">${text}</div>`;
+const tempId = "waiting-" + Date.now();
+msgBox.innerHTML += `<div class="msg-ai" id="${tempId}"><i>Let me see what I can find in our database, just a moment...</i></div>`;
+msgBox.scrollTop = msgBox.scrollHeight;
 
-    const thinkingId = "temp-" + Date.now();
-    msgBox.innerHTML += `<div class="msg-ai" id="${thinkingId}"><i>Connecting to MBMN Database...</i></div>`;
-    
-    input.value = '';
-    msgBox.scrollTop = msgBox.scrollHeight;
+try {
+const response = await fetch(`${MBMN_SERVER_URL}/chat`, {
+method: 'POST',
+headers: { 'Content-Type': 'application/json' },
+body: JSON.stringify({ message: text })
+});
 
-    try {
-        const response = await fetch(`${CHAT_SERVER_URL}/chat`, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ message: text })
-        });
-
-        const data = await response.json();
-        const thinkingEl = document.getElementById(thinkingId);
-        if(thinkingEl) thinkingEl.innerHTML = data.reply || "No response.";
-
-    } catch (err) {
-        const thinkingEl = document.getElementById(thinkingId);
-        if(thinkingEl) thinkingEl.innerText = "Connection busy. Re-trying...";
-    }
-    msgBox.scrollTop = msgBox.scrollHeight;
+const data = await response.json();
+const waitingEl = document.getElementById(tempId);
+if (waitingEl) {
+waitingEl.innerHTML = data.reply;
+}
+} catch (err) {
+const waitingEl = document.getElementById(tempId);
+if (waitingEl) {
+waitingEl.style.color = "#f87171";
+waitingEl.innerHTML = "Connection busy. Please try again in 20 seconds.";
+}
+}
+msgBox.scrollTop = msgBox.scrollHeight;
 }
 
 function handleDropdownSelect() {
-    const dropdown = document.getElementById('service-dropdown');
-    const input = document.getElementById('user-input');
-    if (!dropdown || !input || !dropdown.value) return;
+const dropdown = document.getElementById('service-dropdown');
+const selectedValue = dropdown.value;
+if (!selectedValue) return;
 
-    input.value = dropdown.value;
-    handleChatSend();
-    dropdown.selectedIndex = 0;
+const input = document.getElementById('user-input');
+input.value = selectedValue;
+handleChatSend();
+dropdown.selectedIndex = 0;
 }
 
 // ==========================================
