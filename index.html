@@ -1098,6 +1098,204 @@
         .novo-rotator-wrapper { height: 2.5rem !important; }
     }
 
+/* ==========================================================================
+VERIFIED REVIEWS FEED STYLING
+========================================================================== */
+#reviews-section {
+  padding: 80px 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: transparent !important;
+  background-color: #0f172a !important;
+  width: 100%;
+  min-height: 350px;
+}
+
+.review-ticker-container {
+  width: 100%;
+  max-width: 850px;
+  background: linear-gradient(145deg, rgba(11, 16, 30, 0.95), rgba(5, 7, 10, 0.98));
+  border: 1px solid rgba(30, 41, 59, 0.8);
+  border-radius: 30px;
+  padding: 40px;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7);
+  position: relative;
+  overflow: hidden;
+}
+
+.ticker-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  border-bottom: 1px solid #1e293b;
+  padding-bottom: 0.75rem;
+}
+
+.ticker-title {
+  font-size: 0.85rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: #3b82f6;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.live-dot {
+  width: 8px;
+  height: 8px;
+  background-color: #10b981;
+  border-radius: 50%;
+  box-shadow: 0 0 8px #10b981;
+  animation: pulseDot 2s infinite;
+}
+
+@keyframes pulseDot {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+
+.review-card {
+  display: flex;
+  gap: 1.5rem;
+  align-items: center;
+  animation: fadeInReview 0.5s ease-in-out;
+}
+
+@keyframes fadeInReview {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.review-avatar-wrapper {
+  flex-shrink: 0;
+}
+
+.review-avatar {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #3b82f6;
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+}
+
+.review-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  text-align: left;
+}
+
+.review-business-name {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: #f8fafc;
+}
+
+.review-stars {
+  font-size: 0.9rem;
+  letter-spacing: 2px;
+}
+
+.review-comment {
+  font-size: 0.95rem;
+  color: var(--text-muted);
+  line-height: 1.5;
+  font-style: italic;
+}
+
+.review-action-row {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 1rem;
+}
+
+.btn-review-link {
+  background: #10b981;
+  color: #fff;
+  text-decoration: none;
+  padding: 0.5rem 1.25rem;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.2);
+}
+
+.btn-review-link:hover {
+  background: #059669;
+  transform: translateY(-1px);
+}
+
+.slider-controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 1.5rem;
+  border-top: 1px solid #1e293b;
+  padding-top: 1rem;
+}
+
+.slider-dots {
+  display: flex;
+  gap: 0.4rem;
+}
+
+.dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #334155;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.dot.active {
+  background: #3b82f6;
+  width: 20px;
+  border-radius: 4px;
+}
+
+.slider-nav-btns {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.nav-btn {
+  background: #1e293b;
+  color: #cbd5e1;
+  border: 1px solid #334155;
+  padding: 0.4rem 0.8rem;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 700;
+  font-size: 0.8rem;
+}
+
+.nav-btn:hover {
+  background: #334155;
+  color: #fff;
+}
+
+@media screen and (max-width: 768px) {
+  .review-card {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  .review-content {
+    text-align: center !important;
+  }
+  .review-action-row {
+    justify-content: center;
+  }
+}
+        
     </style>  
 </head>
 
@@ -1330,10 +1528,28 @@
     </div>
 </section>
 
-<section id="news-section">
-    <div class="news-container-box" id="rotator-content">
-        <p style="color: var(--text-muted); font-size: 0.8rem;">Synchronizing network intelligence...</p>
+<!-- VERIFIED REVIEWS FEED SLIDER -->
+<section id="reviews-section">
+  <div class="review-ticker-container">
+    <div class="ticker-header">
+      <div class="ticker-title">
+        <span class="live-dot"></span> MicroBurstMedia Verified Reviews Feed
+      </div>
+      <div id="reviewCounter" style="font-size: 0.8rem; color: #64748b;">Loading reviews...</div>
     </div>
+
+    <div id="reviewDisplayArea">
+      <div style="color: #64748b; text-align: center; padding: 2rem;">Synchronizing reviews feed...</div>
+    </div>
+
+    <div class="slider-controls">
+      <div class="slider-dots" id="sliderDots"></div>
+      <div class="slider-nav-btns">
+        <button class="nav-btn" onclick="prevReview()">&#9664; Prev</button>
+        <button class="nav-btn" onclick="nextReview()">Next &#9654;</button>
+      </div>
+    </div>
+  </div>
 </section>
 
 </main>
@@ -1592,28 +1808,102 @@ dropdown.selectedIndex = 0;
 }
 
 // ==========================================
-// 4. NEWS & UTILITY SYNC ENGINE
+// 4. VERIFIED REVIEWS FEED SYNC ENGINE
 // ==========================================
-async function initRotator() {
-    const container = document.getElementById('rotator-content');
-    if (!container) return;
+let reviewsData = [];
+let reviewIndex = 0;
+let reviewInterval;
 
-    let newsData = [];
-    let index = 0;
-    let rotatorTimeout;
+async function initReviewsFeed() {
+  try {
+    const response = await fetch(MBM_API_URL);
+    const data = await response.json();
 
-    async function fetchNews() {
-        try {
-            const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxpOGMGIQhtsuk1_dESNyMHzktUc2nNVc4wqhy1luk0zljkiXOgE3vUjxWyA46gVDn9/exec";
-            const response = await fetch(SCRIPT_URL);
-            const data = await response.json();
-
-            if (data && data.length > 0) {
-                newsData = data;
-                if (!rotatorTimeout) showNext();
-            }
-        } catch (error) { console.error("News sync error:", error); }
+    if (data && data.reviewsFeed && data.reviewsFeed.length > 0) {
+      reviewsData = data.reviewsFeed;
+      renderReview(reviewIndex);
+      renderReviewDots(reviewsData.length);
+      resetReviewTimer();
+    } else {
+      const displayArea = document.getElementById('reviewDisplayArea');
+      if (displayArea) displayArea.innerHTML = '<div style="color: #64748b; text-align: center; padding: 1rem;">No reviews found in your feed.</div>';
     }
+  } catch (error) {
+    console.error("Reviews feed sync error:", error);
+    const displayArea = document.getElementById('reviewDisplayArea');
+    if (displayArea) displayArea.innerHTML = '<div style="color: #ef4444; text-align: center; padding: 1rem;">Error connecting to reviews feed backend.</div>';
+  }
+}
+
+function renderReview(index) {
+  const rev = reviewsData[index];
+  const displayArea = document.getElementById('reviewDisplayArea');
+  const counter = document.getElementById('reviewCounter');
+  if (!displayArea || !rev) return;
+
+  if (counter) counter.innerText = `Review ${index + 1} of ${reviewsData.length}`;
+
+  displayArea.innerHTML = `
+    <div class="review-card">
+      <div class="review-avatar-wrapper">
+        <img src="${rev.imageUrl || 'https://via.placeholder.com/150'}" alt="${rev.businessName}" class="review-avatar" onerror="this.src='https://via.placeholder.com/150'">
+      </div>
+      <div class="review-content">
+        <div class="review-business-name">${rev.businessName}</div>
+        <div class="review-stars">${rev.rating}</div>
+        <div class="review-comment">"${rev.comment}"</div>
+      </div>
+    </div>
+    <div class="review-action-row">
+      <a href="${rev.linkUrl || '#'}" target="_blank" rel="noopener noreferrer" class="btn-review-link">Learn More &rarr;</a>
+    </div>
+  `;
+
+  updateReviewDots(index);
+}
+
+function renderReviewDots(count) {
+  const dotsContainer = document.getElementById('sliderDots');
+  if (!dotsContainer) return;
+
+  dotsContainer.innerHTML = '';
+  for (let i = 0; i < count; i++) {
+    const dot = document.createElement('div');
+    dot.className = i === 0 ? 'dot active' : 'dot';
+    dot.onclick = () => {
+      reviewIndex = i;
+      renderReview(reviewIndex);
+      resetReviewTimer();
+    };
+    dotsContainer.appendChild(dot);
+  }
+}
+
+function updateReviewDots(currentIndex) {
+  const dots = document.querySelectorAll('.slider-dots .dot');
+  dots.forEach((dot, i) => {
+    dot.classList.toggle('active', i === currentIndex);
+  });
+}
+
+function nextReview() {
+  if (reviewsData.length === 0) return;
+  reviewIndex = (reviewIndex + 1) % reviewsData.length;
+  renderReview(reviewIndex);
+  resetReviewTimer();
+}
+
+function prevReview() {
+  if (reviewsData.length === 0) return;
+  reviewIndex = (reviewIndex - 1 + reviewsData.length) % reviewsData.length;
+  renderReview(reviewIndex);
+  resetReviewTimer();
+}
+
+function resetReviewTimer() {
+  clearInterval(reviewInterval);
+  reviewInterval = setInterval(nextReview, 6000);
+}
 
     function showNext() {
         const item = newsData[index];
@@ -1817,7 +2107,7 @@ window.addEventListener('load', () => {
     syncDynamicContent(); 
     setInterval(syncHeroSection, HERO_SPEED); 
     updateHzSlider(); 
-    initRotator();
+    initReviewsFeed();
     updateCountdown();
     setInterval(updateCountdown, 1000);
 });
