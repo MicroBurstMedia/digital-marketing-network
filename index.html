@@ -1905,23 +1905,6 @@ function resetReviewTimer() {
   reviewInterval = setInterval(nextReview, 6000);
 }
 
-    function showNext() {
-        const item = newsData[index];
-        container.innerHTML = `
-            <div class="news-card" style="animation: fadeIn 1s ease-out;">
-                <span class="news-tag" style="background: ${item.color || 'var(--primary)'};">${item.tag || 'NETWORK UPDATE'}</span>
-                <h2 class="rotator-text">${item.text}</h2>
-                <div style="opacity: 0.6; font-size: 0.8rem;">SYSTEM STATUS: ACTIVE // ${item.date || 'LIVE FEED'}</div>
-            </div>`;
-
-        index = (index + 1) % newsData.length;
-        rotatorTimeout = setTimeout(showNext, 8000);
-    }
-
-    fetchNews();
-    setInterval(fetchNews, 30 * 60 * 1000);
-}
-
 function updateCountdown() {
     const dEl = document.getElementById("d_val");
     if (!dEl) return; 
@@ -2047,6 +2030,16 @@ async function syncDynamicContent() {
                 cover.classList.add('revealed');
                 console.log("Sheet data loaded. Revealing slider.");
             }, 500);
+        }
+
+        if (data.reviewsFeed && data.reviewsFeed.length > 0) {
+            reviewsData = data.reviewsFeed;
+            renderReview(reviewIndex);
+            renderReviewDots(reviewsData.length);
+            resetReviewTimer();
+        } else {
+            const displayArea = document.getElementById('reviewDisplayArea');
+            if (displayArea) displayArea.innerHTML = '<div style="color: #64748b; text-align: center; padding: 1rem;">No reviews found in your feed.</div>';
         }
 
     } catch (error) {
