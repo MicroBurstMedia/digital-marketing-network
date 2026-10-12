@@ -12,7 +12,7 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Digital Marketing Network | MicroBurstMedia</title>
-    <meta name="description" content="Optimize your business with AI Automation. Done for you by Digital Marketing Network, MicroBurstMedia.">
+    <meta name="description" content="Optimize your business workflow automation. Done for you by Digital Marketing Network, MicroBurstMedia.">
     <link rel="icon" type="image/x-icon" href="https://cdn.launchcart.com/s47561/1695846294-bb2c7ca6-3563-4ba6-a820-11297c768cd2-thumb.png"> 
 
     <script type="application/ld+json">
@@ -114,109 +114,111 @@
     }
 
     /* --------------------------------------------------------------------------
-       4. HEADER & NAVIGATION
-       -------------------------------------------------------------------------- */
-    header {
-        position: relative;
-        top: 0;
-        z-index: 9999;
-        width: 100%;
+   4. HEADER & NAVIGATION (INLINE SPLIT LAYOUT WITH TOP BANNER)
+   -------------------------------------------------------------------------- */
+header {
+    position: relative;
+    top: 0;
+    z-index: 9999;
+    width: 100%;
+}
+
+/* Top Tier Banner */
+.header-top-tier {
+    background-color: var(--accent-yellow);
+    color: var(--bg-dark); 
+    padding: 8px 5%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    font-size: 13px;
+    font-weight: 700;
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+}
+
+.top-tier-link {
+    color: var(--bg-dark);
+    font-weight: 800;
+    text-decoration: underline;
+}
+
+/* Main Nav Container (Splits Left Links, Logo, Right Links) */
+.z-nav-container {
+    max-width: 1300px;
+    margin: 0 auto;
+    padding: 15px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 35px;
+    border-bottom: 1px solid var(--border-color);
+    background-color: var(--glass-bg);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+}
+
+.z-nav-section {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+}
+
+.z-nav-link {
+    text-decoration: none;
+    color: var(--text-primary);
+    font-weight: 700;
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: color 0.3s ease;
+    white-space: nowrap;
+}
+
+.z-nav-link:hover {
+    color: var(--accent-yellow);
+}
+
+.z-logo-group {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    transition: transform 0.3s ease;
+    margin: 0 10px;
+}
+
+.z-logo-group:hover {
+    transform: scale(1.05);
+}
+
+.nav-logo-desktop {
+    display: block;
+    height: 110px; /* Balanced inline height */
+    width: auto;
+    object-fit: contain;
+}
+
+.nav-logo-mobile {
+    display: none;
+}
+
+/* Mobile Adjustments */
+@media screen and (max-width: 768px) {
+    .z-nav-container {
+        justify-content: space-between;
+        padding: 0 20px;
+        height: 70px;
     }
 
-    /* Top Tier: The Alert Bar */
-    .header-top-tier {
-        background-color: var(--accent-yellow);
-        color: var(--bg-dark); 
-        padding: 8px 5%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        gap: 15px;
-        font-size: 13px;
-        font-weight: 700;
-        border-bottom: 1px solid rgba(0,0,0,0.1);
-    }
-
-    /* Center-stacked Main Tier */
-    .header-main-tier {
-        background-color: var(--glass-bg);
-        backdrop-filter: blur(12px); 
-        -webkit-backdrop-filter: blur(12px);
-        padding: 20px 0;
-        display: flex;
-        flex-direction: column; 
-        align-items: center;    
-        gap: 20px;              
-        border-bottom: 1px solid var(--border-color);
-    }
-
-    .z-logo-group {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        text-decoration: none;
-        transition: transform 0.3s ease;
-    }
-
-    .z-logo-group:hover {
-        transform: scale(1.05);
-    }
-
-    /* STRICT LOGO SCOPING FOR DESKTOP */
-    .nav-logo-desktop { display: block; }
-    .nav-logo-mobile { display: none; }
-
-    .nav-logo-img {
-        height: 35px;
-        width: auto;
-        object-fit: contain;
-    }
-
-    .logo-text {
-        color: white;
-        font-weight: 800;
-        font-size: 1.25rem;
-        letter-spacing: 0.5px;
-    }
-
-    .z-nav-section {
-        display: flex;
-        justify-content: center;
-        flex-wrap: wrap; 
-        gap: 30px;
-        margin-left: 0; 
-    }
-
-    .z-nav-link {
-        text-decoration: none;
-        color: var(--text-primary);
-        font-weight: 600;
-        font-size: 14px;
-        text-transform: uppercase;
-        letter-spacing: 1px;
-        transition: color 0.3s;
-    }
+    .nav-logo-desktop { display: none !important; }
+    .nav-logo-mobile { display: block !important; height: 40px !important; width: auto !important; }
     
-    .z-nav-link:hover {
-        color: var(--accent-yellow);
+    .z-nav-section.nav-left,
+    .z-nav-section.nav-right {
+        display: none !important; /* Managed by mobile hamburger menu */
     }
-
-    .timer-link {
-        background: var(--accent-blue);
-        color: white;
-        padding: 10px 20px;
-        border-radius: 8px;
-        text-decoration: none;
-        font-weight: bold;
-        font-size: 12px;
-        text-transform: uppercase;
-        transition: transform 0.2s ease;
-    }
-
-    .timer-link:hover {
-        transform: translateY(-2px);
-        filter: brightness(1.1);
-    }
+}
 
     /* --------------------------------------------------------------------------
        5. HERO SECTION & KODAK STACK
@@ -1302,33 +1304,41 @@ VERIFIED REVIEWS FEED STYLING
 <body>
 
 <header>
+    <!-- Top Tier Announcement Banner (Kept Intact) -->
     <div class="header-top-tier">
-        <span>AI Guidebook on Sale!<span>
+        <span>AI Guidebook on Sale!</span>
         <a href="https://micro-burst-media.launchcart.store/" class="top-tier-link">Visit Store </a>
     </div>
 
+    <!-- Inline Split Navigation Container -->
     <div class="z-nav-container">
+        <!-- Left 3 Navigation Links -->
+        <nav class="z-nav-section nav-left">
+            <a href="https://microburstmedia.github.io/about-us/" class="z-nav-link">About</a>
+            <a href="https://microburstmedia.wordpress.com/" class="z-nav-link">Portfolio</a>
+            <a href="https://microburstmedia.github.io/ai-automation-test-center/" class="z-nav-link">Automation</a>
+        </nav>
+
+        <!-- Centered Logo Group -->
         <a href="https://microburstmedia.github.io/digital-marketing-network" class="z-logo-group">
-            <img src="https://cdn.launchcart.com/s47561/1684269057-de497636-f662-4e2d-ac5e-b1df715c0e6a-thumb.png" 
+            <img src="https://64.media.tumblr.com/7e56576740fb88f64be80e7f9f7619c4/8dda2cf5a29e3d50-1b/s1280x1920/e79288fd52450ccfb025796cb6304f5ab22fd733.pnj" 
                  alt="MBMN" 
                  class="nav-logo-mobile">
             
             <img src="https://64.media.tumblr.com/58d5a98d8647a651080ece5fdaa7007d/3220a71d0188745c-82/s500x750/2a617ffbc1080b6c67433ff033a26bc1723220b1.pnj" 
                  alt="MBMN" 
-                 class="nav-logo-desktop" 
-                 style="height: 300px; margin-bottom: 15px; margin-top: 0px;">
+                 class="nav-logo-desktop">
         </a>
 
+        <!-- Mobile Menu Toggle -->
         <button class="mobile-menu-toggle" aria-label="Toggle Menu">
             <span></span>
             <span></span>
             <span></span>
         </button>
 
-        <nav class="z-nav-section">
-            <a href="https://microburstmedia.github.io/about-us/" class="z-nav-link">About</a>
-            <a href="https://microburstmedia.wordpress.com/" class="z-nav-link">Portfolio</a>
-            <a href="https://microburstmedia.github.io/ai-automation-test-center/" class="z-nav-link">Automation</a>
+        <!-- Right 3 Navigation Links -->
+        <nav class="z-nav-section nav-right">
             <a href="https://meetings.hubspot.com/kirk-b?uuid=9ee4181c-c194-41a7-ae10-6edbb565622b" target="_blank" rel="noopener noreferrer" class="z-nav-link">Schedule</a>
             <a href="https://microburstmedia.github.io/ai-automation-learning-hub/" class="z-nav-link">Insights</a>
             <a href="https://microburstmedia.github.io/business-community-center/" class="z-nav-link">Network</a>
