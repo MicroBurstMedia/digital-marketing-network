@@ -1814,27 +1814,6 @@ let reviewsData = [];
 let reviewIndex = 0;
 let reviewInterval;
 
-async function initReviewsFeed() {
-  try {
-    const response = await fetch(MBM_API_URL);
-    const data = await response.json();
-
-    if (data && data.reviewsFeed && data.reviewsFeed.length > 0) {
-      reviewsData = data.reviewsFeed;
-      renderReview(reviewIndex);
-      renderReviewDots(reviewsData.length);
-      resetReviewTimer();
-    } else {
-      const displayArea = document.getElementById('reviewDisplayArea');
-      if (displayArea) displayArea.innerHTML = '<div style="color: #64748b; text-align: center; padding: 1rem;">No reviews found in your feed.</div>';
-    }
-  } catch (error) {
-    console.error("Reviews feed sync error:", error);
-    const displayArea = document.getElementById('reviewDisplayArea');
-    if (displayArea) displayArea.innerHTML = '<div style="color: #ef4444; text-align: center; padding: 1rem;">Error connecting to reviews feed backend.</div>';
-  }
-}
-
 function renderReview(index) {
   const rev = reviewsData[index];
   const displayArea = document.getElementById('reviewDisplayArea');
