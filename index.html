@@ -1080,6 +1080,25 @@ header {
         display: flex !important;
     }
 }
+    .mobile-menu-close {
+    position: absolute;
+    top: 20px;
+    right: 25px;
+    background: none;
+    border: none;
+    color: var(--text-primary);
+    font-size: 40px;
+    font-weight: 300;
+    cursor: pointer;
+    z-index: 1002;
+    padding: 10px;
+    line-height: 1;
+    transition: color 0.3s ease;
+}
+
+.mobile-menu-close:hover {
+    color: var(--accent-yellow);
+}
 
 /* ==========================================================================
 VERIFIED REVIEWS FEED STYLING
@@ -1322,16 +1341,19 @@ VERIFIED REVIEWS FEED STYLING
     </div>
 
     <!-- Dedicated Mobile Menu Overlay Drawer -->
-    <div class="mobile-menu-overlay">
-        <div class="mobile-menu-links">
-            <a href="https://microburstmedia.github.io/about-us/" class="mobile-nav-link">About</a>
-            <a href="https://microburstmedia.wordpress.com/" class="mobile-nav-link">Portfolio</a>
-            <a href="https://microburstmedia.github.io/ai-automation-test-center/" class="mobile-nav-link">Automation</a>
-            <a href="https://meetings.hubspot.com/kirk-b?uuid=9ee4181c-c194-41a7-ae10-6edbb565622b" target="_blank" rel="noopener noreferrer" class="mobile-nav-link">Schedule</a>
-            <a href="https://microburstmedia.github.io/ai-automation-learning-hub/" class="mobile-nav-link">Insights</a>
-            <a href="https://microburstmedia.github.io/business-community-center/" class="mobile-nav-link">Network</a>
-        </div>
+<div class="mobile-menu-overlay">
+    <!-- Explicit Close Button -->
+    <button class="mobile-menu-close" aria-label="Close Menu">&times;</button>
+
+    <div class="mobile-menu-links">
+        <a href="https://microburstmedia.github.io/about-us/" class="mobile-nav-link">About</a>
+        <a href="https://microburstmedia.wordpress.com/" class="mobile-nav-link">Portfolio</a>
+        <a href="https://microburstmedia.github.io/ai-automation-test-center/" class="mobile-nav-link">Automation</a>
+        <a href="https://meetings.hubspot.com/kirk-b?uuid=9ee4181c-c194-41a7-ae10-6edbb565622b" target="_blank" rel="noopener noreferrer" class="mobile-nav-link">Schedule</a>
+        <a href="https://microburstmedia.github.io/ai-automation-learning-hub/" class="mobile-nav-link">Insights</a>
+        <a href="https://microburstmedia.github.io/business-community-center/" class="mobile-nav-link">Network</a>
     </div>
+</div>
 </header>
 
 <section class="novo-hero">
@@ -2085,18 +2107,30 @@ window.addEventListener('load', () => {
 document.addEventListener('DOMContentLoaded', () => {
     const menuToggle = document.querySelector('.mobile-menu-toggle');
     const mobileMenuOverlay = document.querySelector('.mobile-menu-overlay');
+    const menuCloseBtn = document.querySelector('.mobile-menu-close');
+
+    function toggleMenu() {
+        menuToggle.classList.toggle('active');
+        mobileMenuOverlay.classList.toggle('active');
+
+        if (mobileMenuOverlay.classList.contains('active')) {
+            document.body.style.overflow = 'hidden';
+        } else {
+            document.body.style.overflow = 'auto';
+        }
+    }
 
     if (menuToggle && mobileMenuOverlay) {
         menuToggle.addEventListener('click', (e) => {
             e.preventDefault();
-            menuToggle.classList.toggle('active');
-            mobileMenuOverlay.classList.toggle('active');
+            toggleMenu();
+        });
+    }
 
-            if (mobileMenuOverlay.classList.contains('active')) {
-                document.body.style.overflow = 'hidden';
-            } else {
-                document.body.style.overflow = 'auto';
-            }
+    if (menuCloseBtn) {
+        menuCloseBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            toggleMenu();
         });
     }
 
