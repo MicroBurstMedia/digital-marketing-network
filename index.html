@@ -1049,7 +1049,72 @@ header {
     transform: translateY(-1px);
 }
 
-/* Close Button Styling for Mobile Menu */
+/* ==========================================================================
+   MOBILE MENU OVERLAY & HAMBURGER FIXES
+   ========================================================================== */
+.mobile-menu-toggle {
+    display: none;
+    flex-direction: column;
+    gap: 6px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    z-index: 1001;
+    padding: 10px;
+}
+
+.mobile-menu-toggle span {
+    display: block; 
+    width: 25px; 
+    height: 2px; 
+    background-color: #ffffff;
+    margin: 4px 0; 
+    transition: 0.3s;
+}
+
+/* HIDDEN BY DEFAULT ON DESKTOP */
+.mobile-menu-overlay {
+    display: none; 
+    position: fixed;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100vh;
+    background: rgba(15, 23, 42, 0.98);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    z-index: 1000;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.mobile-menu-overlay.active {
+    left: 0 !important;
+}
+
+.mobile-menu-links {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+}
+
+.mobile-nav-link {
+    text-decoration: none;
+    color: var(--text-primary);
+    font-weight: 700;
+    font-size: 18px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    transition: color 0.3s ease;
+}
+
+.mobile-nav-link:hover {
+    color: var(--accent-yellow);
+}
+
 .mobile-menu-close {
     position: absolute;
     top: 20px;
@@ -1068,6 +1133,42 @@ header {
 
 .mobile-menu-close:hover {
     color: var(--accent-yellow);
+}
+
+/* Hamburger Icon Animation */
+.mobile-menu-toggle.active span:nth-child(1) { transform: translateY(9px) rotate(45deg); }
+.mobile-menu-toggle.active span:nth-child(2) { opacity: 0; }
+.mobile-menu-toggle.active span:nth-child(3) { transform: translateY(-9px) rotate(-45deg); }
+
+/* MOBILE SCREEN BREAKPOINT */
+@media screen and (max-width: 768px) {
+    .z-nav-container {
+        display: flex !important; 
+        flex-direction: row !important;
+        justify-content: space-between !important; 
+        align-items: center;
+        height: 70px; 
+        padding: 0 20px; 
+        width: 100%;
+    }
+
+    .nav-logo-desktop { display: none !important; }
+    .nav-logo-mobile { display: block !important; height: 40px !important; width: auto !important; }
+    .z-logo-group { margin: 0 !important; }
+    
+    /* SHOW HAMBURGER ON MOBILE */
+    .mobile-menu-toggle { display: flex !important; }
+
+    /* HIDE DESKTOP SPLIT NAV ON MOBILE */
+    .z-nav-section.nav-left,
+    .z-nav-section.nav-right {
+        display: none !important; 
+    }
+
+    /* ENABLE OVERLAY DISPLAY CAPABILITY ON MOBILE */
+    .mobile-menu-overlay {
+        display: flex !important;
+    }
 }
 
 /* ==========================================================================
@@ -1313,7 +1414,7 @@ VERIFIED REVIEWS FEED STYLING
         </nav>
     </div>
 
-    <!-- Dedicated Mobile Menu Overlay Drawer (With Close Button) -->
+    <!-- Dedicated Mobile Menu Overlay Drawer (Hidden by default, slides in on mobile toggle) -->
     <div class="mobile-menu-overlay">
         <button class="mobile-menu-close" aria-label="Close Menu">&times;</button>
         <div class="mobile-menu-links">
@@ -1326,7 +1427,7 @@ VERIFIED REVIEWS FEED STYLING
         </div>
     </div>
 </header>
-
+    
 <section class="novo-hero">
     <div class="novo-container">
         <h1 class="novo-main-title">Building Foundation <br> Systems Automated for</h1>
